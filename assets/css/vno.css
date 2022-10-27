@@ -8012,6 +8012,12 @@ hr {
     margin: 0 30px
 }
 
+.panel-cover__maindescription {
+    text-align: left;
+    word-wrap: break-word;
+    hyphens: auto
+}
+
 .panel-cover__divider {
     width: 50%;
     margin: 20px auto;

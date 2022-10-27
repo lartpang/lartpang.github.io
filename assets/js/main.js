@@ -51,11 +51,6 @@ function decryptEmail(encoded) {
 }
 
 $(document).ready(function () {
-	// 获取一言数据
-	$.get('https://v1.hitokoto.cn', function (res) {
-		$('#description').html(res.hitokoto + "<br/> -「<strong>" + res.from + "</strong>」")
-	});
-
 	$(".iUp").each(function (i, e) {
 		iUp.up(e);
 	});
