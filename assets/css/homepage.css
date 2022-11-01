@@ -1,0 +1,194 @@
+body {
+    color: #000000;
+    background-color: #e6e6e6;
+    /*repeating-linear-gradient(渐变角度, 颜色 起点位置, 颜色 起止位置......)*/
+    background: repeating-linear-gradient(45deg, #fff 0, #fff 10px, rgb(226, 239, 247) 0, rgb(223, 238, 246) 20px);
+    font-family: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', sans-serif;
+    font-size: 18px;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+}
+
+#main {
+    /* 上边 | 右边 | 下边 | 左边 */
+    width: 80%;
+    min-width: 600px;
+    margin: 50px auto 50px auto;
+    padding: 30px 30px 30px 30px;
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(59, 64, 66, 0.603);
+}
+
+/* flex: https://www.w3docs.com/snippets/css/how-to-vertically-align-text-next-to-an-image.html#:~:text=Add%20CSS%201%20Put%20the%20display%20property%20and,initial%20main%20size%20of%20your%20image.%20More%20items */
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header #avatar {
+    max-width: 30%;
+}
+
+#header #introduction {
+    /* 上边 | 右边 | 下边 | 左边 */
+    padding: 0 20px 0 20px;
+    background-color: whitesmoke;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(59, 64, 66, 0.603);
+}
+
+h1 {
+    font-size: 34px;
+    font-weight: bold;
+    line-height: 1.75em;
+    margin: 12px 0px 6px 0 !important;
+    text-shadow: 1px 1px 1px #aaaaaa;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.5em;
+    margin: 12px 0 6px 0 !important;
+    text-shadow: 1px 1px 1px #aaaaaa;
+}
+
+#footer p {
+    font-weight: bold;
+    text-align: center;
+    color: #686868;
+    border-top: 2px solid #ededed;
+    padding: 10px 0 0 0;
+    margin: 10px 0 0 0;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1.5em;
+    margin-block-end: 1.5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 30px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration-line: none;
+}
+
+.link-button {
+    color: aliceblue;
+    background-color: dimgray;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 2em;
+    margin: 0 0 0 0;
+}
+
+.link-button::before,
+.link-button::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    box-shadow:
+        -1px -1px 20px 0px rgba(255, 255, 255, 1),
+        -4px -4px 5px 0px rgba(255, 255, 255, 1),
+        10px 10px 20px 0px rgba(0, 0, 0, .4),
+        6px 6px 5px 0px rgba(0, 0, 0, .3);
+    transition: all 0.8s ease;
+    padding: 0;
+}
+
+.link-button::before {
+    top: 0;
+    right: 0;
+}
+
+.link-button::after {
+    bottom: 0;
+    left: 0;
+}
+
+.link-button:hover {
+    color: black;
+    background: transparent;
+}
+
+.link-button:hover::before,
+.link-button:hover::after {
+    height: 100%;
+}
+
+.link-button span {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+    font-weight: bold;
+}
+
+.link-button span::before,
+.link-button span::after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 0px;
+    box-shadow:
+        -1px -1px 20px 0px rgba(255, 255, 255, 1),
+        -4px -4px 5px 0px rgba(255, 255, 255, 1),
+        10px 10px 20px 0px rgba(0, 0, 0, .4),
+        6px 6px 5px 0px rgba(0, 0, 0, .3);
+    transition: all 0.8s ease;
+}
+
+.link-button span::before {
+    top: 0;
+    left: 0;
+}
+
+.link-button span::after {
+    bottom: 0;
+    right: 0;
+}
+
+.link-button span:hover::before,
+.link-button span:hover::after {
+    width: 100%;
+    font-weight: bold;
+}
+
+.paper-picture {
+    width: 50%;
+}
+
+.paper-picture img {
+    max-width: 100%;
+    height: 200px;
+    box-shadow: 0 2px 6px rgba(59, 64, 66, 0.603);
+}
+
+.paper-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 8px 0 0 0 !important;
+}
+
+.paper-author {
+    margin: 8px 0 0 0 !important;
+}
+
+.paper-oral {
+    color: deeppink;
+}
+
+.paper-conf {
+    font-weight: bold;
+    float: right;
+    _position: relative;
+}
