@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Homepage">
+  <meta name="keywords" content="Homepage">
+  <meta name="author" content="Lart Pang">
+  <title>Youwei Pang</title>
+
+  <link rel="stylesheet" , type="text/css" href="../assets/css/homepage.css">
+  <link rel="../apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="icon" href="../favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <h1>Zoom In and Out: A Mixed-scale Triplet Network for Camouflaged Object Detection</h1>
+
+    <div id="article-header">
+      <p class="paper-author">
+        <strong>Youwei Pang</strong>, Xiaoqi Zhao, Tian-zhu Xiang, Lihe Zhang, Huchuan Lu
+        <span class="paper-conf">CVPR 2022</span>
+      </p>
+
+      <p class="paper-link">
+        <a href="https://arxiv.org/abs/2203.02688" target="_blank">
+          <button class="link-button"><span>Paper</span></button>
+        </a>
+        <a href="https://github.com/lartpang/ZoomNet" target="_blank">
+          <button class="link-button"><span>Code</span></button>
+        </a>
+        <a href="/docs/zoomnet.html" target="_blank">
+          <button class="link-button"><span>Project</span></button>
+        </a>
+
+      <p>
+        <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="license: mit"></a>
+        <img src="https://img.shields.io/github/last-commit/lartpang/ZoomNet?style=flat-square" alt="LAST COMMIT">
+        <img src="https://img.shields.io/github/issues/lartpang/ZoomNet?style=flat-square" alt="ISSUES">
+        <img src="https://img.shields.io/github/stars/lartpang/ZoomNet?style=flat-square" alt="STARS">
+        <a href="https://arxiv.org/abs/2203.02688" target="_blank"><img src="https://img.shields.io/badge/Arxiv-Paper-red?style=flat-square" alt="paper"></a>
+        <a href="https://github.com/lartpang/ZoomNet/releases/download/v0.0.1/zoomnet-arxiv.pdf" target="_blank"><img src="https://img.shields.io/badge/Github-Paper-red?style=flat-square" alt="paper"></a>
+      </p>
+      </p>
+
+    </div>
+
+    <div id="article-abstract">
+      <h2>Abstract</h2>
+
+      <p>The recently proposed camouflaged object detection (COD) attempts to segment objects that are visually blended into their surroundings, which is extremely complex and difficult in real-world scenarios. Apart from high intrinsic similarity between the camouflaged objects and their background, the objects are usually diverse in scale, fuzzy in appearance, and even severely occluded. To deal with these problems, we propose a mixed-scale triplet network, \textbf{ZoomNet}, which mimics the behavior of humans when observing vague images, i.e., zooming in and out. Specifically, our ZoomNet employs the zoom strategy to learn the discriminative mixed-scale semantics by the designed scale integration unit and hierarchical mixed-scale unit, which fully explores imperceptible clues between the candidate objects and background surroundings. Moreover, considering the uncertainty and ambiguity derived from indistinguishable textures, we construct a simple yet effective regularization constraint, uncertainty-aware loss, to promote the model to accurately produce predictions with higher confidence in candidate regions. Without bells and whistles, our proposed highly task-friendly model consistently surpasses the existing 23 state-of-the-art methods on four public datasets. Besides, the superior performance over the recent cutting-edge models on the SOD task also verifies the effectiveness and generality of our model. The code will be available at <a href="https://github.com/lartpang/ZoomNet" target="_blank">https://github.com/lartpang/ZoomNet</a>.</p>
+    </div>
+
+    <div id="related-link">
+      <h2>Related Links</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Weights</th>
+            <th>Results</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>COD</td>
+            <td><a href="https://github.com/lartpang/ZoomNet/releases/download/v0.0.1/cod_zoomnet_r50_bs8_e40_2022-03-04.pth">GitHub Release Link</a></td>
+            <td><a href="https://github.com/lartpang/ZoomNet/releases/download/v0.0.1/CVPR-2022-ZoomNet-COD.zip">GitHub Release Link</a></td>
+          </tr>
+          <tr>
+            <td>SOD</td>
+            <td><a href="https://github.com/lartpang/ZoomNet/releases/download/v0.0.1/sod_zoomnet_r50_bs22_e50_2022-03-04_fixed.pth">GitHub Release Link</a></td>
+            <td><a href="https://github.com/lartpang/ZoomNet/releases/download/v0.0.1/CVPR-2022-ZoomNet-SOD.zip">GitHub Release Link</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul>
+        <li>The prediction maps corresponding to the methods in Table 1 of our paper: <a href="https://pan.baidu.com/s/1dLMqa4tix1gdBN1uWrCPbQ" target="_blank">Baidu Pan (yxy9)</a></li>
+        <li><a href="https://github.com/lartpang/PySODEvalToolkit" target="_blank">PySODEvalToolkit</a>: A Python-based Evaluation Toolbox for Salient Object Detection and Camouflaged Object Detection</li>
+        <li><a href="https://github.com/lartpang/awesome-segmentation-saliency-dataset#camouflaged-object-detection-cod" target="_blank">COD Datasets</a></li>
+        <li><a href="https://github.com/lartpang/awesome-segmentation-saliency-dataset#rgb-saliency" target="_blank">SOD Datasets</a></li>
+      </ul>
+    </div>
+
+    <div class="details">
+      <h2>Method Details</h2>
+
+      <figure>
+        <p><img src="https://github.com/lartpang/ZoomNet/blob/main/assets/feat.png?raw=true" alt="zoomnet"></p>
+        <figcaption>Method Detials</figcaption>
+
+        <p><img src="https://github.com/lartpang/ZoomNet/blob/main/assets/net.png?raw=true" alt="zoomnet"></p>
+        <figcaption>Method Detials</figcaption>
+      </figure>
+
+      <h2>Comparison</h2>
+
+      <h3>Camouflaged Object Detection</h3>
+
+      <figure>
+        <p><img src="https://github.com/lartpang/ZoomNet/blob/main/assets/cod_vis.png?raw=true" alt="zoomnet"></p>
+        <p><img src="https://github.com/lartpang/ZoomNet/blob/main/assets/cod_cmp.png?raw=true" alt="zoomnet"></p>
+        <p><img src="https://github.com/lartpang/ZoomNet/blob/main/assets/cod_fmpr.png?raw=true" alt="zoomnet"></p>
+      </figure>
+
+      <h3>Salient Object Detection</h3>
+
+      <figure>
+        <p><img src="https://github.com/lartpang/ZoomNet/blob/main/assets/sod_cmp.png?raw=true" alt="zoomnet"></p>
+        <p><img src="https://github.com/lartpang/ZoomNet/blob/main/assets/sod_fmpr.png?raw=true" alt="zoomnet"></p>
+      </figure>
+
+    </div>
+
+    <div id="citation">
+      <h2>Citation</h2>
+
+      <pre>@inproceedings{ZoomNet-CVPR2022,
+  title = {Zoom In and Out: A Mixed-scale Triplet Network for Camouflaged Object Detection},
+  author = {Pang, Youwei and Zhao, Xiaoqi and Xiang, Tian-Zhu and Zhang, Lihe and Lu, Huchuan},
+  booktitle = CVPR,
+  year = {2022}
+}</pre>
+    </div>
+
+    <div id="footer">
+      <p>
+        Created by <a href="https://github.com/lartpang" target="_blank">Youwei Pang</a>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>
