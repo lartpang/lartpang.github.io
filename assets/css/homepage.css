@@ -181,9 +181,13 @@ figure {
     text-indent: 0;
 }
 
+figure img {
+    box-shadow: 0 2px 6px rgba(59, 64, 66, 0.603);
+}
+
 img {
     max-width: 100%;
-    box-shadow: 0 2px 6px rgba(59, 64, 66, 0.603);
+    margin: 0px 5px 0px 5px !important;
 }
 
 .paper-title {
