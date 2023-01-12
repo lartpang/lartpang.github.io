@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Homepage">
+  <meta name="keywords" content="Homepage">
+  <meta name="author" content="Lart Pang">
+  <title>Youwei Pang</title>
+
+  <link rel="stylesheet" , type="text/css" href="/assets/css/homepage.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div id="main">
+    <h1>CAVER: Cross-Modal View-Mixed Transformer for Bi-Modal Salient Object Detection</h1>
+
+    <div id="article-header">
+      <p class="paper-author">
+        <strong>Youwei Pang</strong>, Xiaoqi Zhao, Lihe Zhang and Huchuan Lu
+        <span class="paper-conf">TIP 2023</span>
+      </p>
+
+      <p class="paper-link">
+        <a href="https://arxiv.org/abs/2112.02363" target="_blank">
+          <button class="link-button"><span>Paper (ArXiv)</span></button>
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/10015667" target="_blank">
+          <button class="link-button"><span>Paper (IEEE)</span></button>
+        </a>
+        <a href="https://github.com/lartpang/CAVER" target="_blank">
+          <button class="link-button"><span>Code</span></button>
+        </a>
+        <a href="/docs/caver.html" target="_blank">
+          <button class="link-button"><span>Project</span></button>
+        </a>
+
+      <p>
+        <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="license: mit"></a>
+        <img src="https://img.shields.io/github/last-commit/lartpang/CAVER?style=flat-square" alt="LAST COMMIT">
+        <img src="https://img.shields.io/github/issues/lartpang/CAVER?style=flat-square" alt="ISSUES">
+        <img src="https://img.shields.io/github/stars/lartpang/CAVER?style=flat-square" alt="STARS">
+        <a href="https://arxiv.org/abs/2112.02363" target="_blank"><img src="https://img.shields.io/badge/Arxiv-Paper-red?style=flat-square" alt="paper"></a>
+      </p>
+      </p>
+
+    </div>
+
+    <div id="article-abstract">
+      <h2>Abstract</h2>
+
+      <p>
+        Most of the existing bi-modal (RGB-D and RGB-T) salient object detection methods utilize the convolution operation and construct complex interweave fusion structures to achieve cross-modal information integration.
+        The inherent local connectivity of the convolution operation constrains the performance of the convolution-based methods to a ceiling.
+        In this work, we rethink these tasks from the perspective of global information alignment and transformation.
+        Specifically, the proposed \underline{c}ross-mod\underline{a}l \underline{v}iew-mixed transform\underline{er} (CAVER) cascades several cross-modal integration units to construct a top-down transformer-based information propagation path.
+        CAVER treats the multi-scale and multi-modal feature integration as a sequence-to-sequence context propagation and update process built on a novel view-mixed attention mechanism.
+        Besides, considering the quadratic complexity w.r.t. the number of input tokens, we design a parameter-free patch-wise token re-embedding strategy to simplify operations.
+        Extensive experimental results on RGB-D and RGB-T SOD datasets demonstrate that such a simple two-stream encoder-decoder framework can surpass recent state-of-the-art methods when it is equipped with the proposed components.
+        Code and pretrained models will be available at <a href="https://github.com/lartpang/CAVER" target="_blank">https://github.com/lartpang/CAVER</a>.
+      </p>
+    </div>
+
+    <div id="related-link">
+      <h2>Related Links</h2>
+
+      <h3>All Results of CAVER.</h3>
+
+      <ul>
+        <li>CAVER (ResNet-50d) trained on NJUD and NLPR:
+          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbd-njudnlpr.pt" target="_blank">GitHub Release</a>
+        </li>
+        <li>CAVER (ResNet-50d) trained on NJUD, NLPR and DUTRGBD-TR:
+          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbd-njudnlprdutrgbd.pt" target="_blank">GitHub Release</a>
+        </li>
+        <li>CAVER (ResNet-101d) trained on NJUD and NLPR:
+          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbd-njudnlpr.pt" target="_blank">GitHub Release</a>
+        </li>
+        <li>CAVER (ResNet-101d) trained on NJUD, NLPR and DUTRGBD-TR:
+          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbd-njudnlprdutrgbd.pt" target="_blank">GitHub Release</a>
+        </li>
+        <li>CAVER (ResNet-50d) trained on VT5000-TR for RGB-T SOD:
+          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbt.pt" target="_blank">GitHub Release</a>
+        </li>
+        <li>CAVER (ResNet-101d) trained on VT5000-TR for RGB-T SOD:
+          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbt.pt" target="_blank">GitHub Release</a>
+        </li>
+      </ul>
+
+      <h3>All Pretrained Parameters.</h3>
+
+      <p>Results on 11 RGB-D datasets: COME-TE-E, COME-TE-H, DUTRGBD-TE, LFSD, NJUD-TE(DMRA), NLPR-TE(DMRA), ReDWeb-S-TE, RGBD135, SIP, SSD and STEREO1000:</p>
+      <ul>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-results/rgbdsod-caver-r50d-njudnlpr.zip"">CAVER (ResNet-50d) trained on NJUD and NLPR</a></li>
+        <li><a href=" https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-results/rgbdsod-caver-r50d-njudnlprdutrgbd.zip"">CAVER (ResNet-50d) trained on NJUD, NLPR and DUTRGBD-TR</a></li>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-results/rgbdsod-caver-r101d-njudnlpr.zip"">CAVER (ResNet-101d) trained on NJUD and NLPR</a></li>
+        <li><a href=" https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-results/rgbdsod-caver-r101d-njudnlprdutrgbd.zip"">CAVER (ResNet-50d) trained on NJUD, NLPR and DUTRGBD-TR</a></li>
+      </ul>
+
+      <p>Results on 3 RGB-T datasets: VT821, VT1000 and VT5000-TE:</p>
+      <ul>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-results/rgbtsod-caver-r50d.zip"">CAVER (ResNet-50d) trained on VT5000-TR</a></li>
+        <li><a href=" https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-results/rgbtsod-caver-r101d.zip"">CAVER (ResNet-101d) trained on VT5000-TR</a></li>
+      </ul>
+
+      <h3>Useful Links.</h3>
+
+      <ul>
+        <li><a href="https://github.com/lartpang/PySODEvalToolkit" target="_blank">PySODEvalToolkit</a>: A Python-based Evaluation Toolbox for Salient Object Detection and Camouflaged Object Detection</li>
+        <li><a href="https://github.com/lartpang/awesome-segmentation-saliency-dataset#camouflaged-object-detection-cod" target="_blank">COD Datasets</a></li>
+        <li><a href="https://github.com/lartpang/awesome-segmentation-saliency-dataset#rgb-saliency" target="_blank">SOD Datasets</a></li>
+      </ul>
+    </div>
+
+    <div class="details">
+      <h2>Method Details</h2>
+
+      <figure>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/net.jpg?raw=true" alt="caver"></p>
+        <figcaption>
+          The overview of the proposed model. This is a dual-stream encoder-decoder architecture with a very simple and straightforward form. Note that the dashed line denotes an optional path for the decoder. In our model, the CMIU4 only contains two inputs $f^{4}{rgb}$ and $f^{4}{d/t}$ and $\hat{f}^{4}{rgb-d/t}=\tilde{f}^{4}{rgb-d/t}$. The feature $f^{i+1}_{rgb-d/t}$ exists in CMIU1-3, which is upsampled using bilinear interpolation in the 2D form.
+        </figcaption>
+
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/ptre.jpg?raw=true" alt="caver"></p>
+        <figcaption>
+          Patch-wise token re-embedding (PTRE). Before matrix multiplication, the parameter-free PTRE is used to reshape features. Thus, pixel-wise tokens are aggregated and converted into patch-wise tokens.
+        </figcaption>
+
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/vma.jpg?raw=true" alt="caver"></p>
+      </figure>
+
+      <h2>Comparison</h2>
+
+      <h3>RGB-D/T SOD</h3>
+      <figure>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/rgbd-results-0.jpg?raw=true" alt="caver"></p>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/rgbd-results-1.jpg?raw=true" alt="caver"></p>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/rgbt-results.jpg?raw=true" alt="caver"></p>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/prfm.jpg?raw=true" alt="caver"></p>
+      </figure>
+
+      <h3>FLOPs, Parameters and FPS</h3>
+      <figure>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/flops-params-fps.jpg?raw=true" alt="caver"></p>
+      </figure>
+
+    </div>
+
+    <div id="citation">
+      <h2>Citation</h2>
+
+      <pre>@article{CAVER-TIP2023,
+  author={Pang, Youwei and Zhao, Xiaoqi and Zhang, Lihe and Lu, Huchuan},
+  journal={IEEE Transactions on Image Processing},
+  title={CAVER: Cross-Modal View-Mixed Transformer for Bi-Modal Salient Object Detection},
+  year={2023},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TIP.2023.3234702}
+}</pre>
+    </div>
+
+    <div id="footer">
+      <p>
+        Created by <a href="https://github.com/lartpang" target="_blank">Youwei Pang</a>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>
