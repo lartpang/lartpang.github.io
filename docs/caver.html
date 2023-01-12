@@ -44,7 +44,6 @@
         <img src="https://img.shields.io/github/last-commit/lartpang/CAVER?style=flat-square" alt="LAST COMMIT">
         <img src="https://img.shields.io/github/issues/lartpang/CAVER?style=flat-square" alt="ISSUES">
         <img src="https://img.shields.io/github/stars/lartpang/CAVER?style=flat-square" alt="STARS">
-        <a href="https://arxiv.org/abs/2112.02363" target="_blank"><img src="https://img.shields.io/badge/Arxiv-Paper-red?style=flat-square" alt="paper"></a>
       </p>
       </p>
 
@@ -71,24 +70,12 @@
       <h3>All Results of CAVER.</h3>
 
       <ul>
-        <li>CAVER (ResNet-50d) trained on NJUD and NLPR:
-          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbd-njudnlpr.pt" target="_blank">GitHub Release</a>
-        </li>
-        <li>CAVER (ResNet-50d) trained on NJUD, NLPR and DUTRGBD-TR:
-          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbd-njudnlprdutrgbd.pt" target="_blank">GitHub Release</a>
-        </li>
-        <li>CAVER (ResNet-101d) trained on NJUD and NLPR:
-          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbd-njudnlpr.pt" target="_blank">GitHub Release</a>
-        </li>
-        <li>CAVER (ResNet-101d) trained on NJUD, NLPR and DUTRGBD-TR:
-          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbd-njudnlprdutrgbd.pt" target="_blank">GitHub Release</a>
-        </li>
-        <li>CAVER (ResNet-50d) trained on VT5000-TR for RGB-T SOD:
-          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbt.pt" target="_blank">GitHub Release</a>
-        </li>
-        <li>CAVER (ResNet-101d) trained on VT5000-TR for RGB-T SOD:
-          <a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbt.pt" target="_blank">GitHub Release</a>
-        </li>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbd-njudnlpr.pt" target="_blank">CAVER (ResNet-50d) trained on NJUD and NLPR</a></li>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbd-njudnlprdutrgbd.pt" target="_blank">CAVER (ResNet-50d) trained on NJUD, NLPR and DUTRGBD-TR</a></li>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbd-njudnlpr.pt" target="_blank">CAVER (ResNet-101d) trained on NJUD and NLPR</a></li>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbd-njudnlprdutrgbd.pt" target="_blank">CAVER (ResNet-101d) trained on NJUD, NLPR and DUTRGBD-TR</a></li>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r50d-rgbt.pt" target="_blank">CAVER (ResNet-50d) trained on VT5000-TR for RGB-T SOD</a></li>
+        <li><a href="https://github.com/lartpang/CAVER/releases/download/rgbd-rgbt-models/caver-r101d-rgbt.pt" target="_blank">CAVER (ResNet-101d) trained on VT5000-TR for RGB-T SOD</a></li>
       </ul>
 
       <h3>All Pretrained Parameters.</h3>
@@ -125,7 +112,7 @@
           The overview of the proposed model. This is a dual-stream encoder-decoder architecture with a very simple and straightforward form. Note that the dashed line denotes an optional path for the decoder. In our model, the CMIU4 only contains two inputs $f^{4}{rgb}$ and $f^{4}{d/t}$ and $\hat{f}^{4}{rgb-d/t}=\tilde{f}^{4}{rgb-d/t}$. The feature $f^{i+1}_{rgb-d/t}$ exists in CMIU1-3, which is upsampled using bilinear interpolation in the 2D form.
         </figcaption>
 
-        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/ptre.jpg?raw=true" alt="caver"></p>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/ptre.jpg?raw=true" alt="caver" width="50%"></p>
         <figcaption>
           Patch-wise token re-embedding (PTRE). Before matrix multiplication, the parameter-free PTRE is used to reshape features. Thus, pixel-wise tokens are aggregated and converted into patch-wise tokens.
         </figcaption>
@@ -139,13 +126,13 @@
       <figure>
         <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/rgbd-results-0.jpg?raw=true" alt="caver"></p>
         <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/rgbd-results-1.jpg?raw=true" alt="caver"></p>
-        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/rgbt-results.jpg?raw=true" alt="caver"></p>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/rgbt-results.jpg?raw=true" alt="caver" width="50%"></p>
         <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/prfm.jpg?raw=true" alt="caver"></p>
       </figure>
 
       <h3>FLOPs, Parameters and FPS</h3>
       <figure>
-        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/flops-params-fps.jpg?raw=true" alt="caver"></p>
+        <p><img src="https://github.com/lartpang/CAVER/blob/main/assets/flops-params-fps.jpg?raw=true" alt="caver" width="50%"></p>
       </figure>
 
     </div>
