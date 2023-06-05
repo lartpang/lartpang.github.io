@@ -1,392 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Homepage" />
+    <meta name="keywords" content="Homepage" />
+    <meta name="author" content="Lart Pang" />
+    <title>Youwei Pang</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Homepage">
-  <meta name="keywords" content="Homepage">
-  <meta name="author" content="Lart Pang">
-  <title>Youwei Pang</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <!-- <link rel="stylesheet" , type="text/css" href="assets/css/homepage.css" /> -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
 
-  <link rel="stylesheet" , type="text/css" href="assets/css/homepage.css">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="icon" href="favicon.ico">
-</head>
+  <body>
+    <div class="section  has-background-white-ter" id="main">
+      <div class="tile is-ancestor">
+        <div class="tile is-parent is-3 is-vertical" id="header">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-1by1" id="avatar">
+                <img
+                  src="https://avatars.githubusercontent.com/u/26847524"
+                  alt="avatar"
+                />
+              </figure>
+            </div>
 
-<body>
-  <div id="main">
-    <div id="header">
-      <img id="avatar" src="https://avatars.githubusercontent.com/u/26847524" alt="avatar">
+            <div class="card-content" id="introduction">
+              <p class="title is-2">Youwei Pang</p>
 
-      <div id="introduction">
-        <h1>Youwei Pang</h1>
+              <div class="block">
+                I am a Ph.D. student in the Faculty of Electronic Information
+                and Electrical Engineering Dalian University of Technology
+                (DUT). I received the B.E. degree in electronic and information
+                engineering from DUT in 2019.
+              </div>
 
-        <div id="social-link">
-          <a href="https://github.com/lartpang" target="_blank">
-            <button class="link-button">
-              <span>GitHub</span>
-            </button>
-          </a>
-          <a href="mailto:%6C%61%72%74%70%61%6E%67%40%6D%61%69%6C%2E%64%6C%75%74%2E%65%64%75%2E%63%6E" target="_blank">
-            <button class="link-button">
-              <span>E-mail</span>
-            </button>
-          </a>
-          <a href="https://blog.csdn.net/p_lart" target="_blank">
-            <button class="link-button">
-              <span>CSDN</span>
-            </button>
-          </a>
-          <a href="https://aminer.org/profile/53f7b05bdabfae92b40d723a" target="_blank">
-            <button class="link-button">
-              <span>AMiner</span>
-            </button>
-          </a>
-          <a href="https://scholar.google.com/citations?user=jdo9_goAAAAJ&hl=en" target="_blank">
-            <button class="link-button">
-              <span>Google Scholar</span>
-            </button>
-          </a>
+              <div class="block">
+                My current research interests include <i>deep learning</i>,
+                <i>computer vision</i>, and <i>image segmentation</i>. In
+                particular, I focus on
+                <strong>RGB/RGB-D salient object detection</strong> and
+                <strong>camouflaged object detection</strong>.
+              </div>
+
+              <div class="block" id="social-link">
+                <ul>
+                  <li>
+                    <a href="https://github.com/lartpang" target="_blank">
+                      GitHub
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="mailto:%6C%61%72%74%70%61%6E%67%40%6D%61%69%6C%2E%64%6C%75%74%2E%65%64%75%2E%63%6E"
+                      target="_blank"
+                    >
+                      E-mail
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://blog.csdn.net/p_lart" target="_blank">
+                      CSDN
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://aminer.org/profile/53f7b05bdabfae92b40d723a"
+                      target="_blank"
+                    >
+                      AMiner
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://scholar.google.com/citations?user=jdo9_goAAAAJ&hl=en"
+                      target="_blank"
+                    >
+                      Google Scholar
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <p>I am a Ph.D. student in the Faculty of Electronic Information and Electrical Engineering Dalian University of Technology (DUT). I received the B.E. degree in electronic and information engineering from DUT in 2019.</p>
+        <div class="tile is-parent is-vertical" id="information">
+          <div class="box" id="project">
+            <p class="title is-3">Project</p>
 
-        <p>My current research interests include <i>deep learning</i>, <i>computer vision</i>, and <i>image segmentation</i>. In particular, I focus on <strong>RGB/RGB-D salient object detection</strong> and <strong>camouflaged object detection</strong>.</p>
+            <ol class="ml-4">
+              <li>
+                <a
+                  href="https://github.com/lartpang/PyTorchTricks"
+                  target="_blank"
+                >
+                  PyTorchTricks </a
+                >: Some tricks of pytorch…
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lartpang/MethodsCmp"
+                  target="_blank"
+                >
+                  MethodsCmp </a
+                >: A simple toolkit for counting the FLOPs/MACs, Parameters and
+                FPS of the model.
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lartpang/PySODEvalToolkit"
+                  ,
+                  target="_blank"
+                >
+                  PySODEvalToolkit </a
+                >: A Python-based salient object detection and video object
+                segmentation evaluation toolbox.
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lartpang/PySODMetrics"
+                  target="_blank"
+                >
+                  PySODMetrics </a
+                >: A simple and efficient implementation of SOD metrics.
+              </li>
+              <li>
+                <a href="https://github.com/lartpang/PyLoss" target="_blank">
+                  PyLoss </a
+                >: Some loss functions for deeplearning.
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lartpang/OpticalFlowBasedVOS"
+                  target="_blank"
+                >
+                  OpticalFlowBasedVOS </a
+                >: A simple and efficient codebase for the optical flow based
+                video object segmentation.
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lartpang/CoSaliencyProj"
+                  target="_blank"
+                >
+                  CoSaliencyProj </a
+                >: A project for co-saliency detection. Some codes are borrowed
+                from ICNet. Thanks to ICNet Intra-saliency Correlation Network
+                for Co-Saliency Detection (NIPS2020)~
+              </li>
+              <li>
+                <a href="https://github.com/lartpang/RunIt" target="_blank">
+                  RunIt </a
+                >: A simple program scheduler for your code on different
+                devices.
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lartpang/RegisterIt"
+                  target="_blank"
+                >
+                  RegisterIt </a
+                >: Register it: A more flexible register for the DeepLearning
+                project.
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lartpang/MSSIM.pytorch"
+                  target="_blank"
+                >
+                  MSSIM.pytorch </a
+                >: A better pytorch-based implementation for the mean structural
+                similarity. Differentiable simpler SSIM and MS-SSIM.
+              </li>
+              <li>
+                <a
+                  href="https://github.com/lartpang/ClusteringMethods"
+                  target="_blank"
+                >
+                  ClusteringMethods </a
+                >: Some Clustering Methods Implementation Base on Python.
+              </li>
+            </ol>
+          </div>
+
+          <div class="box" id="honor">
+            <p class="title is-3">Honor</p>
+
+            <ol class="ml-4">
+              <li>
+                Gold Award of
+                <a
+                  href="https://cy.ncss.cn/information/2c93f4c682872dbb01849802948e17dd"
+                  target="_blank"
+                  >The 8th China International College Students' 'Internet+'
+                  Innovation and Entrepreneurship Competition, Company/Project:
+                  工源三仟</a
+                >
+                (~0.05‰[161/3,400,000+])
+              </li>
+              <li>
+                <a
+                  href="https://aistudio.baidu.com/aistudio/competition/detail/230/0/leaderboard"
+                  target="_blank"
+                  >MICCAI 2022 Challenge: Glaucoma Oct Analysis and Layer
+                  Segmentation (GOALS), Team: IIAU-Segmentors</a
+                >: Glaucoma Detection: 1/100; OCT Layer Segmentation: 3/100;
+                GOALS: 2/100; $1,300 bonus
+              </li>
+              <li>
+                VisDrone 2021 Crowd Counting Challenge (ICCV 2021 Workshop)
+                (7/77)
+              </li>
+              <li>
+                2020 Hualu Cup's first big data competition (Intelligent
+                Diagnosis of Cancer Risk) (7/114)
+              </li>
+              <li>2020 Huawei Fellowship</li>
+              <li>
+                Third place of 2018 OPPO Top AI Competition (Portrait
+                Segmentation) (3/456, 50,000 RMB bonus)
+              </li>
+            </ol>
+          </div>
+
+          <div class="box" id="publication">
+            <p class="title is-3">Publication</p>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  CAVER: Cross-Modal View-Mixed Transformer for Bi-Modal Salient
+                  Object Detection
+                </p>
+
+                <p class="paper-author">
+                  <strong>Youwei Pang</strong>, Xiaoqi Zhao, Lihe Zhang and
+                  Huchuan Lu
+                  <span class="paper-conf">TIP 2023</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2112.02363" target="_blank">
+                    [Paper (ArXiv)]
+                  </a>
+                  <a
+                    href="https://ieeexplore.ieee.org/document/10015667"
+                    target="_blank"
+                  >
+                    [Paper (IEEE)]
+                  </a>
+                  <a href="https://github.com/lartpang/CAVER" target="_blank">
+                    [Code]
+                  </a>
+                  <a href="/docs/caver.html" target="_blank"> [Project] </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  Joint Learning of Salient Object Detection, Depth Estimation
+                  and Contour Extraction
+                </p>
+
+                <p class="paper-author">
+                  Xiaoqi Zhao, <strong>Youwei Pang</strong>, Lihe Zhang, Huchuan
+                  Lu
+                  <span class="paper-conf">TIP 2022</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2203.04895" target="_blank">
+                    [Paper]
+                  </a>
+                  <a
+                    href="https://github.com/Xiaoqi-Zhao-DLUT/MMFT"
+                    target="_blank"
+                  >
+                    [Code]
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  Zoom In and Out: A Mixed-scale Triplet Network for Camouflaged
+                  Object Detection
+                </p>
+
+                <p class="paper-author">
+                  <strong>Youwei Pang</strong>, Xiaoqi Zhao, Tian-zhu Xiang,
+                  Lihe Zhang, Huchuan Lu
+                  <span class="paper-conf">CVPR 2022</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2203.02688" target="_blank">
+                    [Paper]
+                  </a>
+                  <a href="https://github.com/lartpang/ZoomNet" target="_blank">
+                    [Code]
+                  </a>
+                  <a href="/docs/zoomnet.html" target="_blank"> [Project] </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  Self-Supervised Pretraining for RGB-D Salient Object Detection
+                </p>
+
+                <p class="paper-author">
+                  Xiaoqi Zhao, <strong>Youwei Pang</strong>, Lihe Zhang, Huchuan
+                  Lu, Xiang Ruan
+                  <span class="paper-conf">AAAI 2022</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2101.12482" target="_blank">
+                    [Paper]
+                  </a>
+                  <a
+                    href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&mid=2247591348&idx=2&sn=34a95dbbd14b7adfd508f12899ac27a2&chksm=ec1d884ddb6a015b71612bf16227bed8c69db4074585f712c1dc7dceb7859641088441ff9753&mpshare=1&scene=1&srcid=0112O4ivFbyChzTTH4vKU91t&sharer_sharetime=1646716025907&sharer_shareid=0ffc6ac03af605267e92344350efdb83&exportkey=AxNWDL6LKSsLK6MxSNkSF88%3D&acctmode=0&pass_ticket=TXKuWY6yeluRhUKTt0pk10ycuy%2BMsyJV6%2BXdxFjTtusuYyJMVPywg38icEXhKktM&wx_header=0#rd"
+                    target="_blank"
+                  >
+                    [Slide&极市平台推送]
+                  </a>
+                  <a
+                    href="https://github.com/Xiaoqi-Zhao-DLUT/SSLSOD"
+                    target="_blank"
+                  >
+                    [Code]
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  Multi-Source Fusion and Automatic Predictor Selection for
+                  Zero-Shot Video Object Segmentation
+                </p>
+
+                <p class="paper-author">
+                  Xiaoqi Zhao, <strong>Youwei Pang</strong>, Jiaxing Yang, Lihe
+                  Zhang, Huchuan Lu <span class="paper-conf">ACMMM 2021</span>,
+                  <span class="paper-oral">Oral</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2108.05076" target="_blank">
+                    [Paper]
+                  </a>
+                  <a
+                    href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&mid=2247570266&idx=2&sn=547fbfdeaa02b0ff83dec3b24a58a632&chksm=ec1d3ea3db6ab7b5cfbe7ba2fffcd4460584f1e2743d8265562757e508030bf049d1c3140d3c&mpshare=1&scene=23&srcid=0902BUt8U9MY8k2IvY500f71&sharer_sharetime=1630565724193&sharer_shareid=5c55e87df338791d997e8905ad2ebfe0#rd"
+                    target="_blank"
+                  >
+                    [Slide&极市平台推送]
+                  </a>
+                  <a
+                    href="https://github.com/Xiaoqi-Zhao-DLUT/Multi-Source-APS-ZVOS"
+                    target="_blank"
+                  >
+                    [Code]
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  Hierarchical Dynamic Filtering Network for RGB-D Salient
+                  Object Detection
+                </p>
+
+                <p class="paper-author">
+                  <strong>Youwei Pang</strong>, Lihe Zhang, Xiaoqi Zhao, Huchuan
+                  Lu
+                  <span class="paper-conf">ECCV 2020</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2007.06227" target="_blank">
+                    [Paper]
+                  </a>
+                  <a
+                    href="https://github.com/lartpang/HDFNet/blob/master/LongPresentation.pdf"
+                    target="_blank"
+                  >
+                    [Slide]
+                  </a>
+                  <a href="https://github.com/lartpang/HDFNet" target="_blank">
+                    [Code]
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  Suppress and Balance: A Simple Gated Network for Salient
+                  Object Detection
+                </p>
+
+                <p class="paper-author">
+                  Xiaoqi Zhao, <strong>Youwei Pang</strong>, Lihe Zhang, Huchuan
+                  Lu, Lei Zhang <span class="paper-conf">ECCV 2020</span>,
+                  <span class="paper-oral">Oral</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2007.08074" target="_blank">
+                    [Paper]
+                  </a>
+                  <a
+                    href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency/blob/master/2852.pdf"
+                    target="_blank"
+                  >
+                    [Slide]
+                  </a>
+                  <a
+                    href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency"
+                    target="_blank"
+                  >
+                    [Code]
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  A Single Stream Network for Robust and Real-time RGB-D Salient
+                  Object Detection
+                </p>
+
+                <p class="paper-author">
+                  Xiaoqi Zhao, Lihe Zhang, <strong>Youwei Pang</strong>, Huchuan
+                  Lu, Lei Zhang
+                  <span class="paper-conf">ECCV 2020</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2007.06811" target="_blank">
+                    [Paper]
+                  </a>
+                  <a
+                    href="https://github.com/Xiaoqi-Zhao-DLUT/DANet-RGBD-Saliency"
+                    target="_blank"
+                  >
+                    [Code]
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="media">
+              <div class="media-left"></div>
+              <div class="media-content">
+                <p class="paper-title">
+                  Multi-scale Interactive Network for Salient Object Detection
+                </p>
+
+                <p class="paper-author">
+                  <strong>Youwei Pang</strong>, Xiaoqi Zhao, Lihe Zhang, Huchuan
+                  Lu
+                  <span class="paper-conf">CVPR 2020</span>
+                </p>
+
+                <p class="paper-info">
+                  <a href="https://arxiv.org/abs/2007.09062" target="_blank">
+                    [Paper]
+                  </a>
+                  <a href="https://github.com/lartpang/MINet" target="_blank">
+                    [Code]
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div id="information">
-      <div id="skill" align="center">
+    <footer class="footer" id="footer">
+      <div class="content has-text-centered">
         <p>
-          <a href="https://skillicons.dev">
-            <img src="https://skillicons.dev/icons?i=py,pytorch,cpp,git,docker,github,githubactions,linux,md,latex,matlab,vscode,regex" />
-          </a>
+          2022 - 2023 By
+          <a href="https://github.com/lartpang" target="_blank">Youwei Pang</a>
         </p>
       </div>
-
-      <div id="project">
-        <h2>Project</h2>
-
-        <ul>
-          <li>
-            <a href="https://github.com/lartpang/PyTorchTricks" target="_blank">
-              <button class="link-button">
-                <span>PyTorchTricks</span>
-              </button>
-            </a>: Some tricks of pytorch…
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/MethodsCmp" target="_blank">
-              <button class="link-button">
-                <span>MethodsCmp</span>
-              </button>
-            </a>: A simple toolkit for counting the FLOPs/MACs, Parameters and FPS of the model.
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/PySODEvalToolkit" , target="_blank">
-              <button class="link-button">
-                <span>PySODEvalToolkit</span>
-              </button>
-            </a>: A Python-based salient object detection and video object segmentation evaluation toolbox.
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/PySODMetrics" target="_blank">
-              <button class="link-button">
-                <span>PySODMetrics</span>
-              </button>
-            </a>: A simple and efficient implementation of SOD metrics.
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/PyLoss" target="_blank">
-              <button class="link-button">
-                <span>PyLoss</span>
-              </button>
-            </a>: Some loss functions for deeplearning.
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/OpticalFlowBasedVOS" target="_blank">
-              <button class="link-button">
-                <span>OpticalFlowBasedVOS</span>
-              </button>
-            </a>: A simple and efficient codebase for the optical flow based video object segmentation.
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/CoSaliencyProj" target="_blank">
-              <button class="link-button">
-                <span>CoSaliencyProj</span>
-              </button>
-            </a>: A project for co-saliency detection. Some codes are borrowed from ICNet. Thanks to ICNet Intra-saliency Correlation Network for Co-Saliency Detection (NIPS2020)~
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/RunIt" target="_blank">
-              <button class="link-button">
-                <span>RunIt</span>
-              </button>
-            </a>: A simple program scheduler for your code on different devices.
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/RegisterIt" target="_blank">
-              <button class="link-button">
-                <span>RegisterIt</span>
-              </button>
-            </a>: Register it: A more flexible register for the DeepLearning project.
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/MSSIM.pytorch" target="_blank">
-              <button class="link-button">
-                <span>MSSIM.pytorch</span>
-              </button>
-            </a>: A better pytorch-based implementation for the mean structural similarity. Differentiable simpler SSIM and MS-SSIM.
-          </li>
-          <li>
-            <a href="https://github.com/lartpang/ClusteringMethods" target="_blank">
-              <button class="link-button">
-                <span>ClusteringMethods</span>
-              </button>
-            </a>: Some Clustering Methods Implementation Base on Python.
-          </li>
-        </ul>
-      </div>
-
-      <div id="honor">
-        <h2>Honor</h2>
-
-        <ul>
-          <li>
-            Gold Award of <a href="https://cy.ncss.cn/information/2c93f4c682872dbb01849802948e17dd" target="_blank">The 8th China International College Students' 'Internet+' Innovation and Entrepreneurship Competition, Company/Project: 工源三仟</a> (~0.05‰[161/3,400,000+])
-          </li>
-          <li>
-            <a href="https://aistudio.baidu.com/aistudio/competition/detail/230/0/leaderboard" target="_blank">MICCAI 2022 Challenge: Glaucoma Oct Analysis and Layer Segmentation (GOALS), Team: IIAU-Segmentors</a>: Glaucoma Detection: 1/100; OCT Layer Segmentation: 3/100; GOALS: 2/100; $1,300 bonus
-          </li>
-          <li>
-            VisDrone 2021 Crowd Counting Challenge (ICCV 2021 Workshop) (7/77)
-          </li>
-          <li>
-            2020 Hualu Cup's first big data competition (Intelligent Diagnosis of Cancer Risk) (7/114)
-          </li>
-          <li>
-            2020 Huawei Fellowship
-          </li>
-          <li>
-            Third place of 2018 OPPO Top AI Competition (Portrait Segmentation) (3/456, 50,000 RMB bonus)
-          </li>
-        </ul>
-      </div>
-
-      <div id="publication">
-        <h2>Publication</h2>
-
-        <div class="paper">
-          <p class="paper-title">
-            CAVER: Cross-Modal View-Mixed Transformer for Bi-Modal Salient Object Detection
-          </p>
-
-          <p class="paper-author">
-            <strong>Youwei Pang</strong>, Xiaoqi Zhao, Lihe Zhang and Huchuan Lu
-            <span class="paper-conf">TIP 2023</span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2112.02363" target="_blank">
-              <button class="link-button"><span>Paper (ArXiv)</span></button>
-            </a>
-            <a href="https://ieeexplore.ieee.org/document/10015667" target="_blank">
-              <button class="link-button"><span>Paper (IEEE)</span></button>
-            </a>
-            <a href="https://github.com/lartpang/CAVER" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-            <a href="/docs/caver.html" target="_blank">
-              <button class="link-button"><span>Project</span></button>
-            </a>
-          </p>
-        </div>
-
-        <div class="paper">
-          <p class="paper-title">
-            Joint Learning of Salient Object Detection, Depth Estimation and Contour Extraction
-          </p>
-
-          <p class="paper-author">
-            Xiaoqi Zhao, <strong>Youwei Pang</strong>, Lihe Zhang, Huchuan Lu
-            <span class="paper-conf">TIP 2022</span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2203.04895" target="_blank">
-              <button class="link-button"><span>Paper</span></button>
-            </a>
-            <a href="https://github.com/Xiaoqi-Zhao-DLUT/MMFT" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-          </p>
-        </div>
-
-        <div class="paper">
-          <p class="paper-title">
-            Zoom In and Out: A Mixed-scale Triplet Network for Camouflaged Object Detection
-          </p>
-
-          <p class="paper-author">
-            <strong>Youwei Pang</strong>, Xiaoqi Zhao, Tian-zhu Xiang, Lihe Zhang, Huchuan Lu
-            <span class="paper-conf">CVPR 2022</span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2203.02688" target="_blank">
-              <button class="link-button"><span>Paper</span></button>
-            </a>
-            <a href="https://github.com/lartpang/ZoomNet" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-            <a href="/docs/zoomnet.html" target="_blank">
-              <button class="link-button"><span>Project</span></button>
-            </a>
-          </p>
-        </div>
-
-        <div class="paper">
-          <p class="paper-title">
-            Self-Supervised Pretraining for RGB-D Salient Object Detection
-          </p>
-
-          <p class="paper-author">
-            Xiaoqi Zhao, <strong>Youwei Pang</strong>, Lihe Zhang, Huchuan Lu, Xiang Ruan
-            <span class="paper-conf">AAAI 2022</span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2101.12482" target="_blank">
-              <button class="link-button"><span>Paper</span></button>
-            </a>
-            <a href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&mid=2247591348&idx=2&sn=34a95dbbd14b7adfd508f12899ac27a2&chksm=ec1d884ddb6a015b71612bf16227bed8c69db4074585f712c1dc7dceb7859641088441ff9753&mpshare=1&scene=1&srcid=0112O4ivFbyChzTTH4vKU91t&sharer_sharetime=1646716025907&sharer_shareid=0ffc6ac03af605267e92344350efdb83&exportkey=AxNWDL6LKSsLK6MxSNkSF88%3D&acctmode=0&pass_ticket=TXKuWY6yeluRhUKTt0pk10ycuy%2BMsyJV6%2BXdxFjTtusuYyJMVPywg38icEXhKktM&wx_header=0#rd" target="_blank">
-              <button class="link-button"><span>Slide&极市平台推送</span></button>
-            </a>
-            <a href="https://github.com/Xiaoqi-Zhao-DLUT/SSLSOD" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-          </p>
-        </div>
-
-        <div class="paper">
-          <p class="paper-title">
-            Multi-Source Fusion and Automatic Predictor Selection for Zero-Shot Video Object Segmentation
-          </p>
-
-          <p class="paper-author">
-            Xiaoqi Zhao, <strong>Youwei Pang</strong>, Jiaxing Yang, Lihe Zhang, Huchuan Lu
-            <span class="paper-conf">ACMMM 2021, <span class="paper-oral">Oral</span></span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2108.05076" target="_blank">
-              <button class="link-button"><span>Paper</span></button>
-            </a>
-            <a href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&mid=2247570266&idx=2&sn=547fbfdeaa02b0ff83dec3b24a58a632&chksm=ec1d3ea3db6ab7b5cfbe7ba2fffcd4460584f1e2743d8265562757e508030bf049d1c3140d3c&mpshare=1&scene=23&srcid=0902BUt8U9MY8k2IvY500f71&sharer_sharetime=1630565724193&sharer_shareid=5c55e87df338791d997e8905ad2ebfe0#rd" target="_blank">
-              <button class="link-button"><span>Slide&极市平台推送</span></button>
-            </a>
-            <a href="https://github.com/Xiaoqi-Zhao-DLUT/Multi-Source-APS-ZVOS" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-          </p>
-        </div>
-
-        <div class="paper">
-          <p class="paper-title">
-            Hierarchical Dynamic Filtering Network for RGB-D Salient Object Detection
-          </p>
-
-          <p class="paper-author">
-            <strong>Youwei Pang</strong>, Lihe Zhang, Xiaoqi Zhao, Huchuan Lu
-            <span class="paper-conf">ECCV 2020</span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2007.06227" target="_blank">
-              <button class="link-button"><span>Paper</span></button>
-            </a>
-            <a href="https://github.com/lartpang/HDFNet/blob/master/LongPresentation.pdf" target="_blank">
-              <button class="link-button"><span>Slide</span></button>
-            </a>
-            <a href="https://github.com/lartpang/HDFNet" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-          </p>
-        </div>
-
-        <div class="paper">
-          <p class="paper-title">
-            Suppress and Balance: A Simple Gated Network for Salient Object Detection
-          </p>
-
-          <p class="paper-author">
-            Xiaoqi Zhao, <strong>Youwei Pang</strong>, Lihe Zhang, Huchuan Lu, Lei Zhang
-            <span class="paper-conf">ECCV 2020, <span class="paper-oral">Oral</span></span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2007.08074" target="_blank">
-              <button class="link-button"><span>Paper</span></button>
-            </a>
-            <a href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency/blob/master/2852.pdf" target="_blank">
-              <button class="link-button"><span>Slide</span></button>
-            </a>
-            <a href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-          </p>
-        </div>
-
-        <div class="paper">
-          <p class="paper-title">
-            A Single Stream Network for Robust and Real-time RGB-D Salient Object Detection
-          </p>
-
-          <p class="paper-author">
-            Xiaoqi Zhao, Lihe Zhang, <strong>Youwei Pang</strong>, Huchuan Lu, Lei Zhang
-            <span class="paper-conf">ECCV 2020</span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2007.06811" target="_blank">
-              <button class="link-button"><span>Paper</span></button>
-            </a>
-            <a href="https://github.com/Xiaoqi-Zhao-DLUT/DANet-RGBD-Saliency" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-          </p>
-        </div>
-
-        <div class="paper">
-          <p class="paper-title">
-            Multi-scale Interactive Network for Salient Object Detection
-          </p>
-
-          <p class="paper-author">
-            <strong>Youwei Pang</strong>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu
-            <span class="paper-conf">CVPR 2020</span>
-          </p>
-
-          <p class="paper-info">
-            <a href="https://arxiv.org/abs/2007.09062" target="_blank">
-              <button class="link-button"><span>Paper</span></button>
-            </a>
-            <a href="https://github.com/lartpang/MINet" target="_blank">
-              <button class="link-button"><span>Code</span></button>
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div id="footer">
-      <p>
-        2022 - <a href="https://github.com/lartpang" target="_blank">Youwei Pang</a>
-      </p>
-    </div>
-  </div>
-</body>
-
+    </footer>
+  </body>
 </html>
