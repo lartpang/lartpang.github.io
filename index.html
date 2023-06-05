@@ -19,80 +19,92 @@
   </head>
 
   <body>
-    <div class="section  has-background-white-ter" id="main">
+    <div class="section has-background-white-ter" id="main">
       <div class="tile is-ancestor">
+        <div class="tile is-parent is-1"></div>
+
         <div class="tile is-parent is-3 is-vertical" id="header">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-1by1" id="avatar">
-                <img
-                  src="https://avatars.githubusercontent.com/u/26847524"
-                  alt="avatar"
-                />
-              </figure>
+          <div class="tile is-child is-vertical">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-1by1" id="avatar">
+                  <img
+                    src="https://avatars.githubusercontent.com/u/26847524"
+                    alt="avatar"
+                  />
+                </figure>
+              </div>
+
+              <div class="card-content" id="introduction">
+                <p class="title is-2">Youwei Pang</p>
+
+                <div class="block">
+                  I am a Ph.D. student in the Faculty of Electronic Information
+                  and Electrical Engineering Dalian University of Technology
+                  (DUT). I received the B.E. degree in electronic and
+                  information engineering from DUT in 2019.
+                </div>
+
+                <div class="block">
+                  My current research interests include <i>deep learning</i>,
+                  <i>computer vision</i>, and <i>image segmentation</i>. In
+                  particular, I focus on
+                  <strong>RGB/RGB-D salient object detection</strong> and
+                  <strong>camouflaged object detection</strong>.
+                </div>
+
+                <div class="block" id="social-link">
+                  <ul>
+                    <li>
+                      <a href="https://github.com/lartpang" target="_blank">
+                        GitHub
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="mailto:%6C%61%72%74%70%61%6E%67%40%6D%61%69%6C%2E%64%6C%75%74%2E%65%64%75%2E%63%6E"
+                        target="_blank"
+                      >
+                        E-mail
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://blog.csdn.net/p_lart" target="_blank">
+                        CSDN
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://aminer.org/profile/53f7b05bdabfae92b40d723a"
+                        target="_blank"
+                      >
+                        AMiner
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://scholar.google.com/citations?user=jdo9_goAAAAJ&hl=en"
+                        target="_blank"
+                      >
+                        Google Scholar
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-
-            <div class="card-content" id="introduction">
-              <p class="title is-2">Youwei Pang</p>
-
-              <div class="block">
-                I am a Ph.D. student in the Faculty of Electronic Information
-                and Electrical Engineering Dalian University of Technology
-                (DUT). I received the B.E. degree in electronic and information
-                engineering from DUT in 2019.
-              </div>
-
-              <div class="block">
-                My current research interests include <i>deep learning</i>,
-                <i>computer vision</i>, and <i>image segmentation</i>. In
-                particular, I focus on
-                <strong>RGB/RGB-D salient object detection</strong> and
-                <strong>camouflaged object detection</strong>.
-              </div>
-
-              <div class="block" id="social-link">
-                <ul>
-                  <li>
-                    <a href="https://github.com/lartpang" target="_blank">
-                      GitHub
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="mailto:%6C%61%72%74%70%61%6E%67%40%6D%61%69%6C%2E%64%6C%75%74%2E%65%64%75%2E%63%6E"
-                      target="_blank"
-                    >
-                      E-mail
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://blog.csdn.net/p_lart" target="_blank">
-                      CSDN
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://aminer.org/profile/53f7b05bdabfae92b40d723a"
-                      target="_blank"
-                    >
-                      AMiner
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://scholar.google.com/citations?user=jdo9_goAAAAJ&hl=en"
-                      target="_blank"
-                    >
-                      Google Scholar
-                    </a>
-                  </li>
-                </ul>
-              </div>
+          </div>
+          <div class="tile is-child">
+            <div class="box has-text-centered">
+              2022 - 2023 By
+              <a href="https://github.com/lartpang" target="_blank"
+                >Youwei Pang</a
+              >
             </div>
           </div>
         </div>
 
-        <div class="tile is-parent is-vertical" id="information">
+        <div class="tile is-parent is-7 is-vertical" id="information">
           <div class="box" id="project">
             <p class="title is-3">Project</p>
 
@@ -235,7 +247,13 @@
             <p class="title is-3">Publication</p>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/TIP23-CAVER.png"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   CAVER: Cross-Modal View-Mixed Transformer for Bi-Modal Salient
@@ -267,7 +285,13 @@
             </div>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/TIP2022-MMFT.jpg"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   Joint Learning of Salient Object Detection, Depth Estimation
@@ -295,7 +319,13 @@
             </div>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/CVPR2022-ZoomNet.png"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   Zoom In and Out: A Mixed-scale Triplet Network for Camouflaged
@@ -321,7 +351,13 @@
             </div>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/2021-SSL.png"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   Self-Supervised Pretraining for RGB-D Salient Object Detection
@@ -354,7 +390,13 @@
             </div>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/ACMMM2021-Multisource.png"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   Multi-Source Fusion and Automatic Predictor Selection for
@@ -388,7 +430,13 @@
             </div>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/ECCV2020-HDFNet.png"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   Hierarchical Dynamic Filtering Network for RGB-D Salient
@@ -419,7 +467,13 @@
             </div>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/ECCV2020-GateNet.png"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   Suppress and Balance: A Simple Gated Network for Salient
@@ -453,7 +507,13 @@
             </div>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/ECCV2020-DANet.png"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   A Single Stream Network for Robust and Real-time RGB-D Salient
@@ -481,7 +541,13 @@
             </div>
 
             <div class="media">
-              <div class="media-left"></div>
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img
+                    src="https://xiaoqi-zhao-dlut.github.io/resources/paper_icon/CVPR2021-MINet.png"
+                  />
+                </p>
+              </figure>
               <div class="media-content">
                 <p class="paper-title">
                   Multi-scale Interactive Network for Salient Object Detection
@@ -505,16 +571,9 @@
             </div>
           </div>
         </div>
+
+        <div class="tile is-parent is-1"></div>
       </div>
     </div>
-
-    <footer class="footer" id="footer">
-      <div class="content has-text-centered">
-        <p>
-          2022 - 2023 By
-          <a href="https://github.com/lartpang" target="_blank">Youwei Pang</a>
-        </p>
-      </div>
-    </footer>
   </body>
 </html>
