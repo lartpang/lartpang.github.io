@@ -17,7 +17,6 @@
     .footer {
       border-top: 1px solid #dbdbdb;
     }
-
   </style>
 </head>
 
@@ -61,11 +60,28 @@
             </div>
           </div>
 
+          <div class="box" id="shared_files">
+            <p class="title is-4">📂 Shared Files</p>
+
+            <table class="table is-striped is-narrow is-fullwidth">
+              <tbody>
+                <tr>
+                  <th>2024-05-31</th>
+                  <td><a href="https://pan.baidu.com/s/1NaGtxGWzQSRLmEPukvZnBQ?pwd=abcd">视觉与语言—开放词汇感知综述</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <div class="box" id="news">
             <p class="title is-4">📢 News</p>
 
             <table class="table is-striped is-narrow is-fullwidth">
               <tbody>
+                <tr>
+                  <th>2024</th>
+                  <td>TPAMI (1 Paper).</td>
+                </tr>
                 <tr>
                   <th>2024</th>
                   <td>ICML 2024 (1 Poster).</td>
@@ -118,31 +134,12 @@
             </table>
           </div>
 
-          <div class="box" id="shared_files">
-            <p class="title is-4">📂 Shared Files</p>
-
-            <table class="table is-striped is-narrow is-fullwidth">
-              <tbody>
-                <tr>
-                  <th>2024-05-31</th>
-                  <td><a href="https://pan.baidu.com/s/1NaGtxGWzQSRLmEPukvZnBQ?pwd=abcd">视觉与语言—开放词汇感知综述</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
         </div>
 
         <!-- Right column -->
         <div class="column is-8" id="right">
           <div class="box" id="about-me">
             <p class="title is-3">👋 About Me</p>
-
-            <div class="block">
-              <span class="tag is-success is-medium has-text-weight-bold">
-                👋 I'm seeking postdoc opportunities.
-              </span>
-            </div>
 
             <div class="block">
               <p class="subtitle is-4">My Experiences</p>
@@ -171,15 +168,12 @@
               <div class="content">
                 In particular, I focus on:
                 <ul>
-                  <li class="mt-0"><span class="has-text-weight-bold">Multi-Modal Learning</span>: Vision, Depth, Thermal, Text, Video</li>
-                  <li class="mt-0"><span class="has-text-weight-bold">Open-Vocabulary Segmentation</span>: Open-Vocabulary Camouflaged Object Segmentation</li>
-                  <li class="mt-0"><span class="has-text-weight-bold">Architecture Design</span>: CNN, Transformer, Unified Architecture</li>
-                  <li class="mt-0"><span class="has-text-weight-bold">Human Visual Attention</span>: Salient and Camouflaged Object Perception</li>
-                  <li class="mt-0"><span class="has-text-weight-bold">Context-depend Concept Perception</span>: Salient, Camouflaged, Shadow, Transparent</li>
-                  <li class="mt-0"><span class="has-text-weight-bold">Human-Centered Scene Analysis</span>: Crowd Counting</li>
-                  <li class="mt-0"><span class="has-text-weight-bold">Remote Sense Image Analysis</span>: Remote Sense Change Detection</li>
-                  <li class="mt-0"><span class="has-text-weight-bold">Industrial X-ray/CT Machine Vision</span>: Lithium Battery, FPCA, Auto Parts</li>
-                  <li class="mt-0"><span class="has-text-weight-bold">Medical Image Segmentation</span>: Colon Polyp, COVID-19, Breast, Skin</li>
+                  <li class="mt-0"><span class="has-text-weight-bold">Multi-Modal Learning</span>: RGB+Depth/Thermal/Temporal, RGB+Text (Open-Vocabulary)</li>
+                  <li class="mt-0"><span class="has-text-weight-bold">Effective/Efficient Architecture Design</span>: CNN/Transformer/High-resolution/Task-generic</li>
+                  <li class="mt-0"><span class="has-text-weight-bold">Context-depend Concept Perception</span>: Salient/Camouflaged/Shadow/Transparent</li>
+                  <li class="mt-0"><span class="has-text-weight-bold">Complex Scene Perception</span>: Camouflaged Scenes, Remote Sensing Change Detection, Multi-Modal Crowd Counting, Multi-Modal Semantic Segmentation</li>
+                  <li class="mt-0"><span class="has-text-weight-bold">Industrial Machine Vision</span>: X-ray/CT, Lithium Battery</li>
+                  <li class="mt-0"><span class="has-text-weight-bold">Medical Image Analysis</span>: Colon Polyp, COVID-19, Breast, Skin</li>
                 </ul>
               </div>
             </div>
@@ -287,18 +281,18 @@
               <div class="content">
                 <ul>
                   <li class="paper-item">
-                    <span class="paper-title">ZoomNeXt: A Unified Collaborative Pyramid Network for Camouflaged Object Detection</span>,
-                    <span class="paper-author"><span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Tian-Zhu Xiang, Lihe Zhang and Huchuan Lu</span>.
-                    <span class="paper-conf">ArXiv 2023</span>
+                    <span class="paper-title">Open-Vocabulary Camouflaged Object Segmentation</span>,
+                    <span class="paper-author">Youwei Pang*, Xiaoqi Zhao*, Jiaming Zuo, Lihe Zhang, Huchuan Lu</span>.
+                    <span class="paper-conf">European Conference on Computer Vision (ECCV) 2024, Springer, Submitting</span>
 
-                    <span class="tag-link"><a href="https://arxiv.org/abs/2310.20208" target="_blank">[Paper (ArXiv)]</a></span>
-                    <span class="tag-link"><a href="https://github.com/lartpang/ZoomNeXt" target="_blank">[Code (GitHub)]</a></span>
+                    <span class="tag-link"><a href="https://arxiv.org/abs/2311.11241" target="_blank">[Paper (ArXiv)]</a></span>
+                    <span class="tag-link"><a href="https://github.com/lartpang/OVCamo" target="_blank">[Code (GitHub)]</a></span>
                   </li>
 
                   <li class="paper-item">
                     <span class="paper-title">ComPtr: Towards Diverse Bi-source Dense Prediction Tasks via A Simple yet General Complementary Transformer</span>,
-                    <span class="paper-author"><span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang and Huchuan Lu</span>.
-                    <span class="paper-conf">ArXiv 2023</span>
+                    <span class="paper-author"><span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu</span>.
+                    <span class="paper-conf">Transactions on Pattern Analysis and Machine Intelligence (TPAMI), IEEE, Submitting</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2307.12349" target="_blank">[Paper (ArXiv)]</a></span>
                     <span class="tag-link"><a href="https://github.com/lartpang/ComPtr" target="_blank">[Code (GitHub)]</a></span>
@@ -307,7 +301,7 @@
                   <li class="paper-item">
                     <span class="paper-title">M2SNet: Multi-scale in Multi-scale Subtraction Network for Medical Image Segmentation</span>,
                     <span class="paper-author">Xiaoqi Zhao, Hongpeng Jia, <span class="author-me">Youwei Pang</span>, Long Lv, Feng Tian, Lihe Zhang, Weibing Sun, Huchuan Lu</span>.
-                    <span class="paper-conf">ArXiv 2023</span>
+                    <span class="paper-conf">Computational Visual Media (CVM), Springer, Submitting</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2303.10894" target="_blank">[Paper (ArXiv)]</a></span>
                   </li>
@@ -323,9 +317,18 @@
               <div class="content">
                 <ul>
                   <li class="paper-item">
+                    <span class="paper-title">ZoomNeXt: A Unified Collaborative Pyramid Network for Camouflaged Object Detection</span>,
+                    <span class="paper-author"><span class="author-me">Youwei Pang</span>*, Xiaoqi Zhao*, Tian-Zhu Xiang*, Lihe Zhang, Huchuan Lu</span>.
+                    <span class="paper-conf">Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2024, IEEE</span>
+
+                    <span class="tag-link"><a href="https://arxiv.org/abs/2310.20208" target="_blank">[Paper (ArXiv)]</a></span>
+                    <span class="tag-link"><a href="https://github.com/lartpang/ZoomNeXt" target="_blank">[Code (GitHub)]</a></span>
+                  </li>
+
+                  <li class="paper-item">
                     <span class="paper-title">Spider: A Unified Framework for Context-dependent Concept Understanding</span>,
                     <span class="paper-author">Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Wei Ji*, Baicheng Sheng, Jiaming Zuo, Lihe Zhang, Huchuan Lu</span>.
-                    <span class="paper-conf">International Conference on Machine Learning (ICML) 2024</span>
+                    <span class="paper-conf">International Conference on Machine Learning (ICML) 2024, PMLR</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2405.01002" target="_blank">[Paper (ArXiv)]</a></span>
                     <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/Spider-UniCDSeg" target="_blank">[Code]</a></span>
@@ -334,7 +337,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline</span>,
                     <span class="paper-author">Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Zhenyu Chen, Qian Yu, Lihe Zhang, Hanqi Liu, Jiaming Zuo</span>.
-                    <span class="paper-conf">IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2024</span>
+                    <span class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2024, IEEE</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2312.02528" target="_blank">[Paper (ArXiv)]</a></span>
                     <span class="tag-link"><a href="https://xiaoqi-zhao-dlut.github.io/xray_pbd_cvpr2024/" target="_blank">[Project]</a></span>
@@ -344,8 +347,8 @@
 
                   <li class="paper-item">
                     <span class="paper-title">Multi-view Aggregation Framework for High-resolution Object Segmentation</span>,
-                    <span class="paper-author">Qian Yu*, Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Lihe Zhang, Huchuan Luang</span>.
-                    <span class="paper-conf">IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2024 <span class="paper-oral has-text-danger">Highlight</span></span>
+                    <span class="paper-author">Qian Yu*, Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Lihe Zhang, Huchuan Lu</span>.
+                    <span class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2024, IEEE <span class="paper-oral has-text-danger">Highlight</span></span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2404.07445" target="_blank">[Paper (ArXiv)]</a></span>
                     <span class="tag-link"><a href="https://github.com/qianyu-dlut/MVANet" target="_blank">[Code]</a></span>
@@ -354,7 +357,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Towards Diverse Binary Segmentation via A Simple yet General Gated Network</span>,
                     <span class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Lei Zhang</span>.
-                    <span class="paper-conf">International Journal of Computer Vision (IJCV) 2024</span>
+                    <span class="paper-conf">International Journal of Computer Vision (IJCV) 2024, Springer</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2303.10396" target="_blank">[Paper (ArXiv)]</a></span>
                     <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency" target="_blank">[Code]</a></span>
@@ -363,7 +366,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Adaptive Multi-source Predictor for Zero-shot Video Object Segmentation</span>,
                     <span class="paper-author">Xiaoqi Zhao, Shijie Chang, <span class="author-me">Youwei Pang</span>, Jiaxing Yang, Lihe Zhang, Huchuan Lu</span>.
-                    <span class="paper-conf">International Journal of Computer Vision (IJCV) 2024</span>
+                    <span class="paper-conf">International Journal of Computer Vision (IJCV) 2024, Springer</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2303.10383" target="_blank">[Paper (ArXiv)]</a></span>
                   </li>
@@ -371,7 +374,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Adaptive Illumination Mapping for Shadow Detection in Raw Images</span>,
                     <span class="paper-author">Jiayu Sun, Ke Xu, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Gerhard Hancke, Rynson Lau</span>.
-                    <span class="paper-conf">IEEE International Conference on Computer Vision (ICCV) 2023</span>
+                    <span class="paper-conf">IEEE/CVF International Conference on Computer Vision (ICCV) 2023, IEEE</span>
 
                     <span class="tag-link"><a href="https://openaccess.thecvf.com/content/ICCV2023/html/Sun_Adaptive_Illumination_Mapping_for_Shadow_Detection_in_Raw_Images_ICCV_2023_paper.html" target="_blank">[Paper (CVF)]</a></span>
                     <span class="tag-link"><a href="https://github.com/jiayusun/SARA" target="_blank">[Code]</a></span>
@@ -379,8 +382,8 @@
 
                   <li class="paper-item">
                     <span class="paper-title">CAVER: Cross-Modal View-Mixed Transformer for Bi-Modal Salient Object Detection</span>,
-                    <span class="paper-author"><span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang and Huchuan Lu</span>.
-                    <span class="paper-conf">IEEE Transactions on Image Processing (TIP) 2023</span>
+                    <span class="paper-author"><span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu</span>.
+                    <span class="paper-conf">Transactions on Image Processing (TIP) 2023, IEEE</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2112.02363" target="_blank">[Paper (ArXiv)]</a></span>
                     <span class="tag-link"><a href="https://ieeexplore.ieee.org/document/10015667" target="_blank">[Paper (IEEE)]</a></span>
@@ -391,7 +394,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Joint Learning of Salient Object Detection, Depth Estimation and Contour Extraction</span>,
                     <span class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Huchuan Lu</span>.
-                    <span class="paper-conf">IEEE Transactions on Image Processing (TIP) 2022</span>
+                    <span class="paper-conf">Transactions on Image Processing (TIP) 2022, IEEE</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2203.04895" target="_blank">[Paper]</a></span>
                     <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/MMFT" target="_blank">[Code]</a></span>
@@ -400,7 +403,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Zoom In and Out: A Mixed-scale Triplet Network for Camouflaged Object Detection</span>,
                     <span class="paper-author"><span class="author-me">Youwei Pang</span>*, Xiaoqi Zhao*, Tian-zhu Xiang, Lihe Zhang, Huchuan Lu</span>.
-                    <span class="paper-conf">IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2022</span>
+                    <span class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2022, IEEE</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2203.02688" target="_blank">[Paper]</a></span>
                     <span class="tag-link"><a href="https://github.com/lartpang/ZoomNet" target="_blank">[Code]</a></span>
@@ -410,7 +413,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Self-Supervised Pretraining for RGB-D Salient Object Detection</span>,
                     <span class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Xiang Ruan</span>.
-                    <span class="paper-conf">AAAI Conference on Artificial Intelligence (AAAI) 2022</span>
+                    <span class="paper-conf">Association for the Advancement of Artificial Intelligence (AAAI) 2022</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2101.12482" target="_blank">[Paper]</a></span>
                     <span class="tag-link"><a href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&mid=2247591348&idx=2&sn=34a95dbbd14b7adfd508f12899ac27a2&chksm=ec1d884ddb6a015b71612bf16227bed8c69db4074585f712c1dc7dceb7859641088441ff9753&mpshare=1&scene=1&srcid=0112O4ivFbyChzTTH4vKU91t&sharer_sharetime=1646716025907&sharer_shareid=0ffc6ac03af605267e92344350efdb83&exportkey=AxNWDL6LKSsLK6MxSNkSF88%3D&acctmode=0&pass_ticket=TXKuWY6yeluRhUKTt0pk10ycuy%2BMsyJV6%2BXdxFjTtusuYyJMVPywg38icEXhKktM&wx_header=0#rd" target="_blank">[Slide&极市平台推送]</a></span>
@@ -420,7 +423,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Multi-Source Fusion and Automatic Predictor Selection for Zero-Shot Video Object Segmentation</span>,
                     <span class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Jiaxing Yang, Lihe Zhang, Huchuan Lu</span>.
-                    <span class="paper-conf">ACM International Conference on Multimedia (ACMMM) 2021 <span class="paper-oral has-text-danger">Oral</span></span>
+                    <span class="paper-conf">ACM International Conference on Multimedia (ACM MM) 2021 <span class="paper-oral has-text-danger">Oral</span></span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2108.05076" target="_blank">[Paper]</a></span>
                     <span class="tag-link"><a href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&mid=2247570266&idx=2&sn=547fbfdeaa02b0ff83dec3b24a58a632&chksm=ec1d3ea3db6ab7b5cfbe7ba2fffcd4460584f1e2743d8265562757e508030bf049d1c3140d3c&mpshare=1&scene=23&srcid=0902BUt8U9MY8k2IvY500f71&sharer_sharetime=1630565724193&sharer_shareid=5c55e87df338791d997e8905ad2ebfe0#rd" target="_blank">[Slide&极市平台推送]</a></span>
@@ -430,7 +433,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Hierarchical Dynamic Filtering Network for RGB-D Salient Object Detection</span>,
                     <span class="paper-author"><span class="author-me">Youwei Pang</span>, Lihe Zhang, Xiaoqi Zhao, Huchuan Lu</span>.
-                    <span class="paper-conf">European Conference on Computer Vision (ECCV) 2020</span>
+                    <span class="paper-conf">European Conference on Computer Vision (ECCV) 2020, Springer</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2007.06227" target="_blank">[Paper]</a></span>
                     <span class="tag-link"><a href="https://github.com/lartpang/HDFNet/blob/master/LongPresentation.pdf" target="_blank">[Slide]</a></span>
@@ -440,7 +443,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Suppress and Balance: A Simple Gated Network for Salient Object Detection</span>,
                     <span class="paper-author">Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Lihe Zhang, Huchuan Lu, Lei Zhang</span>.
-                    <span class="paper-conf">European Conference on Computer Vision (ECCV) 2020 <span class="paper-oral has-text-danger">Oral</span></span>
+                    <span class="paper-conf">European Conference on Computer Vision (ECCV) 2020, Springer <span class="paper-oral has-text-danger">Oral</span></span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2007.08074" target="_blank">[Paper]</a></span>
                     <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency/blob/master/2852.pdf" target="_blank">[Slide]</a></span>
@@ -450,7 +453,7 @@
                   <li class="paper-item">
                     <span class="paper-title">A Single Stream Network for Robust and Real-time RGB-D Salient Object Detection</span>,
                     <span class="paper-author">Xiaoqi Zhao, Lihe Zhang, <span class="author-me">Youwei Pang</span>, Huchuan Lu, Lei Zhang</span>.
-                    <span class="paper-conf">European Conference on Computer Vision (ECCV) 2020</span>
+                    <span class="paper-conf">European Conference on Computer Vision (ECCV) 2020, Springer</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2007.06811" target="_blank">[Paper]</a></span>
                     <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/DANet-RGBD-Saliency" target="_blank">[Code]</a></span>
@@ -459,7 +462,7 @@
                   <li class="paper-item">
                     <span class="paper-title">Multi-scale Interactive Network for Salient Object Detection</span>,
                     <span class="paper-author"><span class="author-me">Youwei Pang</span>*, Xiaoqi Zhao*, Lihe Zhang, Huchuan Lu</span>.
-                    <span class="paper-conf">IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2020</span>
+                    <span class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2020, IEEE</span>
 
                     <span class="tag-link"><a href="https://arxiv.org/abs/2007.09062" target="_blank">[Paper]</a></span>
                     <span class="tag-link"><a href="https://github.com/lartpang/MINet" target="_blank">[Code]</a></span>
@@ -476,7 +479,7 @@
   <!-- Footer -->
   <footer class="footer py-4">
     <div class="content has-text-centered">
-      Last updated at <time datetime="YYYY-MM-DD">2024-05-26</time>
+      Last updated at <time datetime="YYYY-MM-DD">2024-6-18</time>
       © 2024 Youwei Pang. All rights reserved.
     </div>
   </footer>
