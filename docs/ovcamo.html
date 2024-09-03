@@ -60,7 +60,7 @@
           <div class="card" id="banner">
             <div class="card-image">
               <figure class="image is-3by1">
-                <img src="https://private-user-images.githubusercontent.com/26847524/345316921-92f5f7e8-55a9-4d7e-bc41-264d255af658.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjUzNDcwNzksIm5iZiI6MTcyNTM0Njc3OSwicGF0aCI6Ii8yNjg0NzUyNC8zNDUzMTY5MjEtOTJmNWY3ZTgtNTVhOS00ZDdlLWJjNDEtMjY0ZDI1NWFmNjU4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA5MDMlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwOTAzVDA2NTkzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWVkMTZlZTVhZmIwZmIzN2YxNzc0MGZlODk1ZjNiODk3N2Y0MGI4YjUxNzA1MDc4NjdhNjZiNGFmZGM5NjBhNDYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.lvBo6XLtuqTThYjZChxSNW4cZ3A52Wlq0V_9tJigXLc" alt="Avatar" />
+                <img src="./assets/ovcamo/teaser.jpg" alt="teaser" />
               </figure>
             </div>
 
@@ -79,6 +79,16 @@
                     <span class="tag is-light">[<a href="https://arxiv.org/abs/2311.11241" target="_blank">📂 ArXiv</a>]</span>
                     <span class="tag is-light">[<a href="https://github.com/lartpang/OVCamo" target="_blank">🐙 GitHub (Code & Dataset)</a>]</span>
                   </div>
+
+                  <details>
+                    <summary>🖐️ BibTeX (<code>OVCOS-ECCV2024</code>)</summary>
+                    <pre>@inproceedings{OVCOS-ECCV2024,
+  title={Open-Vocabulary Camouflaged Object Segmentation},
+  author={Pang, Youwei and Zhao, Xiaoqi and Zuo, Jiaming and Zhang, Lihe and Lu, Huchuan},
+  booktitle=ECCV,
+  year={2024},
+}</pre>
+                  </details>
                 </div>
               </div>
             </div>
@@ -103,7 +113,7 @@
             <p class="title is-4">🚙 OVCamo</p>
 
             <div class="columns is-centered">
-              <div class="column is-two-thirds">
+              <div class="column">
                 <figure class="image">
                   <img src="https://arxiv.org/html/2311.11241v3/x2.png" />
                   <figcaption class="caption">Class distribution in the proposed OVCamo dataset and some visual examples.</figcaption>
@@ -118,7 +128,7 @@
             </p>
 
             <div class="columns is-centered">
-              <div class="column is-two-thirds">
+              <div class="column is-three-quarters">
                 <figure class="image">
                   <img src="./assets/ovcamo/attr_vis.png" />
                   <figcaption class="caption">Class distribution in the proposed OVCamo dataset and some visual examples.</figcaption>
@@ -131,6 +141,26 @@
               This figure visualizes the attribute distribution of the proposed dataset.
               The camouflaged objects of interest usually have complex shape (a), high similarity to the background (b), and small size (c).
               And the image often contains multiple camouflaged objects or sub-regions with a central bias as shown in (d) and (e).
+            </p>
+
+            <div class="columns is-centered">
+              <div class="column is-half">
+                <figure class="image">
+                  <img src="https://arxiv.org/html/2311.11241v3/x17.png" />
+                  <figcaption class="caption">
+                    Hierarchy of sample classes contained in the proposed OVCamo.
+                    Only the base classes are used in our experiments.
+                    Sub-classes that do not meet the criteria are simply removed and are not displayed here.
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <p>
+              We use the alluvial graph to show the class relationships at different levels, including super, base, and sub-classes.
+              The sub-classes shown here include class names with clearer meanings preserved from the original data and class names after initial manual correction.
+              The base classes represent the class names obtained after careful manual filtering and merging, which was used in all the experiments in this paper.
+              The super classes generalize the base classes from a broader perspective.
             </p>
           </div>
 
