@@ -18,6 +18,46 @@
       font-family: Georgia, serif;
     }
 
+    /* 设置滚动容器 */
+    .scrollable-box {
+      height: 12rem;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    /* 设置新闻列表 */
+    .scrollable-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* 每个新闻条目的样式 */
+    .scrollable-item {
+      display: flex;
+      margin: 0 0 0.25rem 0.25rem;
+      /* 上边 | 右边 | 下边 | 左边 */
+      align-items: flex-start;
+    }
+
+    /* 时间部分 */
+    .info-date {
+      flex-shrink: 0;
+      width: 6rem;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+
+    /* 内容部分 */
+    .info-content {
+      word-wrap: break-word;
+      /* 允许内容换行 */
+      flex-grow: 1;
+      /* 内容部分填满剩余空间 */
+    }
+
   </style>
 </head>
 
@@ -114,7 +154,7 @@
                 </figure>
                 <div class="media-content">
                   <p>
-                    <span class="subtitle is-6">2021-Present: <a href="http://www.gy3000.company/">X3000 Inspection</a></span>
+                    <span class="subtitle is-6"><time class="info-date">2021-Present:</time><a href="http://www.gy3000.company/">X3000 Inspection</a></span>
                     <br />
                     Technology Partner at X3000 Inspection (pre-A round completed (2023), A round completed (2024)), focusing on algorithm design and deployment based on the machine vision.
                   </p>
@@ -129,7 +169,7 @@
                 </figure>
                 <div class="media-content">
                   <p>
-                    <span class="subtitle is-6">2019-Present: <a href="https://www.dlut.edu.cn/">Dalian University of Technology (DUT)</a></span>
+                    <span class="subtitle is-6"><time class="info-date">2019-2024:</time><a href="https://www.dlut.edu.cn/">Dalian University of Technology (DUT)</a></span>
                     <br />
                     Pursuing a Ph.D in Signal and Information Processing and supervised by <a href="http://faculty.dlut.edu.cn/lhzhang/zh_CN/index.htm">Prof. Lihe Zhang</a> and <a href="http://faculty.dlut.edu.cn/Huchuan_Lu/zh_CN/index.htm">Prof. Huchuan Lu (IEEE Fellow)</a> from the <a href="https://ice.dlut.edu.cn/index.htm">School of Information and Communication Engineering</a>.
                   </p>
@@ -144,7 +184,7 @@
                 </figure>
                 <div class="media-content">
                   <p>
-                    <span class="subtitle is-6">2015-2019: <a href="https://www.dlut.edu.cn/">Dalian University of Technology (DUT)</a></span>
+                    <span class="subtitle is-6"><time class="info-date">2015-2019:</time><a href="https://www.dlut.edu.cn/">Dalian University of Technology (DUT)</a></span>
                     <br />
                     Received the B.E. degree in Electronic and Information Engineering from the <a href="https://ice.dlut.edu.cn/index.htm">School of Information and Communication Engineering</a>.
                   </p>
@@ -195,84 +235,85 @@
             🤝 I work very closely with my best friend, <span class="has-text-weight-bold"><a href="https://xiaoqi-zhao-dlut.github.io/">Xiaoqi Zhao</a></span>, on most of my projects.
           </div>
 
-          <div class="box" id="news">
+          <div class="box">
             <div class="columns">
-              <div class="column is-6">
+              <div class="column is-6" id="news">
                 <p class="title is-4">📢 News</p>
 
-                <table class="table is-striped is-narrow is-fullwidth">
-                  <tbody>
-                    <tr>
-                      <th>2024</th>
-                      <td>ECCV (1 Paper).</td>
-                    </tr>
-                    <tr>
-                      <th>2024</th>
-                      <td>TPAMI (1 Paper).</td>
-                    </tr>
-                    <tr>
-                      <th>2024</th>
-                      <td>ICML 2024 (1 Poster).</td>
-                    </tr>
-                    <tr>
-                      <th>2024</th>
-                      <td>CVPR 2024 (1 Poster, 1 Highlight).</td>
-                    </tr>
-                    <tr>
-                      <th>2024</th>
-                      <td>IJCV (2 Paper).</td>
-                    </tr>
-                    <tr>
-                      <th>2023</th>
-                      <td>ICCV (1 Poster).</td>
-                    </tr>
-                    <tr>
-                      <th>2023</th>
-                      <td>IEEE TIP (1 Paper).</td>
-                    </tr>
-                    <tr>
-                      <th>2022</th>
-                      <td>IEEE TIP (1 Paper).</td>
-                    </tr>
-                    <tr>
-                      <th>2022</th>
-                      <td>PRCV (1 Poster).</td>
-                    </tr>
-                    <tr>
-                      <th>2022</th>
-                      <td>CVPR (1 Poster).</td>
-                    </tr>
-                    <tr>
-                      <th>2022</th>
-                      <td>AAAI (1 Poster).</td>
-                    </tr>
-                    <tr>
-                      <th>2021</th>
-                      <td>ACMMM (1 Oral).</td>
-                    </tr>
-                    <tr>
-                      <th>2020</th>
-                      <td>ECCV (2 Poster, 1 Oral).</td>
-                    </tr>
-                    <tr>
-                      <th>2020</th>
-                      <td>CVPR (1 Poster).</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="scrollable-box">
+                  <ul class="scrollable-list">
+                    <li class="scrollable-item">
+                      <time class="info-date">2024</time>
+                      <span class="info-content">ECCV (1 Poster).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2024</time>
+                      <span class="info-content">TPAMI (1 Paper).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2024</time>
+                      <span class="info-content">ICML 2024 (1 Poster).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2024</time>
+                      <span class="info-content">CVPR 2024 (1 Poster, 1 Highlight).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2024</time>
+                      <span class="info-content">IJCV (2 Papers).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2023</time>
+                      <span class="info-content">ICCV (1 Poster).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2023</time>
+                      <span class="info-content">IEEE TIP (1 Paper).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2022</time>
+                      <span class="info-content">IEEE TIP (1 Paper).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2022</time>
+                      <span class="info-content">PRCV (1 Poster).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2022</time>
+                      <span class="info-content">CVPR (1 Poster).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2022</time>
+                      <span class="info-content">AAAI (1 Poster).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2021</time>
+                      <span class="info-content">ACMMM (1 Oral).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2020</time>
+                      <span class="info-content">ECCV (2 Posters, 1 Oral).</span>
+                    </li>
+                    <li class="scrollable-item">
+                      <time class="info-date">2020</time>
+                      <span class="info-content">CVPR (1 Poster).</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
 
-              <div class="column">
+              <div class="column" id="resource">
                 <p class="title is-4">📂 Resource</p>
 
-                <table class="table is-striped is-narrow is-fullwidth">
-                  <tbody>
-                    <tr>
-                      <th>2024-05-31</th>
-                      <td><a href="https://pan.baidu.com/s/1NaGtxGWzQSRLmEPukvZnBQ?pwd=abcd">视觉与语言—开放词汇感知综述</a></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="scrollable-box">
+                  <ul class="scrollable-list">
+                    <li class="scrollable-item">
+                      <time class="info-date">2024-05-31</time>
+                      <span class="info-content"><a href="https://pan.baidu.com/s/1NaGtxGWzQSRLmEPukvZnBQ?pwd=abcd">视觉与语言—开放词汇感知综述</a></span>
+                    </li>
+                  </ul>
+                </div>
+
               </div>
             </div>
           </div>
@@ -645,7 +686,7 @@
   <!-- Footer -->
   <footer class="footer py-4">
     <div class="content has-text-centered">
-      Last updated at <time datetime="YYYY-MM-DD">2025-01-01</time>
+      Last updated at <time class="info-date">2025-01-01</time>
       © 2024 Youwei Pang. All rights reserved.
     </div>
   </footer>
