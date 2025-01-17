@@ -58,6 +58,13 @@
       /* 内容部分填满剩余空间 */
     }
 
+    #email {
+      cursor: pointer;
+      font-family: monospace;
+      color: blue;
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 
@@ -127,7 +134,7 @@
 
                 <div class="block">
                   <div class="tags has-text-weight-bold">
-                    <span class="tag is-light">[<a href="mailto:%6C%61%72%74%70%61%6E%67%40%6D%61%69%6C%2E%64%6C%75%74%2E%65%64%75%2E%63%6E" target="_blank">📧 E-mail</a>]</span>
+                    <span class="tag is-light">[📧 <span id="email" onclick="startDecoding()">qfwyufsl</span>@Gmail</a>]</span>
                     <span class="tag is-light">[<a href="https://scholar.google.com/citations?user=jdo9_goAAAAJ&hl=en" target="_blank">📚 Google Scholar</a>]</span>
                     <span class="tag is-light">[<a href="https://github.com/lartpang" target="_blank">🐙 GitHub</a>]</span>
                     <span class="tag is-light">[<a href="https://blog.csdn.net/p_lart" target="_blank">✏️ CSDN</a>]</span>
@@ -747,6 +754,33 @@
         $target.classList.toggle('is-active');
       });
     });
+  }
+
+  function decryptName(encryptedName) {
+    return encryptedName.split('').map(function (char) {
+      return String.fromCharCode(char.charCodeAt(0) - 5);
+    }).join('');
+  }
+
+  // 逐步显示解码后的名称
+  function startDecoding() {
+    var nameElement = document.getElementById("email");
+    var encryptedName = nameElement.textContent;
+    var realName = decryptName(encryptedName); // 解码名称
+    var currentIndex = 0;
+
+    // 逐步显示解码后的字符
+    var interval = setInterval(function () {
+      if (currentIndex < realName.length) {
+        nameElement.textContent = realName.substring(0, currentIndex + 1) + encryptedName.substring(currentIndex + 1);
+        currentIndex++;
+      } else {
+        clearInterval(interval); // 停止定时器
+        nameElement.style.color = "black";
+        nameElement.style.textDecoration = "none";
+        nameElement.onclick = null; // 移除点击事件
+      }
+    }, 100); // 每100毫秒显示一个字符
   }
 
   // 在文档加载完成后执行替换
