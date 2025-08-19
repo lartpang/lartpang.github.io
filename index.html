@@ -10,12 +10,13 @@
   <meta name="author" content="Lart Pang" />
   <title>Youwei Pang</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="icon" href="favicon.ico" />
   <style>
     body {
       font-family: Georgia, "Times New Roman", Times, serif;
+      color: #333;
     }
 
     /* 设置滚动容器 */
@@ -25,6 +26,16 @@
       border: 1px solid #ccc;
       border-radius: 10px;
       padding: 10px;
+    }
+
+    .card {
+      padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: box-shadow .2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* 设置新闻列表 */
@@ -156,7 +167,6 @@
             <div class="block">
               <p class="title is-2 has-text-white">Youwei Pang, Ph.D.</p>
               <p class="title is-4 has-text-white">Computer Vision Researcher & AI Enthusiast</p>
-              <p class="title is-6 has-text-white">Ph.D. Student from <a href="https://futureschool.dlut.edu.cn/IIAU.htm" target="_blank" class="has-text-white is-underlined">IIAU LAB (DUT)</a>.</p>
             </div>
 
             <div class="buttons">
@@ -205,7 +215,25 @@
             </div>
 
             <div class="block">
-              <p class="boldsubtitle">My Education</p>
+              <p class="boldsubtitle">My Experience</p>
+
+              <div class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img src="https://www.wur.nl/upload/52cdf268-8d6c-4713-acaa-e9f93ff69632_Logo.jpg" />
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <p>
+                    <span class="subtitle is-6"><time class="info-date">2025-Present:</time>
+                      <a href="https://www.ntu.edu.sg/">Nanyang Technological University (NTU)</a></span>
+                    <br />
+                    Research Fellow
+                    <br />
+                    Work with <a href="https://personal.ntu.edu.sg/wslin/">Prof. Weisi Lin</a>.
+                  </p>
+                </div>
+              </div>
 
               <div class="media">
                 <figure class="media-left">
@@ -748,7 +776,7 @@
   <!-- Footer -->
   <footer class="footer py-4">
     <div class="content has-text-centered">
-      Last updated at <time class="info-date">2025-7-15</time>
+      Last updated at <time class="info-date">2025-8-19</time>
       © Youwei Pang. All rights reserved.
     </div>
   </footer>
@@ -762,7 +790,7 @@
     'paper-author': ['is-italic', 'is-size-7'],
     'paper-conf': ['has-text-weight-semibold', 'is-size-7'],
     'paper-info': ['is-size-7'],
-    'paper-item': ['my-4'],
+    'paper-item': ['card', 'my-2'],
     'author-me': ['has-text-info', 'has-text-weight-bold'],
     'tag-link': ['tag', 'is-link', 'is-light', 'has-text-weight-bold'],
     'tag-info-ei': ['tag', 'is-info', 'has-text-weight-bold'],
