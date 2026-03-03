@@ -1,1032 +1,2508 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Homepage" />
-  <meta name="keywords" content="Homepage" />
-  <meta name="author" content="Lart Pang" />
+  <meta name="description" content="Youwei Pang - Computer Vision Researcher" />
+  <meta name="keywords" content="Computer Vision, Deep Learning, Academic Homepage" />
+  <meta name="author" content="Youwei Pang" />
   <title>Youwei Pang</title>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="icon" href="favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Zhi+Mang+Xing&family=IBM+Plex+Mono:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    .handwriting-text {
-      font-family: "Zhi Mang Xing", cursive;
-      font-weight: 400;
-      font-style: normal;
+    /* ===== Morandi Color System ===== */
+    :root {
+      --bg: #f4f1ec;
+      --surface: #fefcf9;
+      --surface2: #edeae3;
+      --primary: #7a9aaa;
+      --primary-d: #5a7a8a;
+      --accent: #b08c7a;
+      --text: #3a3633;
+      --text-2: #6b6460;
+      --text-3: #9a9491;
+      --border: #dbd5ca;
+      --hero-from: #8b9da9;
+      --hero-to: #c4b09a;
+      --tag-link: #e8f0f4;
+      --tag-ei: #eaf0e8;
+      --tag-wos: #f0ece8;
+      --tag-doi: #ece8f0;
+      /* Section Backgrounds */
+      --bg-warm: #fefcf9;
+      --bg-sage: #f0f4ef;
+      --bg-cool: #f0f2f4;
+      /* Section Backgrounds */
+      --bg-warm: #fefcf9;
+      --bg-sage: #f0f4ef;
+      --bg-cool: #f0f2f4;
+      --radius: 8px;
+      --radius-lg: 14px;
+      --shadow: 0 2px 12px rgba(58, 54, 51, 0.07);
+      --shadow-h: 0 6px 24px rgba(58, 54, 51, 0.13);
+      --transition: 0.22s ease;
+    }
+
+    /* ===== Reset & Base ===== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Georgia, "Times New Roman", Times, serif;
-      color: #333;
+      font-family: 'IBM Plex Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: -0.012em;
     }
 
-    /* 设置滚动容器 */
-    .scrollable-box {
-      height: 12rem;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 10px;
+    a {
+      color: var(--primary-d);
+      text-decoration: none;
+      transition: color var(--transition);
     }
 
+    a:hover {
+      color: var(--accent);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 12px 0;
+    }
+
+    .section-sm {
+      padding: 8px 0;
+    }
+
+    /* ===== Section Title ===== */
+    .sec-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sec-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .subsec-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin: 12px 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .subsec-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ===== Card ===== */
     .card {
-      padding: 0.3rem 0.5rem 0.3rem 0.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      transition: box-shadow .2s;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--transition), transform var(--transition);
     }
 
     .card:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-h);
+      transform: translateY(-2px);
     }
 
-    /* 设置新闻列表 */
-    .scrollable-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    /* ===== NAVBAR: 小鸟出巢 ===== */
+    @keyframes navFlyIn {
+      0% {
+        transform: translateY(-110%) scaleY(0.6);
+        opacity: 0;
+      }
+
+      60% {
+        transform: translateY(6px) scaleY(1.04);
+        opacity: 1;
+      }
+
+      80% {
+        transform: translateY(-3px) scaleY(0.98);
+      }
+
+      100% {
+        transform: translateY(0) scaleY(1);
+        opacity: 1;
+      }
     }
 
-    /* 每个新闻条目的样式 */
-    .scrollable-item {
+    @keyframes linkFlyIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-18px) rotate(-4deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      /* 初始：完全透明，融入 Hero */
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition:
+        background 0.45s cubic-bezier(.4, 0, .2, 1),
+        border-color 0.45s cubic-bezier(.4, 0, .2, 1),
+        backdrop-filter 0.45s;
+      backdrop-filter: blur(0px);
+    }
+
+    /* 滚动后：从 Hero 飞出，变为毛玻璃栏 */
+    .navbar.scrolled {
+      background: rgba(254, 252, 249, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom-color: var(--border);
+      animation: navFlyIn 0.55s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+
+    .navbar-inner {
       display: flex;
-      margin: 0 0 0.25rem 0.25rem;
-      /* 上边 | 右边 | 下边 | 左边 */
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    /* Logo 和文字在 Hero 中完全隐藏，滚动后飞入 */
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .navbar.scrolled .navbar-logo {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .navbar-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .navbar-logo-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      transition: color 0.4s;
+    }
+
+    /* 顶部导航链接：初始隐藏（links 在 Hero 里），滚动后逐个飞入 */
+    .navbar-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .navbar-links a {
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-18px);
+      transition: background 0.22s, color 0.22s;
+    }
+
+    .navbar.scrolled .navbar-links a {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      color: var(--text-2);
+    }
+
+    /* 各链接依次延迟飞入 */
+    .navbar.scrolled .navbar-links a:nth-child(1) {
+      animation: linkFlyIn 0.38s 0.08s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+
+    .navbar.scrolled .navbar-links a:nth-child(2) {
+      animation: linkFlyIn 0.38s 0.15s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+
+    .navbar.scrolled .navbar-links a:nth-child(3) {
+      animation: linkFlyIn 0.38s 0.22s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+
+    .navbar.scrolled .navbar-links a:nth-child(4) {
+      animation: linkFlyIn 0.38s 0.29s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+
+    .navbar.scrolled .navbar-links a:nth-child(5) {
+      animation: linkFlyIn 0.38s 0.36s cubic-bezier(.34, 1.56, .64, 1) both;
+    }
+
+    .navbar-links a:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .navbar.scrolled .navbar-links a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .nav-burger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 2px;
+      transition: background 0.4s;
+    }
+
+    .navbar.scrolled .nav-burger span {
+      background: var(--text-2);
+    }
+
+    @media (max-width: 640px) {
+      .nav-burger {
+        display: flex;
+      }
+
+      .navbar-links {
+        display: none !important;
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 12px 24px;
+        gap: 2px;
+        z-index: 199;
+      }
+
+      .navbar-links.open {
+        display: flex !important;
+      }
+
+      .navbar-links.open a {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        color: var(--text-2) !important;
+        width: 100%;
+        padding: 10px 12px;
+      }
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      /* 流体渐变背景：莫兰迪蛟青 + 香槓米色，诃屈 brianboli.com 的淡紫粗精感 */
+      background: linear-gradient(140deg,
+          #c2cfe0 0%, #d6c8d8 25%,
+          #e8cfc5 50%, #d4c8d6 75%,
+          #b8ccd6 100%);
+    }
+
+    /* 背景动转居中：使simulated流体平滑遗芸 */
+    @keyframes hueShift {
+      0% {
+        filter: hue-rotate(0deg) saturate(1.1);
+      }
+
+      33% {
+        filter: hue-rotate(12deg) saturate(1.2);
+      }
+
+      66% {
+        filter: hue-rotate(-8deg) saturate(0.95);
+      }
+
+      100% {
+        filter: hue-rotate(0deg) saturate(1.1);
+      }
+    }
+
+    /* 流体覆盖层：叠加德告式色彩过渡 */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 20% 30%, rgba(180, 200, 220, 0.65) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 65% at 80% 70%, rgba(220, 190, 200, 0.55) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200, 215, 205, 0.3) 0%, transparent 75%);
+      animation: overlayBreath 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes overlayBreath {
+      0% {
+        opacity: 0.75;
+        transform: scale(1.02) rotate(-0.6deg);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.0) rotate(0deg);
+      }
+
+      100% {
+        opacity: 0.8;
+        transform: scale(1.05) rotate(0.8deg);
+      }
+    }
+
+    /* ---- 主内容容器 ---- */
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 0 140px;
+    }
+
+    /* 大标题区域 */
+    .hero-headline {
+      padding: 0 6vw;
+    }
+
+    /* 超大姓名：换用华丽衬线体 Cinzel Decorative */
+    .hero-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.2rem, 6.5vw, 6.2rem);
+      font-weight: 700;
+      color: rgba(30, 28, 32, 0.82);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.1em;
+    }
+
+    /* Hero 中 SVG 小鸟幻影层 */
+    .hero-bird-ghost {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 6vw;
+      opacity: 0.12;
+    }
+
+    .hero-bird-ghost svg {
+      width: clamp(280px, 42vw, 680px);
+      height: auto;
+      animation: birdGhostFloat 18s ease-in-out infinite alternate;
+      filter: blur(0.5px);
+    }
+
+    @keyframes birdGhostFloat {
+      0% {
+        transform: translateY(0px) rotate(-1deg) scale(1);
+        opacity: 0.9;
+      }
+
+      40% {
+        transform: translateY(-18px) rotate(0.5deg) scale(1.015);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(8px) rotate(-2deg) scale(0.985);
+        opacity: 0.75;
+      }
+    }
+
+    /* About Me 区域顶部：头像面板 */
+    .about-avatar-panel {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-avatar-panel img {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      border: 2.5px solid var(--border);
+      object-fit: cover;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .about-avatar-panel img:hover {
+      transform: scale(1.04);
+    }
+
+    .about-avatar-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .about-avatar-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .about-avatar-role {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      letter-spacing: 0.04em;
+    }
+
+    .about-avatar-affil {
+      font-size: 0.75rem;
+      color: var(--primary-d);
+    }
+
+    /* 大标题通证行：简介一行字 */
+    .hero-tagline {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(0.88rem, 2.2vw, 1.25rem);
+      font-weight: 400;
+      color: rgba(40, 35, 40, 0.62);
+      letter-spacing: 0.01em;
+      margin-top: 0.6em;
+      padding-left: 0.1em;
+      border-left: 3px solid rgba(30, 28, 32, 0.22);
+      padding-left: 0.65em;
+    }
+
+
+    /* ===== 沉浸式交互对谈（无框/融入背景的屏幕感） ===== */
+    .hero-chat {
+      margin-top: 3.5em;
+      /* 稍微靠下，避免太挤 */
+      max-width: clamp(300px, 55vw, 620px);
+      position: relative;
+    }
+
+    /* 终端内容区：无框、全透明、上下渐变遮罩 */
+    .hero-crt-body {
+      padding: 10px 0;
+      /* 取消左右 padding，随心所欲自由伸展 */
+      height: clamp(120px, 20vh, 180px);
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      /* 上下渐变淡出蒙版，产生文字浮现和消弭的电影感 */
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      /* 隐藏滚动条 */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .hero-crt-body::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 单行输出 */
+    .tline {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(0.72rem, 1.35vw, 0.88rem);
+      line-height: 1.8;
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      opacity: 0;
+      animation: cmdFadeIn 0.8s ease forwards;
+    }
+
+    @keyframes cmdFadeIn {
+      from {
+        opacity: 0;
+        filter: blur(3px);
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+      }
+    }
+
+    .tline+.tline {
+      margin-top: 8px;
+    }
+
+    /* 提示符与文字风格 */
+    .tprompt-u {
+      color: rgba(30, 28, 32, 0.40);
+      /* 极度收敛的灰色 */
+      margin-right: 12px;
+      flex-shrink: 0;
+      user-select: none;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .ttext-u {
+      color: rgba(30, 28, 32, 0.85);
+      /* 深灰实体感 */
+      font-weight: 500;
+      text-shadow: 0 0 1px rgba(30, 28, 32, 0.1);
+    }
+
+    .tprompt-ai {
+      color: rgba(50, 90, 140, 0.45);
+      /* 微弱的深蓝预设 */
+      margin-right: 12px;
+      flex-shrink: 0;
+      user-select: none;
+      font-weight: 600;
+    }
+
+    .ttext-ai {
+      color: rgba(30, 32, 40, 0.7);
+      font-style: italic;
+      text-shadow: 0 0 1px rgba(50, 90, 140, 0.1);
+    }
+
+    /* 闪烁光标 */
+    .tcursor {
+      display: inline-block;
+      width: 0.6em;
+      height: 1.1em;
+      background: rgba(30, 28, 32, 0.4);
+      vertical-align: text-bottom;
+      margin-left: 4px;
+      animation: chatBlink 0.9s step-end infinite;
+    }
+
+    .tcursor.hidden {
+      display: none;
+    }
+
+    @keyframes chatBlink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+
+
+    /* 分隔线 */
+    .hero-divider {
+      width: clamp(60px, 18vw, 180px);
+      height: 1.5px;
+      background: rgba(30, 28, 32, 0.25);
+      margin: 1.4em 0 1.6em;
+    }
+
+    /* 底部角落 — 左侧：位置、属信、头像 */
+    .hero-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 6vw 36px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
       align-items: flex-start;
     }
 
-    /* 时间部分 */
-    .info-date {
-      flex-shrink: 0;
-      width: 6rem;
-      margin-right: 0.5rem;
-      font-weight: bold;
+    .hero-meta-line {
+      display: flex;
+      align-items: flex-start;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: rgba(30, 28, 32, 0.55);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.4;
     }
 
-    /* 内容部分 */
-    .info-content {
-      word-wrap: break-word;
-      /* 允许内容换行 */
-      flex-grow: 1;
-      /* 内容部分填满剩余空间 */
+    .hm-icon {
+      width: 18px;
+      /* 固定宽度，确保所有文字部分绝对左对齐 */
+      display: inline-flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-shrink: 0;
+      height: 1.4em;
+      /* 撑满行高保持垂直居中 */
+    }
+
+    .hero-meta-line strong {
+      color: rgba(30, 28, 32, 0.78);
+      font-weight: 600;
+    }
+
+    /* 右侧：头像 + 社交链接 */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    /* 头像—圆形小壳 */
+    .hero-avatar img {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 2.5px solid rgba(255, 255, 255, 0.75);
+      object-fit: cover;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .hero-avatar img:hover {
+      transform: scale(1.06);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    /* 社交链接区域：纵向分行，每行内横向排列 */
+    .hero-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 13px;
+      background: rgba(255, 255, 255, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 20px;
+      color: rgba(30, 28, 32, 0.82);
+      font-size: 0.76rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      backdrop-filter: blur(8px);
+      transition: background var(--transition), transform var(--transition), color var(--transition);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hero-btn:hover {
+      background: rgba(255, 255, 255, 0.55);
+      color: rgba(20, 18, 22, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .hero-btn a {
+      color: inherit;
     }
 
     #email {
       cursor: pointer;
-      font-family: monospace;
-      color: blue;
-      text-decoration: underline;
     }
 
-    #banner {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #FDD2BE 0%, #84899b 50%, #1C80AA 100%);
+
+
+    /* 行内分行链接 */
+    .hero-links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .hero-links-row+.hero-links-row {
+      margin-top: 5px;
+    }
+
+    /* 运动提示 — 保留小箭头但隐藏 logo */
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      cursor: pointer;
+    }
+
+    .hero-scroll-hint.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hero-scroll-hint .hint-arrow {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
       align-items: center;
     }
 
-    .hero-content {
-      position: relative;
-      display: flex;
-      z-index: 2;
+    .hero-scroll-hint .hint-arrow span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-right: 1.5px solid rgba(30, 28, 32, 0.38);
+      border-bottom: 1.5px solid rgba(30, 28, 32, 0.38);
+      transform: rotate(45deg);
+      animation: hintPulse 1.4s ease-in-out infinite;
     }
 
-    /* 粒子画布 */
-    #particles-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .hero-scroll-hint .hint-arrow span:nth-child(2) {
+      animation-delay: 0.18s;
+      opacity: 0.65;
+    }
+
+    .hero-scroll-hint .hint-arrow span:nth-child(3) {
+      animation-delay: 0.36s;
+      opacity: 0.4;
+    }
+
+    @media (max-width: 640px) {
+      .hero-headline {
+        padding: 0 5vw;
+      }
+
+      .hero-bottom {
+        padding: 0 5vw 24px;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .hero-links {
+        justify-content: flex-start;
+      }
+
+      .hero-avatar img {
+        width: 68px;
+        height: 68px;
+      }
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .about-intro {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .about-intro strong {
+      color: var(--text);
+    }
+
+    /* Experience Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .timeline-logo {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timeline-logo img {
       width: 100%;
       height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+
+    .timeline-body {
+      flex: 1;
+    }
+
+    .timeline-period {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary-d);
+      letter-spacing: 0.05em;
+      margin-bottom: 0;
+    }
+
+    .timeline-inst {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .timeline-role {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      margin-top: 2px;
+    }
+
+    /* Research interest list */
+    .ri-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ri-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .ri-sub {
+      padding-left: 14px;
+      border-left: 2px solid var(--border);
+    }
+
+    .ri-sub li {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      padding: 2px 0;
+    }
+
+    .ri-sub li::before {
+      content: '·  ';
+      color: var(--primary);
+    }
+
+    .paper-ref {
+      font-size: 0.75rem;
+      color: var(--primary-d);
+      font-weight: 500;
+    }
+
+    .paper-ref a {
+      color: inherit;
+    }
+
+    .paper-ref a:hover {
+      color: var(--accent);
+    }
+
+
+    .scroll-box {
+      margin-top: 4px;
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    /* 垂直引导线 */
+    .news-list::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 5px;
+      bottom: 5px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .news-item {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      position: relative;
+    }
+
+    /* 时间轴图标定位 */
+    .news-item .item-icon {
+      position: absolute;
+      left: -23px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      z-index: 2;
+      background: var(--bg);
+    }
+
+    .news-item .item-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .news-date {
+      flex-shrink: 0;
+      width: 100px;
+      /* 统一宽度确保对齐 */
+      font-weight: 500;
+      color: var(--primary-d);
+      font-size: 0.88rem;
+    }
+
+    .news-content {
+      flex: 1;
+      font-size: 0.92rem;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ===== PROJECTS ===== */
+    .proj-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    .proj-table thead th {
+      text-align: left;
+      padding: 8px 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .proj-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--surface2);
+      vertical-align: middle;
+      color: var(--text-2);
+    }
+
+    .proj-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .proj-table tr:hover td {
+      background: var(--surface2);
+    }
+
+    .proj-table td:first-child {
+      width: 80px;
+    }
+
+    .proj-table td:nth-child(2) {
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .proj-table td:nth-child(2) a {
+      color: var(--primary-d);
+    }
+
+    .proj-table td:nth-child(2) a:hover {
+      color: var(--accent);
+    }
+
+    .proj-table td:last-child {
+      color: var(--text-3);
+    }
+
+    /* ===== PAPERS ===== */
+    .paper-item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .paper-item:last-child {
+      border-bottom: none;
+    }
+
+    .paper-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 5px;
+    }
+
+    .paper-author {
+      font-size: 0.8rem;
+      color: var(--text-2);
+      margin-bottom: 3px;
+      line-height: 1.5;
+    }
+
+    .author-me {
+      color: var(--primary-d);
+      font-weight: 600;
+    }
+
+    .paper-conf {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+
+    .paper-oral {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: #fde8e4;
+      color: #c0553a;
+      margin-left: 4px;
+    }
+
+    .paper-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 10px;
+      font-size: 0.71rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+    }
+
+    .tag-link {
+      background: var(--tag-link);
+      color: var(--primary-d);
+      border-color: #c6dae3;
+    }
+
+    .tag-link a {
+      color: inherit;
+    }
+
+    .tag-link:hover {
+      background: #d6e8f0;
+    }
+
+    .tag-info-ei {
+      background: var(--tag-ei);
+      color: #5a7a52;
+      border-color: #c8ddc4;
+      font-size: 0.66rem;
+    }
+
+    .tag-info-wos {
+      background: var(--tag-wos);
+      color: #7a6a52;
+      border-color: #ddd0b8;
+      font-size: 0.66rem;
+    }
+
+    .tag-info-doi {
+      background: var(--tag-doi);
+      color: #5a5280;
+      border-color: #c8c4dc;
+      font-size: 0.66rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--surface2);
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-3);
+    }
+
+    footer a {
+      color: var(--text-2);
+    }
+
+    /* ===== Utilities ===== */
+    .bold {
+      font-weight: 600;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    /* ===== 滚动显现动画 ===== */
+    .sr {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s cubic-bezier(.4, 0, .2, 1),
+        transform 0.65s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .sr.sr-l {
+      transform: translateX(-32px);
+    }
+
+    .sr.sr-r {
+      transform: translateX(32px);
+    }
+
+    .sr.in {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* ===== 赛道 Canvas 背景 ===== */
+    #ptl-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* 确保赛道内容在 canvas 上层 */
+    .ptl-sprout,
+    .ptl-year,
+    .ptl-snake-row {
+      position: relative;
       z-index: 1;
     }
 
-    .profile-image {
-      border: 4px solid white;
-      transition: transform 0.3s ease;
-      will-change: transform;
-      /* 性能优化 */
+    /* 年份节点："检查站"样式 */
+    .ptl-year span {
+      position: relative;
     }
 
-    .profile-image:hover {
-      transform: scale(1.05);
+    .ptl-year span::before {
+      content: '🏁';
+      margin-right: 6px;
+      font-size: 0.85rem;
+    }
+
+    /* 论文卡片：左上角序号徽章 */
+    .ptl-item {
+      position: relative;
+    }
+
+    .ptl-card-num {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      width: 22px;
+      height: 22px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 0.6rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+      z-index: 2;
+    }
+
+    /* 赛道区：进入视口时的卡片动画 */
+    .ptl-item.sr {
+      transform: scale(0.88) translateY(24px);
+    }
+
+    .ptl-item.in {
+      transform: scale(1) translateY(0) !important;
+    }
+
+    .ptl-snake-row.rtl .ptl-item.sr {
+      transform: scale(0.88) translateY(24px);
+    }
+
+
+    /* ===== RESEARCH INTEREST CARDS ===== */
+    .ri-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .ri-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .ri-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .ri-card-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .ri-card-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      flex: 1;
+    }
+
+    .ri-card-toggle {
+      font-size: 0.7rem;
+      color: var(--text-3);
+      transition: transform 0.25s;
+    }
+
+    .ri-card.open .ri-card-toggle {
+      transform: rotate(180deg);
+    }
+
+    .ri-card-body {
+      padding: 12px 16px;
+      display: none;
+    }
+
+    .ri-card.open .ri-card-body {
+      display: block;
+    }
+
+    .ri-card-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .ri-card-body li {
+      font-size: 0.81rem;
+      color: var(--text-2);
+      display: flex;
+      gap: 7px;
+      line-height: 1.55;
+    }
+
+    .ri-card-body li::before {
+      content: '→';
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ri-card-body .bold {
+      color: var(--text);
+    }
+
+    .ri-card-body .paper-ref {
+      font-size: 0.74rem;
+      color: var(--primary-d);
+    }
+
+    .ri-card-body .paper-ref a {
+      color: inherit;
+    }
+
+    /* ===== PROJECT GRID CARDS ===== */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .proj-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+    }
+
+    .proj-card:hover {
+      box-shadow: var(--shadow-h);
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .proj-card-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-d);
+      text-decoration: none;
+      line-height: 1.3;
+    }
+
+    .proj-card-name:hover {
+      color: var(--accent);
+    }
+
+    .proj-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .proj-card-foot {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .proj-card-foot img {
+      height: 18px;
+    }
+
+    /* ===== PAPER TIMELINE — 蛇形布局 ===== */
+    .ptl-wrap {
+      position: relative;
+      padding: 0 0 24px;
+    }
+
+    /* 顶部嫩芽 */
+    .ptl-sprout {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+      letter-spacing: -2px;
+    }
+
+    /* 年份节点：占满整行，带方向箭头 */
+    .ptl-year {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0 10px;
+      color: var(--text-3);
+      font-size: 0.65rem;
+    }
+
+    .ptl-year::before,
+    .ptl-year::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+    }
+
+    .ptl-year span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-d) 100%);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 3px 14px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(122, 154, 170, 0.3);
+      white-space: nowrap;
+    }
+
+    /* 蛇形行容器（由 JS 创建） */
+    .ptl-snake-row {
+      display: flex;
+      flex-wrap: nowrap;
+      /* 每行严格水平排列 */
+      gap: 12px;
+      margin-bottom: 10px;
+      align-items: stretch;
+    }
+
+    /* 奇数行：从右向左（蛇形反向） */
+    .ptl-snake-row.rtl {
+      flex-direction: row-reverse;
+    }
+
+    /* 年份组末尾的转角连接器 */
+    .ptl-turn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-3);
+      font-size: 0.85rem;
+      margin: -2px 0 4px;
+      letter-spacing: -1px;
+    }
+
+    /* ── 单个论文条目  ── */
+    .ptl-item {
+      flex: 1;
+      /* 同行内等宽分配 */
+      min-width: 0;
+      display: flex;
+    }
+
+    /* 卡片本体 */
+    .ptl-card {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 13px 14px;
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--transition), transform var(--transition),
+        border-color var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ptl-card:hover {
+      box-shadow: var(--shadow-h);
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .ptl-card .paper-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .ptl-card .paper-author {
+      font-size: 0.71rem;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .ptl-card .paper-conf {
+      font-size: 0.71rem;
+      font-weight: 600;
+      color: var(--primary-d);
+    }
+
+    .ptl-card .paper-oral {
+      display: inline-block;
+      padding: 1px 5px;
+      border-radius: 8px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      background: #fde8e4;
+      color: #c0553a;
+      margin-left: 3px;
+    }
+
+    .ptl-card .paper-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 4px;
+    }
+
+    .ptl-card .tag {
+      font-size: 0.63rem;
+    }
+
+    /* 响应式：小屏改为单列，不再蛇形 */
+    @media (max-width: 680px) {
+
+      .ptl-snake-row,
+      .ptl-snake-row.rtl {
+        flex-direction: column !important;
+      }
+
+      .ptl-item {
+        min-width: 100%;
+      }
+
+      .ptl-sprout {
+        font-size: 1.2rem;
+      }
     }
 
   </style>
 </head>
 
 <body>
-  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
     <div class="container">
-
-      <div class="navbar-brand">
-        <a class="navbar-item" href="#">
-          <svg t="1723627295537" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13432" width="200" height="200">
-            <path d="M484.32 375.24C575.25 255.5 857.87 527.6 788.67 581.07c-94.76 73.21-491.01 39.99-304.35-205.83z" fill="#1C80AA" p-id="13433"></path>
-            <path d="M401.03 749.89l-4.85 133.8-77.69 21.37h66.36l19.42 35.27 4.86-35.27 40.46 6.14-38.84-25.89 8.09-114.91-17.81-20.51zM524.36 771.23l10.48 133.48-74.73 30.11 65.92-7.59 23.33 32.82 0.79-35.6 40.89 1.48-41.54-21.28-5.11-115.08-20.03-18.34z" fill="#3B5174" p-id="13434"></path>
-            <path d="M224.73 264.77l-24 50.19a21.7 21.7 0 0 1-37.73 2.5l-31.57-48.27a21.7 21.7 0 0 1 17.41-33.57l55.61-1.92a21.7 21.7 0 0 1 20.28 31.07z" fill="#DE7B56" p-id="13435"></path>
-            <path d="M900.53 638.76c-18.3 86.91-221.86 208.13-478 171.54C150.46 771.44 26 281.88 315 103.56c161.25-99.49 326.71 5 356.8 130.37C713 405.47 583.15 534.58 749.57 609c86.91 38.91 164.43-34.33 150.96 29.76z" fill="#FDD2BE" p-id="13436"></path>
-            <path d="M365.86 264.78m-32.45 0a32.45 32.45 0 1 0 64.9 0 32.45 32.45 0 1 0-64.9 0Z" fill="" p-id="13437"></path>
-            <path d="M512.24 366c137.48-60.86 253.34 314 166.92 327.31C560.81 711.56 230 490.92 512.24 366zM223.3 530c-9.34-2.6-17.2-12.8-23.94-31a195 195 0 0 1-7.64-27 7.28 7.28 0 0 1 14.3-2.79c4.79 24.5 15 46.44 21.91 46.93 1.12 0.08 11.43-0.5 27.23-45.51a7.28 7.28 0 1 1 13.74 4.82c-13.61 38.77-27 56.31-42 55.22a18.18 18.18 0 0 1-3.6-0.67zM340.8 590.36c-9.63 1.14-20.77-5.32-33.92-19.63a195 195 0 0 1-17.32-22.11 7.28 7.28 0 0 1 12.17-8c13.73 20.85 31.53 37.27 38.07 35.12 1.07-0.35 10.38-4.8 7.93-52.44a7.28 7.28 0 1 1 14.55-0.75c2.11 41-3.59 62.33-17.95 67a18.18 18.18 0 0 1-3.53 0.81zM261.5 659.71c-9-0.19-18.35-7.55-28.56-22.35a180.41 180.41 0 0 1-13-22.49 6.74 6.74 0 0 1 12.18-5.77c9.9 20.88 24.1 38.21 30.37 37.08 1-0.18 10.13-3.07 14-47a6.74 6.74 0 1 1 13.43 1.18c-3.34 37.87-11.31 56.66-25.07 59.12a16.82 16.82 0 0 1-3.35 0.23zM389.28 722.29c-9.26 2.85-21.38-1.51-36.89-13.22a195 195 0 0 1-21-18.64 7.28 7.28 0 0 1 10.53-10.06c17.25 18.05 37.7 31 43.75 27.71 1-0.54 9.35-6.59-1.61-53a7.28 7.28 0 1 1 14.17-3.35c9.44 40 7.65 62-5.63 69.16a18.18 18.18 0 0 1-3.32 1.4z" fill="#22B0C3" p-id="13438"></path>
+      <div class="navbar-inner">
+        <div class="navbar-logo">
+          <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <path d="M484.32 375.24C575.25 255.5 857.87 527.6 788.67 581.07c-94.76 73.21-491.01 39.99-304.35-205.83z" fill="#7a9aaa" />
+            <path d="M900.53 638.76c-18.3 86.91-221.86 208.13-478 171.54C150.46 771.44 26 281.88 315 103.56c161.25-99.49 326.71 5 356.8 130.37C713 405.47 583.15 534.58 749.57 609c86.91 38.91 164.43-34.33 150.96 29.76z" fill="#c4b09a" />
+            <path d="M512.24 366c137.48-60.86 253.34 314 166.92 327.31C560.81 711.56 230 490.92 512.24 366z" fill="#8aacba" />
           </svg>
-        </a>
-
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar_">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="navbar_" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item" href="#about">👋 About Me</a>
-          <a class="navbar-item" href="#news">📢 News</a>
-          <a class="navbar-item" href="#resource">📂 Resource</a>
-          <a class="navbar-item" href="#project">💻 Project</a>
-          <a class="navbar-item" href="#paper-list">📖 Paper</a>
+          <span class="navbar-logo-text">Youwei Pang</span>
         </div>
+        <nav class="navbar-links" id="navLinks">
+          <a href="#about">👋 About</a>
+          <a href="#news">📢 News</a>
+          <a href="#resource">📂 Resource</a>
+          <a href="#project">💻 Project</a>
+          <a href="#paper-list">📖 Papers</a>
+        </nav>
+        <button class="nav-burger" id="navBurger" aria-label="menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-
     </div>
   </nav>
 
-  <section class="hero is-fullheight-with-navbar" id="banner">
-    <div class="hero-body">
-      <canvas id="particles-canvas"></canvas>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-overlay"></div>
 
-      <div class="container hero-content">
-        <div class="columns is-vcentered is-centered">
-          <div class="column is-3">
-            <figure class="image is-256x256">
-              <img class="profile-image is-rounded" src="https://avatars.githubusercontent.com/u/26847524" alt="Avatar" />
-            </figure>
-          </div>
+    <!-- 小鸟幻影群：多层、多大小、全面布局 -->
+    <!-- 左下角：特大、极淡 -->
+    <div class="hero-bird-ghost" style="top:auto;bottom:-8%;left:-4%;right:auto;opacity:0.06;transform:rotate(-12deg) scale(1.3);animation-duration:22s;">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:clamp(320px,55vw,800px)">
+        <path d="M900.53 638.76c-18.3 86.91-221.86 208.13-478 171.54C150.46 771.44 26 281.88 315 103.56c161.25-99.49 326.71 5 356.8 130.37C713 405.47 583.15 534.58 749.57 609c86.91 38.91 164.43-34.33 150.96 29.76z" stroke="rgba(20,18,28,1)" stroke-width="2.5" />
+        <path d="M484.32 375.24C575.25 255.5 857.87 527.6 788.67 581.07c-94.76 73.21-491.01 39.99-304.35-205.83z" stroke="rgba(20,18,28,0.75)" stroke-width="1.8" />
+        <path d="M512.24 366c137.48-60.86 253.34 314 166.92 327.31C560.81 711.56 230 490.92 512.24 366z" stroke="rgba(20,18,28,0.5)" stroke-width="1.2" stroke-dasharray="5 4" />
+        <circle cx="365.86" cy="264.78" r="16" stroke="rgba(20,18,28,0.85)" stroke-width="2" />
+        <circle cx="365.86" cy="264.78" r="6" stroke="rgba(20,18,28,0.65)" stroke-width="1.5" />
+        <path d="M401.03 749.89l-4.85 133.8-77.69 21.37" stroke="rgba(20,18,28,0.45)" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M524.36 771.23l10.48 133.48-74.73 30.11" stroke="rgba(20,18,28,0.45)" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M224.73 264.77l-24 50.19a21.7 21.7 0 0 1-37.73 2.5l-31.57-48.27" stroke="rgba(20,18,28,0.5)" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+    </div>
 
-          <div class="column">
-            <div class="block">
-              <p>
-                <span class="title is-1 has-text-white handwriting-text">Youwei Pang</span>
-                <span class="title is-3 has-text-white">, Ph.D.</span>
-              </p>
-              <p class="title is-4 has-text-white">Computer Vision Researcher & AI Enthusiast</p>
-            </div>
+    <!-- 右上角：中尺、少旋转 -->
+    <div class="hero-bird-ghost" style="top:-5%;right:-2%;left:auto;bottom:auto;opacity:0.08;transform:rotate(8deg) scale(0.82) scaleX(-1);animation-duration:26s;animation-delay:-8s;">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:clamp(220px,38vw,560px)">
+        <path d="M900.53 638.76c-18.3 86.91-221.86 208.13-478 171.54C150.46 771.44 26 281.88 315 103.56c161.25-99.49 326.71 5 356.8 130.37C713 405.47 583.15 534.58 749.57 609c86.91 38.91 164.43-34.33 150.96 29.76z" stroke="rgba(20,18,28,1)" stroke-width="2" />
+        <path d="M484.32 375.24C575.25 255.5 857.87 527.6 788.67 581.07c-94.76 73.21-491.01 39.99-304.35-205.83z" stroke="rgba(20,18,28,0.7)" stroke-width="1.5" />
+        <path d="M512.24 366c137.48-60.86 253.34 314 166.92 327.31C560.81 711.56 230 490.92 512.24 366z" stroke="rgba(20,18,28,0.45)" stroke-width="1" stroke-dasharray="6 5" />
+        <circle cx="365.86" cy="264.78" r="14" stroke="rgba(20,18,28,0.8)" stroke-width="2" />
+        <circle cx="365.86" cy="264.78" r="5" stroke="rgba(20,18,28,0.6)" stroke-width="1.5" />
+        <path d="M224.73 264.77l-24 50.19a21.7 21.7 0 0 1-37.73 2.5l-31.57-48.27" stroke="rgba(20,18,28,0.45)" stroke-width="1.2" stroke-linecap="round" />
+      </svg>
+    </div>
 
-            <div class="buttons">
-              <button class="button is-light">📧 <span id="email" onclick="startDecoding()">qfwyufsl</span> [at] Gmail</button>
-              <button class="button is-light"><a href="https://scholar.google.com/citations?user=jdo9_goAAAAJ&hl=en" target="_blank">📚 Google Scholar</a></button>
-              <button class="button is-light"><a href="https://orcid.org/0000-0002-3950-0956" target="_blank">🍏 ORCID</a></button>
-              <button class="button is-light"><a href="https://github.com/lartpang" target="_blank">🐙 GitHub</a></button>
-            </div>
+    <!-- 中局坐落：小尺、局部居中 -->
+    <div class="hero-bird-ghost" style="top:28%;left:38%;right:auto;bottom:auto;opacity:0.055;transform:rotate(3deg) scale(0.45);animation-duration:30s;animation-delay:-14s;">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:clamp(180px,28vw,440px)">
+        <path d="M900.53 638.76c-18.3 86.91-221.86 208.13-478 171.54C150.46 771.44 26 281.88 315 103.56c161.25-99.49 326.71 5 356.8 130.37C713 405.47 583.15 534.58 749.57 609c86.91 38.91 164.43-34.33 150.96 29.76z" stroke="rgba(20,18,28,1)" stroke-width="3" />
+        <path d="M484.32 375.24C575.25 255.5 857.87 527.6 788.67 581.07c-94.76 73.21-491.01 39.99-304.35-205.83z" stroke="rgba(20,18,28,0.75)" stroke-width="2" stroke-dasharray="8 3" />
+        <circle cx="365.86" cy="264.78" r="18" stroke="rgba(20,18,28,0.85)" stroke-width="2" />
+      </svg>
+    </div>
 
-            <div class="buttons">
-              <button class="button is-light"><a href="https://blog.csdn.net/p_lart" target="_blank">✏️ CSDN</a></button>
-              <button class="button is-light"><a href="https://www.cnblogs.com/lart" target="_blank">✏️ 博客园</a></button>
-              <button class="button is-light"><a href="https://www.yuque.com/lart" target="_blank">✏️ 语雀</a></button>
-              <button class="button is-light"><a href="https://tuchong.com/11269264/posts/" target="_blank">🖼️ 图虫</a></button>
-            </div>
+    <!-- 右中部：主觴大图 + 数字网格 -->
+    <div class="hero-bird-ghost" style="top:8%;right:4%;left:auto;bottom:auto;opacity:0.10;animation-duration:20s;animation-delay:-4s;">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:clamp(260px,42vw,650px)">
+        <path d="M900.53 638.76c-18.3 86.91-221.86 208.13-478 171.54C150.46 771.44 26 281.88 315 103.56c161.25-99.49 326.71 5 356.8 130.37C713 405.47 583.15 534.58 749.57 609c86.91 38.91 164.43-34.33 150.96 29.76z" stroke="rgba(20,18,28,0.85)" stroke-width="2.5" />
+        <path d="M484.32 375.24C575.25 255.5 857.87 527.6 788.67 581.07c-94.76 73.21-491.01 39.99-304.35-205.83z" stroke="rgba(20,18,28,0.65)" stroke-width="1.8" />
+        <path d="M512.24 366c137.48-60.86 253.34 314 166.92 327.31C560.81 711.56 230 490.92 512.24 366z" stroke="rgba(20,18,28,0.45)" stroke-width="1.2" stroke-dasharray="5 4" />
+        <circle cx="365.86" cy="264.78" r="15" stroke="rgba(20,18,28,0.8)" stroke-width="2" />
+        <circle cx="365.86" cy="264.78" r="5.5" stroke="rgba(20,18,28,0.6)" stroke-width="1.5" />
+        <path d="M401.03 749.89l-4.85 133.8-77.69 21.37" stroke="rgba(20,18,28,0.4)" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M524.36 771.23l10.48 133.48-74.73 30.11" stroke="rgba(20,18,28,0.4)" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M224.73 264.77l-24 50.19a21.7 21.7 0 0 1-37.73 2.5l-31.57-48.27" stroke="rgba(20,18,28,0.45)" stroke-width="1.5" stroke-linecap="round" />
+        <!-- 数字网格辅助线 -->
+        <line x1="150" y1="100" x2="950" y2="100" stroke="rgba(20,18,28,0.06)" stroke-width="1" stroke-dasharray="3 9" />
+        <line x1="150" y1="300" x2="950" y2="300" stroke="rgba(20,18,28,0.06)" stroke-width="1" stroke-dasharray="3 9" />
+        <line x1="150" y1="500" x2="950" y2="500" stroke="rgba(20,18,28,0.06)" stroke-width="1" stroke-dasharray="3 9" />
+        <line x1="150" y1="700" x2="950" y2="700" stroke="rgba(20,18,28,0.06)" stroke-width="1" stroke-dasharray="3 9" />
+        <line x1="200" y1="80" x2="200" y2="950" stroke="rgba(20,18,28,0.06)" stroke-width="1" stroke-dasharray="3 9" />
+        <line x1="450" y1="80" x2="450" y2="950" stroke="rgba(20,18,28,0.06)" stroke-width="1" stroke-dasharray="3 9" />
+        <line x1="700" y1="80" x2="700" y2="950" stroke="rgba(20,18,28,0.06)" stroke-width="1" stroke-dasharray="3 9" />
+        <line x1="900" y1="80" x2="900" y2="950" stroke="rgba(20,18,28,0.06)" stroke-width="1" stroke-dasharray="3 9" />
+      </svg>
+    </div>
+
+    <!-- 心部：超大居左标题 -->
+    <div class="hero-inner">
+      <div class="hero-headline">
+        <div class="hero-name">Youwei Pang</div>
+        <div class="hero-divider"></div>
+        <div class="hero-tagline">AI Researcher &amp; Enthusiast</div>
+
+        <!-- 沉浸式交互对谈融入背景 -->
+        <div class="hero-chat" id="heroChat">
+          <div class="hero-crt-body" id="termBody">
+            <!-- 动态追加内容 -->
           </div>
         </div>
 
+      </div>
+    </div>
+
+
+
+    <!-- 底部：左下角状态行，右下角头像+链接 -->
+    <div class="hero-bottom">
+      <div class="hero-meta">
+        <div class="hero-meta-line">
+          <span class="hm-icon">🇸🇬</span>
+          <span>Singapore &middot; NTU</span>
+        </div>
+        <div class="hero-meta-line">
+          <span class="hm-icon">🏫</span>
+          <span>Research Fellow, 2025 &ndash; Present</span>
+        </div>
+        <div class="hero-meta-line" style="font-size:0.66rem;opacity:0.4;margin-top:2px;">
+          <span class="hm-icon">©️</span>
+          <span>Youwei Pang</span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-avatar">
+          <img src="https://avatars.githubusercontent.com/u/26847524" alt="Youwei Pang" />
+        </div>
+        <div class="hero-links">
+          <!-- 第一行：邮件独占 -->
+          <div class="hero-links-row">
+            <div class="hero-btn">📧 <span id="email" onclick="startDecoding()" style="cursor:pointer;">qfwyufsl</span> [at] Gmail</div>
+          </div>
+          <!-- 第二行：学术身份 -->
+          <div class="hero-links-row">
+            <div class="hero-btn"><a href="https://scholar.google.com/citations?user=jdo9_goAAAAJ&amp;hl=en" target="_blank">📚 Scholar</a></div>
+            <div class="hero-btn"><a href="https://orcid.org/0000-0002-3950-0956" target="_blank">🍏 ORCID</a></div>
+          </div>
+          <!-- 第三行：博客/社交 -->
+          <div class="hero-links-row">
+            <div class="hero-btn"><a href="https://github.com/lartpang" target="_blank">🐙 GitHub</a></div>
+            <div class="hero-btn"><a href="https://blog.csdn.net/p_lart" target="_blank">✏️ CSDN</a></div>
+            <div class="hero-btn"><a href="https://www.yuque.com/lart" target="_blank">✏️ 语雀</a></div>
+            <div class="hero-btn"><a href="https://tuchong.com/11269264/posts/" target="_blank">🖼️ 图虫</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 向下滚动提示 -->
+    <div class="hero-scroll-hint" id="scrollHint" onclick="window.scrollBy({top: window.innerHeight * 0.85, behavior:'smooth'})">
+      <div class="hint-arrow">
+        <span></span><span></span><span></span>
       </div>
     </div>
   </section>
 
-  <section class="section has-background-white-ter">
-    <div class="container">
-      <div class="columns">
-        <div class="column is-10 is-offset-1">
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="sec-title">👋 About Me</h2>
+        <div class="card about-grid">
 
-          <div class="box" id="about">
-            <p class="title is-4">👋 About Me</p>
-
-            <div class="block">
-              <p class="boldsubtitle">My Life</p>
-
-              <p>
-                🌎 In my free time, I enjoy
-                focused programming⌨️ (current Github <img alt="GitHub User's stars" src="https://img.shields.io/github/stars/lartpang?style=plastic&logo=github&label=Stars&color=red">),
-                <a href="https://www.yuque.com/lart/record/zf2tgt">patient reading📚</a>,
-                <a href="https://www.yuque.com/lart/record/ladtsq01s675c9g9">musical adventures🎧</a>,
-                fast running🏃‍♂️,
-                slow swimming🏊‍♂️,
-                city walking🚶‍♂️,
-                and exploring delicious food🍲.
-                <br />
-                🤝 I work very closely with my best friend, <span class="has-text-weight-bold"><a href="https://xiaoqi-zhao-dlut.github.io/">Xiaoqi Zhao</a></span>, on most of my projects.
-              </p>
+          <!-- 头像面板（滚过hero后浮现） -->
+          <div class="about-avatar-panel">
+            <img src="https://avatars.githubusercontent.com/u/26847524" alt="Youwei Pang" />
+            <div class="about-avatar-info">
+              <div class="about-avatar-name">Youwei Pang</div>
+              <div class="about-avatar-role">AI Researcher &amp; Enthusiast · Ph.D.</div>
+              <div class="about-avatar-affil"><a href="https://www.ntu.edu.sg/">Nanyang Technological University</a> · Research Fellow</div>
             </div>
+          </div>
 
-            <div class="block">
-              <p class="boldsubtitle">My Experience</p>
+          <div style="margin-bottom: 8px;">
+            <p class="subsec-title">My Life</p>
+            <p class="about-intro">
+              🌎 In my free time, I enjoy
+              focused programming⌨️ (current Github <img alt="GitHub User's stars" src="https://img.shields.io/github/stars/lartpang?style=plastic&logo=github&label=Stars&color=red" style="display:inline;vertical-align:middle;height:18px">),
+              <a href="https://www.yuque.com/lart/record/zf2tgt">patient reading📚</a>,
+              <a href="https://www.yuque.com/lart/record/ladtsq01s675c9g9">musical adventures🎧</a>,
+              fast running🏃‍♂️,
+              slow swimming🏊‍♂️,
+              city walking🚶‍♂️,
+              and exploring delicious food🍲.
+              <br />
+              🤝 I work very closely with my best friend, <strong><a href="https://xiaoqi-zhao-dlut.github.io/">Xiaoqi Zhao</a></strong>, on most of my projects.
+            </p>
+          </div>
 
-              <div class="media">
-                <figure class="media-left">
-                  <p class="image is-64x64">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Nanyang_Technological_University_coat_of_arms_vector.svg/1280px-Nanyang_Technological_University_coat_of_arms_vector.svg.png" />
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <p>
-                    <span class="subtitle is-6"><time class="info-date">2025-Present:</time>
-                      <a href="https://www.ntu.edu.sg/">Nanyang Technological University (NTU)</a></span>
-                    <br />
-                    Research Fellow
+          <!-- Experience -->
+          <div style="margin-bottom: 8px;">
+            <p class="subsec-title">My Experience</p>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-logo">
+                  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Nanyang_Technological_University_coat_of_arms_vector.svg/1280px-Nanyang_Technological_University_coat_of_arms_vector.svg.png" alt="NTU" />
+                </div>
+                <div class="timeline-body">
+                  <p class="timeline-period">2025 - Present</p>
+                  <p class="timeline-inst"><a href="https://www.ntu.edu.sg/">Nanyang Technological University (NTU)</a></p>
+                  <p class="timeline-role">Research Fellow
                     <br />
                     Work with <a href="https://personal.ntu.edu.sg/wslin/">Prof. Weisi Lin (IEEE Fellow)</a>.
                   </p>
                 </div>
               </div>
-
-              <div class="media">
-                <figure class="media-left">
-                  <p class="image is-64x64">
-                    <img src="https://www.dlut.edu.cn/__local/B/E6/D2/C96F6B930EC74F5666EDEA31D38_CAC1603C_6CB6.png" />
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <p>
-                    <span class="subtitle is-6"><time class="info-date">2019-2025:</time>
-                      <a href="https://ice.dlut.edu.cn/index.htm">School of Information and Communication Engineering</a>,
-                      <a href="https://www.dlut.edu.cn/">Dalian University of Technology (DUT)</a></span>
-                    <br />
-                    Completed my Ph.D. in Signal and Information Processing.
+              <div class="timeline-item">
+                <div class="timeline-logo">
+                  <img src="https://www.dlut.edu.cn/__local/B/E6/D2/C96F6B930EC74F5666EDEA31D38_CAC1603C_6CB6.png" alt="DUT" />
+                </div>
+                <div class="timeline-body">
+                  <p class="timeline-period">2019 - 2025</p>
+                  <p class="timeline-inst"><a href="https://www.dlut.edu.cn/">Dalian University of Technology (DUT)</a></p>
+                  <p class="timeline-role">Ph.D. in Signal and Information Processing
                     <br />
                     Supervised by <a href="http://faculty.dlut.edu.cn/lhzhang/zh_CN/index.htm">Prof. Lihe Zhang</a> and <a href="http://faculty.dlut.edu.cn/Huchuan_Lu/zh_CN/index.htm">Prof. Huchuan Lu (IEEE Fellow)</a>.
                   </p>
                 </div>
               </div>
-
-              <div class="media">
-                <figure class="media-left">
-                  <p class="image is-64x64">
-                    <img src="https://www.dlut.edu.cn/__local/B/E6/D2/C96F6B930EC74F5666EDEA31D38_CAC1603C_6CB6.png" />
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <p>
-                    <span class="subtitle is-6"><time class="info-date">2015-2019:</time>
-                      <a href="https://ice.dlut.edu.cn/index.htm">School of Information and Communication Engineering</a>,
-                      <a href="https://www.dlut.edu.cn/">Dalian University of Technology (DUT)</a></span>
-                    <br />
-                    Received the B.E. in Electronic and Information Engineering.
-                  </p>
+              <div class="timeline-item">
+                <div class="timeline-logo">
+                  <img src="https://www.dlut.edu.cn/__local/B/E6/D2/C96F6B930EC74F5666EDEA31D38_CAC1603C_6CB6.png" alt="DUT" />
+                </div>
+                <div class="timeline-body">
+                  <p class="timeline-period">2015 - 2019</p>
+                  <p class="timeline-inst"><a href="https://www.dlut.edu.cn/">Dalian University of Technology (DUT)</a></p>
+                  <p class="timeline-role">B.E. in Electronic and Information Engineering</p>
                 </div>
               </div>
             </div>
-
-            <div class="block">
-              <p class="boldsubtitle">Research Interest</p>
-
-              <p>
-                My current research interests include
-                <span class="is-italic has-text-weight-bold">Deep Learning</span>,
-                <span class="is-italic has-text-weight-bold">Computer Vision</span>,
-                and <span class="is-italic has-text-weight-bold">Neural Network Design</span>.
-              </p>
-
-              <div class="content">
-                In particular, I focus on:
-                <ul>
-                  <li><span class="has-text-weight-bold">Multi-Task Joint Modeling</span>:
-                    <ul class="ml-4 mt-0">
-                      <li><span class="has-text-weight-bold">Natural Scene</span>: Context-Dependent (CD) Concept Perception [<a href="#unified-spider">ICML'24</a>] (Salient, Camouflaged [<a href="#cod-zoomnext">TPAMI'24</a>], Shadow [<a href="#rawsd-sara">ICCV'23</a>], ...), Remote Sensing Image Analysis, Semantic Segmentation [<a href="#multimodal-caver">TPAMI'25</a>]</li>
-                      <li><span class="has-text-weight-bold">Industrial Scene</span>: Quality Inspection (Lithium Battery, Semiconductor) [<a href="#pbd-conf">CVPR'24</a>,<a href="#pbd-jnl">ArXiv'24</a>]</li>
-                      <li><span class="has-text-weight-bold">Medical Scene</span>: Lesion, Organ, Tissue, ... [<a href="#medical-m2snet">ArXiv'23</a>]</li>
-                      <li><span class="has-text-weight-bold">General Architecture</span>: RGB + RGB/Depth/Thermal/Temporal [<a href="#cod-zoomnext">TPAMI'24</a>,<a href="#multimodal-caver">TPAMI'25</a>]</li>
-                      <li><span class="has-text-weight-bold">Task-Generic Paradigm</span>: Unified Framework for CD Concept Understanding [<a href="#unified-spider">ICML'24</a>]</li>
-                    </ul>
-                  </li>
-                  <li><span class="has-text-weight-bold">Multi-Modal Data Integration</span>:
-                    <ul class="ml-4 mt-0">
-                      <li><span class="has-text-weight-bold">Vision (Multi-Sensor)</span>: Modality-Complete [<a href="#multimodal-hdfnet">ECCV'20</a>,<a href="#multimodal-danet">ECCV'20</a>,<a href="#multimodal-jlsdc">TIP'22</a>,<a href="#multimodal-caver">TIP'23</a>,<a href="#multimodal-comptr">TPAMI'25</a>], Modality-Incomplete [<a href="#multimodal-unimerseg">NeurIPS'25</a>]</li>
-                      <li><span class="has-text-weight-bold">Vision (Multi-View)</span>: Scale, Edge, ... [<a href="#sod-minet">CVPR'20</a>,<a href="#gatenet-conf">ECCV'20</a>,<a href="#gatenet-jnl">IJCV'24</a>,<a href="#dis-mvanet">CVPR'24</a>]</li>
-                      <li><span class="has-text-weight-bold">Vision (Multi-Moment)</span>: Temporal Cues [<a href="#cod-zoomnext">TPAMI'24</a>]</li>
-                      <li><span class="has-text-weight-bold">Vision-Language</span>: Open-Vocabulary [<a href="#cod-ovcos">ECCV'24</a>], Referring [<a href="#cod-cgcod">ACM MM'25</a>]</li>
-                    </ul>
-                  </li>
-                  <li><span class="has-text-weight-bold">Efficient Model Design</span>:
-                    <ul class="ml-4 mt-0">
-                      <li><span class="has-text-weight-bold">Lightweight Operation</span>: Efficient Attention [<a href="#multimodal-caver">TIP'23</a>,<a href="#multimodal-comptr">TPAMI'25</a>], Dynamic Convolution [<a href="#multimodal-hdfnet">ECCV'20</a>]</li>
-                      <li><span class="has-text-weight-bold">Scale-Generic Modeling</span>: Tiny Object Perception [<a href="#rethinking-irstd">NeurIPS'25</a>], Industrial Quality Inspection [<a href="#pbd-conf">CVPR'24</a>,<a href="#pbd-jnl">ArXiv'25</a>]</li>
-                      <li><span class="has-text-weight-bold">Resolution Adaptability</span>: High Resolution Object Segmentation [<a href="#dis-mvanet">CVPR'24</a>]</li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
           </div>
 
-          <div class="box">
-            <div class="columns">
-              <div class="column is-6" id="news">
-                <p class="title is-4">📢 News</p>
-
-                <div class="scrollable-box">
-                  <ul class="scrollable-list">
-                    <li class="scrollable-item">
-                      <time class="info-date">2024-12</time>
-                      <span class="info-content">Finished defending my doctoral dissertation.</span>
+          <!-- Research Interest -->
+          <div>
+            <p class="subsec-title">Research Interest</p>
+            <p class="about-intro" style="margin-bottom:14px">
+              My current research interests include <strong>Deep Learning</strong>, <strong>Computer Vision</strong>, and <strong>Neural Network Design</strong>.
+              In particular, I focus on:
+            </p>
+            <div class="ri-cards">
+              <div class="ri-card open">
+                <div class="ri-card-header" onclick="this.parentElement.classList.toggle('open')">
+                  <span class="ri-card-icon">🎯</span>
+                  <span class="ri-card-title">Multi-Task Joint Modeling</span>
+                  <span class="ri-card-toggle">▼</span>
+                </div>
+                <div class="ri-card-body">
+                  <ul>
+                    <li>
+                      <div><span class="bold">Natural Scene</span>: CD Concept Perception &nbsp;<span class="paper-ref">(<a href="#unified-spider">ICML'24</a>, <a href="#cod-zoomnext">TPAMI'24</a>, <a href="#rawsd-sara">ICCV'23</a>, <a href="#multimodal-caver">TPAMI'25</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">Industrial Scene</span>: Quality Inspection &nbsp;<span class="paper-ref">(<a href="#pbd-conf">CVPR'24</a>, <a href="#pbd-jnl">ArXiv'25</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">Medical Scene</span>: Lesion, Organ, Tissue &nbsp;<span class="paper-ref">(<a href="#medical-m2snet">ArXiv'23</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">General Architecture</span>: RGB + Depth/Thermal/Temporal &nbsp;<span class="paper-ref">(<a href="#cod-zoomnext">TPAMI'24</a>, <a href="#multimodal-caver">TPAMI'25</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">Task-Generic Paradigm</span>: Unified Framework &nbsp;<span class="paper-ref">(<a href="#unified-spider">ICML'24</a>)</span></div>
                     </li>
                   </ul>
                 </div>
               </div>
-
-              <div class="column" id="resource">
-                <p class="title is-4">📂 Resource</p>
-
-                <div class="scrollable-box">
-                  <ul class="scrollable-list">
-                    <li class="scrollable-item">
-                      <time class="info-date">2024-05-31</time>
-                      <span class="info-content"><a href="https://pan.baidu.com/s/1NaGtxGWzQSRLmEPukvZnBQ?pwd=abcd">视觉与语言—开放词汇感知综述</a></span>
+              <div class="ri-card open">
+                <div class="ri-card-header" onclick="this.parentElement.classList.toggle('open')">
+                  <span class="ri-card-icon">🔀</span>
+                  <span class="ri-card-title">Multi-Modal Data Integration</span>
+                  <span class="ri-card-toggle">▼</span>
+                </div>
+                <div class="ri-card-body">
+                  <ul>
+                    <li>
+                      <div><span class="bold">Vision (Multi-Sensor)</span>: Modality-Complete &nbsp;<span class="paper-ref">(<a href="#multimodal-hdfnet">ECCV'20</a>, <a href="#multimodal-danet">ECCV'20</a>, <a href="#multimodal-jlsdc">TIP'22</a>, <a href="#multimodal-caver">TIP'23</a>, <a href="#multimodal-comptr">TPAMI'25</a>)</span>, Modality-Incomplete &nbsp;<span class="paper-ref">(<a href="#multimodal-unimerseg">NeurIPS'25</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">Vision (Multi-View)</span>: Scale, Edge &nbsp;<span class="paper-ref">(<a href="#sod-minet">CVPR'20</a>, <a href="#gatenet-conf">ECCV'20</a>, <a href="#gatenet-jnl">IJCV'24</a>, <a href="#dis-mvanet">CVPR'24</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">Vision (Multi-Moment)</span>: Temporal Cues &nbsp;<span class="paper-ref">(<a href="#cod-zoomnext">TPAMI'24</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">Vision-Language</span>: Open-Vocabulary &nbsp;<span class="paper-ref">(<a href="#cod-ovcos">ECCV'24</a>)</span>, Referring &nbsp;<span class="paper-ref">(<a href="#cod-cgcod">ACM MM'25</a>)</span></div>
                     </li>
                   </ul>
                 </div>
-
+              </div>
+              <div class="ri-card open">
+                <div class="ri-card-header" onclick="this.parentElement.classList.toggle('open')">
+                  <span class="ri-card-icon">⚡</span>
+                  <span class="ri-card-title">Efficient Model Design</span>
+                  <span class="ri-card-toggle">▼</span>
+                </div>
+                <div class="ri-card-body">
+                  <ul>
+                    <li>
+                      <div><span class="bold">Lightweight Operation</span>: Efficient Attention &nbsp;<span class="paper-ref">(<a href="#multimodal-caver">TIP'23</a>, <a href="#multimodal-comptr">TPAMI'25</a>)</span>, Dynamic Convolution &nbsp;<span class="paper-ref">(<a href="#multimodal-hdfnet">ECCV'20</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">Scale-Generic Modeling</span>: Tiny Object &nbsp;<span class="paper-ref">(<a href="#rethinking-irstd">NeurIPS'25</a>)</span>, Quality Inspection &nbsp;<span class="paper-ref">(<a href="#pbd-conf">CVPR'24</a>)</span></div>
+                    </li>
+                    <li>
+                      <div><span class="bold">Resolution Adaptability</span>: High-Res Segmentation &nbsp;<span class="paper-ref">(<a href="#dis-mvanet">CVPR'24</a>)</span></div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Project section -->
-          <div class="box" id="project">
-            <p class="title is-4">💻 Project</p>
-
-            <table class="table is-striped is-narrow is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Stars</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/Hands-on-Docker?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/Hands-on-Docker"><strong>Hands-on-Docker (中文)</strong></a></td>
-                  <td>一份详尽的 Docker 使用指南。</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/awesome-class-activation-map?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/awesome-class-activation-map"><strong>Awesome-Class-Activation-Map</strong></a></td>
-                  <td>An awesome list of papers and tools about the class activation map (CAM) technology.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/PyTorchTricks?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/PyTorchTricks"><strong>PyTorchTricks</strong></a></td>
-                  <td>Some tricks of pytorch…</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/MethodsCmp?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/MethodsCmp"><strong>MethodsCmp</strong></a></td>
-                  <td>A Simple Toolkit for Counting the FLOPs/MACs, Parameters and FPS of Pytorch-based Methods.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/PySODEvalToolkit?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/PySODEvalToolkit"><strong>PySODEvalToolkit</strong></a></td>
-                  <td>A Python-based salient object detection and video object segmentation evaluation toolbox.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/PySODMetrics?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/PySODMetrics"><strong>PySODMetrics</strong></a></td>
-                  <td>A simple and efficient implementation of SOD metrcis.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/PyIRSTDMetrics?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/PyIRSTDMetrics"><strong>PyIRSTDMetrics</strong></a></td>
-                  <td>A simple and efficient implementation for the IRSTD performance analysis.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/PyLoss?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/PyLoss"><strong>PyLoss</strong></a></td>
-                  <td>Some loss functions for deeplearning.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/OpticalFlowBasedVOS?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/OpticalFlowBasedVOS"><strong>OpticalFlowBasedVOS</strong></a></td>
-                  <td>A simple and efficient codebase for the optical flow based video object segmentation.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/CoSaliencyProj?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/CoSaliencyProj"><strong>CoSaliencyProj</strong></a></td>
-                  <td>A project for co-saliency detection. Some codes are borrowed from ICNet (NIPS2020).</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/RunIt?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/RunIt"><strong>RunIt</strong></a></td>
-                  <td>A simple program scheduler for your code on different devices.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/RegisterIt?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/RegisterIt"><strong>RegisterIt</strong></a></td>
-                  <td>Register it: A more flexible register for the DeepLearning project.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/mssim.pytorch?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/mssim.pytorch"><strong>mssim.pytorch</strong></a></td>
-                  <td>A better pytorch-based implementation for the mean structural similarity. Differentiable simpler SSIM and MS-SSIM.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/tta.pytorch?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/tta.pytorch"><strong>tta.pytorch</strong></a></td>
-                  <td>Test-Time Augmentation library for Pytorch.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/YuQueTools?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/YuQueTools"><strong>YuQueTools</strong></a></td>
-                  <td>A simple tool to download your own articles from yuque.</td>
-                </tr>
-                <tr>
-                  <th><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lartpang/ManageMyAttachments?style=flat-square"></th>
-                  <td><a href="https://github.com/lartpang/ManageMyAttachments"><strong>ManageMyAttachments</strong></a></td>
-                  <td>Manage the attachments of your own obsidian vault.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Paper section -->
-          <div class="box" id="paper-list">
-            <p class="title is-4">📖 Paper</p>
-
-            <div class="block" id="peerreview">
-              <p class="boldsubtitle">Preprint</p>
-
-              <div class="paper-item" id="finmtm">
-                <p class="paper-title">FinMTM: A Multi-Turn Multimodal Benchmark for Financial Reasoning and Agent Evaluation</p>
-                <p class="paper-author">Chenxi Zhang, Ziliang Gan, Liyun Zhu, <span class="author-me">Youwei Pang</span>, Qing Zhang, Rongjunchen Zhang</p>
-                <p class="paper-conf">ArXiv 2026</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2602.03130" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/HiThink-Research/FinMTM" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="pbd-jnl">
-                <p class="paper-title">Power Battery Detection</p>
-                <p class="paper-author">Xiaoqi Zhao, Peiqian Cao, Lihe Zhang, Zonglei Feng, Hanqi Liu, Jiaming Zuo, <span class="author-me">Youwei Pang</span>, Weisi Lin, Georges El Fakhri, Huchuan Lu, Xiaofeng Liu</p>
-                <p class="paper-conf">ArXiv 2025</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2508.07797" target="_blank">[Paper (ArXiv)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="cod-umbd">
-                <p class="paper-title">Uncertainty-Masked Bernoulli Diffusion for Camouflaged Object Detection Refinement</p>
-                <p class="paper-author">Yuqi Shen, Fengyang Xiao, Sujie Hu, <span class="author-me">Youwei Pang</span>, Yifan Pu, Chengyu Fang, Xiu Li, Chunming He</p>
-                <p class="paper-conf">ArXiv 2025</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2506.10712" target="_blank">[Paper (ArXiv)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="cod-restromem">
-                <p class="paper-title">Retrospective Memory for Camouflaged Object Detection</p>
-                <p class="paper-author">Chenxi Zhang, Jiayun Wu, Qing Zhang#, Yazhe Zhai, <span class="author-me">Youwei Pang</span>#</p>
-                <p class="paper-conf">ArXiv 2025</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2506.15244" target="_blank">[Paper (ArXiv)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="sam-cdeval">
-                <p class="paper-title">Inspiring the Next Generation of Segment Anything Models: Comprehensively Evaluate SAM and SAM 2 with Diverse Prompts Towards Context-Dependent Concepts under Different Scenes</p>
-                <p class="paper-author">Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Shijie Chang*, Yuan Zhao*, Lihe Zhang, Huchuan Lu, Jinsong Ouyang, Georges El Fakhri, Xiaofeng Liu</p>
-                <p class="paper-conf">ArXiv 2024</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2412.01240" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/SAMs-CDConcepts-Eval" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="medical-m2snet">
-                <p class="paper-title">M2SNet: Multi-scale in Multi-scale Subtraction Network for Medical Image Segmentation</p>
-                <p class="paper-author">Xiaoqi Zhao, Hongpeng Jia, <span class="author-me">Youwei Pang</span>, Long Lv, Feng Tian, Lihe Zhang, Weibing Sun, Huchuan Lu</p>
-                <p class="paper-conf">The second place (2/100) in the MICCAI 2022 Challenge: Glaucoma Oct Analysis and Layer Segmentation (GOALS)</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2303.10894" target="_blank">[Paper (ArXiv)]</a></span>
-                </p>
-              </div>
-
-            </div>
-
-            <div class="block" id="publication">
-              <p class="boldsubtitle">Publication</p>
-
-              <div class="paper-item" id="unimmad">
-                <p class="paper-title">UniMMAD: Unified Multi-Modal and Multi-Class Anomaly Detection via MoE-Driven Feature Decompression</p>
-                <p class="paper-author">Yuan Zhao, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Hanqi Liu, Jiaming Zuo, Huchuan Lu, Xiaoqi Zhao</p>
-                <p class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2026, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2509.25934" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/yuanzhao-CVLAB/UniMMAD" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="multimodal-unimerseg">
-                <p class="paper-title">UniMRSeg: Unified Modality-Relax Segmentation via Hierarchical Self-Supervised Compensation</p>
-                <p class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Chenyang Yu, Lihe Zhang, Huchuan Lu, Shijian Lu, Georges El Fakhri, Xiaofeng Liu</p>
-                <p class="paper-conf">The Conference on Neural Information Processing Systems (NeurIPS) 2025</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2509.16170" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/UniMRSeg" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="rethinking-irstd">
-                <p class="paper-title">Rethinking Evaluation of Infrared Small Target Detection</p>
-                <p class="paper-author"><span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu, Georges El Fakhri, Xiaofeng Liu, Shijian Lu</p>
-                <p class="paper-conf">The Conference on Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track 2025</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2509.16888" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/PyIRSTDMetrics" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="cod-cgcod">
-                <p class="paper-title">CGCOD: Class-Guided Camouflaged Object Detection</p>
-                <p class="paper-author">Chenxi Zhang, Qing Zhang#, Jiayun Wu, <span class="author-me">Youwei Pang</span>#</p>
-                <p class="paper-conf">ACM International Conference on Multimedia (ACM MM) 2025</p>
-
-                <p class="paper-info">
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2412.18977" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/bbdjj/CGCOD" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="multimodal-comptr">
-                <p class="paper-title">ComPtr: Towards Diverse Bi-source Dense Prediction Tasks via A Simple yet General Complementary Transformer</p>
-                <p class="paper-author"><span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2025, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-doi">[DOI:10.1109/TPAMI.2025.3578494]</span> <span class="tag-link"><a href="https://arxiv.org/abs/2307.12349" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/ComPtr" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="cod-see">
-                <p class="paper-title">Segment Concealed Objects with Incomplete Supervision</p>
-                <p class="paper-author">Chunming He, Kai Li, Yachao Zhang, Ziyun Yang, <span class="author-me">Youwei Pang</span>, Longxiang Tang, Chengyu Fang, Yulun Zhang, Linghe Kong, Xiu Li, Sina Farsiu</p>
-                <p class="paper-conf">Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2025, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-doi">[DOI:10.1109/TPAMI.2025.3576209]</span> <span class="tag-link"><a href="https://ieeexplore.ieee.org/document/11023026/" target="_blank">[Paper (IEEE Xplore)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/ChunmingHe/SEE" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="fss-beyoudmask">
-                <p class="paper-title">Beyond Mask: Rethinking Guidance Types in Few-shot Segmentation</p>
-                <p class="paper-author">Shijie Chang, <span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">Pattern Recognition (PR) 2025, Elsevier</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-doi">[DOI:10.1016/j.patcog.2025.111635]</span> <span class="tag-link"><a href="https://doi.org/10.1016/j.patcog.2025.111635" target="_blank">[Paper (ScienceDirect)]</a></span>
-                  <span class="tag-link"><a href="https://arxiv.org/pdf/2407.11503" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/DUT-CSJ/FoundationFSS" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="cod-ovcos">
-                <p class="paper-title">Open-Vocabulary Camouflaged Object Segmentation</p>
-                <p class="paper-author"><span class="author-me">Youwei Pang</span>*, Xiaoqi Zhao*, Jiaming Zuo, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">European Conference on Computer Vision (ECCV) 2024, Springer</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-doi">[DOI:10.1007/978-3-031-72970-6_27]</span> <span class="tag-link"><a href="https://doi.org/10.1007/978-3-031-72970-6_27" target="_blank">[Paper (Springer Nature Link)]</a></span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2311.11241" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/OVCamo" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="cod-zoomnext">
-                <p class="paper-title">ZoomNeXt: A Unified Collaborative Pyramid Network for Camouflaged Object Detection</p>
-                <p class="paper-author"><span class="author-me">Youwei Pang</span>*, Xiaoqi Zhao*, Tian-Zhu Xiang*, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2024, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20242616353583]</span>
-                  <span class="tag-info-doi">[DOI:10.1109/TPAMI.2024.3417329]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2310.20208" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/ZoomNeXt" target="_blank">[Code (GitHub)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="unified-spider">
-                <p class="paper-title">Spider: A Unified Framework for Context-dependent Concept Understanding</p>
-                <p class="paper-author">Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Wei Ji*, Baicheng Sheng, Jiaming Zuo, Lihe Zhang, Huchuan Lu</p>
-                <span class="paper-conf">International Conference on Machine Learning (ICML) 2024, PMLR</span>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20243817053162]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2405.01002" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/Spider-UniCDSeg" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="pbd-conf">
-                <p class="paper-title">Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline</p>
-                <p class="paper-author">Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Zhenyu Chen, Qian Yu, Lihe Zhang, Hanqi Liu, Jiaming Zuo</p>
-                <p class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2024, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20244317260998]</span>
-                  <span class="tag-info-doi">[DOI:10.1109/CVPR52733.2024.02079]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2312.02528" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://xiaoqi-zhao-dlut.github.io/xray_pbd_cvpr2024/" target="_blank">[Project]</a></span>
-                  <span class="tag-link"><a href="https://xiaoqi-zhao-dlut.github.io/xray_pbd_cvpr2024/" target="_blank">[工源三仟公众号]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="dis-mvanet">
-                <p class="paper-title">Multi-view Aggregation Network for Dichotomous Image Segmentation</p>
-                <p class="paper-author">Qian Yu*, Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2024, IEEE <span class="paper-oral has-text-danger">Highlight</span></p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20244317260270]</span>
-                  <span class="tag-info-doi">[DOI:10.1109/CVPR52733.2024.00376]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2404.07445" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/qianyu-dlut/MVANet" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="gatenet-jnl">
-                <p class="paper-title">Towards Diverse Binary Segmentation via A Simple yet General Gated Network</p>
-                <p class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Lei Zhang</p>
-                <p class="paper-conf">International Journal of Computer Vision (IJCV) 2024, Springer</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20241916055804]</span>
-                  <span class="tag-info-wos">[WOS:001215379300003]</span>
-                  <span class="tag-info-doi">[DOI:10.1007/s11263-024-02058-y]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2303.10396" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="zsvos-amsp">
-                <p class="paper-title">Adaptive Multi-source Predictor for Zero-shot Video Object Segmentation</p>
-                <p class="paper-author">Xiaoqi Zhao, Shijie Chang, <span class="author-me">Youwei Pang</span>, Jiaxing Yang, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">International Journal of Computer Vision (IJCV) 2024, Springer</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20241015709995]</span>
-                  <span class="tag-info-wos">[WOS:001176531200002]</span>
-                  <span class="tag-info-doi">[DOI:10.1007/s11263-024-02024-8]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2303.10383" target="_blank">[Paper (ArXiv)]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="rawsd-sara">
-                <p class="paper-title">Adaptive Illumination Mapping for Shadow Detection in Raw Images</p>
-                <p class="paper-author">Jiayu Sun, Ke Xu, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Gerhard Hancke, Rynson Lau</p>
-                <p class="paper-conf">IEEE/CVF International Conference on Computer Vision (ICCV) 2023, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20240915634899]</span>
-                  <span class="tag-info-wos">[WOS:001169499005013]</span>
-                  <span class="tag-info-doi">[DOI:10.1109/ICCV51070.2023.01167]</span>
-                  <span class="tag-link"><a href="https://openaccess.thecvf.com/content/ICCV2023/html/Sun_Adaptive_Illumination_Mapping_for_Shadow_Detection_in_Raw_Images_ICCV_2023_paper.html" target="_blank">[Paper (CVF)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/jiayusun/SARA" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="multimodal-caver">
-                <p class="paper-title">CAVER: Cross-Modal View-Mixed Transformer for Bi-Modal Salient Object Detection</p>
-                <p class="paper-author"><span class="author-me">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">Transactions on Image Processing (TIP) 2023, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20230613542686]</span>
-                  <span class="tag-info-wos">[WOS:000922870200004] (🏆 ESI Highly Cited Paper)</span>
-                  <span class="tag-info-doi">[DOI:10.1109/TIP.2023.3234702]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2112.02363" target="_blank">[Paper (ArXiv)]</a></span>
-                  <span class="tag-link"><a href="https://ieeexplore.ieee.org/document/10015667" target="_blank">[Paper (IEEE)]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/CAVER" target="_blank">[Code]</a></span>
-                  <span class="tag-link"><a href="/docs/caver.html" target="_blank">[Project]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="multimodal-jlsdc">
-                <p class="paper-title">Joint Learning of Salient Object Detection, Depth Estimation and Contour Extraction</p>
-                <p class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">Transactions on Image Processing (TIP) 2022, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20225113272379]</span>
-                  <span class="tag-info-wos">[WOS:000892917400002]</span>
-                  <span class="tag-info-doi">[DOI:10.1109/TIP.2022.3222641]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2203.04895" target="_blank">[Paper]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/MMFT" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="cod-zoomnet">
-                <p class="paper-title">Zoom In and Out: A Mixed-scale Triplet Network for Camouflaged Object Detection</p>
-                <p class="paper-author"><span class="author-me">Youwei Pang</span>*, Xiaoqi Zhao*, Tian-zhu Xiang, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2022, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20224613119658]</span>
-                  <span class="tag-info-wos">[WOS:000867754202041]</span>
-                  <span class="tag-info-doi">[DOI:10.1109/CVPR52688.2022.00220]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2203.02688" target="_blank">[Paper]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/ZoomNet" target="_blank">[Code]</a></span>
-                  <span class="tag-link"><a href="/docs/zoomnet.html" target="_blank">[Project]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="sslsod">
-                <p class="paper-title">Self-Supervised Pretraining for RGB-D Salient Object Detection</p>
-                <p class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Xiang Ruan</p>
-                <p class="paper-conf">Association for the Advancement of Artificial Intelligence (AAAI) 2022</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20230713571733]</span>
-                  <span class="tag-info-wos">[WOS:000893636203061]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2101.12482" target="_blank">[Paper]</a></span>
-                  <span class="tag-link"><a href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&mid=2247591348&idx=2&sn=34a95dbbd14b7adfd508f12899ac27a2&chksm=ec1d884ddb6a015b71612bf16227bed8c69db4074585f712c1dc7dceb7859641088441ff9753&mpshare=1&scene=1&srcid=0112O4ivFbyChzTTH4vKU91t&sharer_sharetime=1646716025907&sharer_shareid=0ffc6ac03af605267e92344350efdb83&exportkey=AxNWDL6LKSsLK6MxSNkSF88%3D&acctmode=0&pass_ticket=TXKuWY6yeluRhUKTt0pk10ycuy%2BMsyJV6%2BXdxFjTtusuYyJMVPywg38icEXhKktM&wx_header=0#rd" target="_blank">[Slide&极市平台推送]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/SSLSOD" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="zsvos-msfaps">
-                <p class="paper-title">Multi-Source Fusion and Automatic Predictor Selection for Zero-Shot Video Object Segmentation</p>
-                <p class="paper-author">Xiaoqi Zhao, <span class="author-me">Youwei Pang</span>, Jiaxing Yang, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">ACM International Conference on Multimedia (ACM MM) 2021 <span class="paper-oral has-text-danger">Oral</span></p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20214711200241]</span>
-                  <span class="tag-info-wos">[WOS:001147786902077]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2108.05076" target="_blank">[Paper]</a></span>
-                  <span class="tag-link"><a href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&mid=2247570266&idx=2&sn=547fbfdeaa02b0ff83dec3b24a58a632&chksm=ec1d3ea3db6ab7b5cfbe7ba2fffcd4460584f1e2743d8265562757e508030bf049d1c3140d3c&mpshare=1&scene=23&srcid=0902BUt8U9MY8k2IvY500f71&sharer_sharetime=1630565724193&sharer_shareid=5c55e87df338791d997e8905ad2ebfe0#rd" target="_blank">[Slide&极市平台推送]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/Multi-Source-APS-ZVOS" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="multimodal-hdfnet">
-                <p class="paper-title">Hierarchical Dynamic Filtering Network for RGB-D Salient Object Detection</p>
-                <p class="paper-author"><span class="author-me">Youwei Pang</span>, Lihe Zhang, Xiaoqi Zhao, Huchuan Lu</p>
-                <p class="paper-conf">European Conference on Computer Vision (ECCV) 2020, Springer</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20205009617977]</span>
-                  <span class="tag-info-doi">[DOI:10.1007/978-3-030-58595-2_15]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2007.06227" target="_blank">[Paper]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/HDFNet/blob/master/LongPresentation.pdf" target="_blank">[Slide]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/HDFNet" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="gatenet-conf">
-                <p class="paper-title">Suppress and Balance: A Simple Gated Network for Salient Object Detection</p>
-                <p class="paper-author">Xiaoqi Zhao*, <span class="author-me">Youwei Pang</span>*, Lihe Zhang, Huchuan Lu, Lei Zhang</p>
-                <p class="paper-conf">European Conference on Computer Vision (ECCV) 2020, Springer <span class="paper-oral has-text-danger">Oral</span></p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20205009597084]</span>
-                  <span class="tag-info-doi">[DOI:10.1007/978-3-030-58536-5_3]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2007.08074" target="_blank">[Paper]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency/blob/master/2852.pdf" target="_blank">[Slide]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/GateNet-RGB-Saliency" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="multimodal-danet">
-                <p class="paper-title">A Single Stream Network for Robust and Real-time RGB-D Salient Object Detection</p>
-                <p class="paper-author">Xiaoqi Zhao, Lihe Zhang, <span class="author-me">Youwei Pang</span>, Huchuan Lu, Lei Zhang</p>
-                <p class="paper-conf">European Conference on Computer Vision (ECCV) 2020, Springer</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20205009601094]</span>
-                  <span class="tag-info-doi">[DOI:10.1007/978-3-030-58542-6_39]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2007.06811" target="_blank">[Paper]</a></span>
-                  <span class="tag-link"><a href="https://github.com/Xiaoqi-Zhao-DLUT/DANet-RGBD-Saliency" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
-              <div class="paper-item" id="sod-minet">
-                <p class="paper-title">Multi-scale Interactive Network for Salient Object Detection</p>
-                <p class="paper-author"><span class="author-me">Youwei Pang</span>*, Xiaoqi Zhao*, Lihe Zhang, Huchuan Lu</p>
-                <p class="paper-conf">IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2020, IEEE</p>
-
-                <p class="paper-info">
-                  <span class="tag-info-ei">[EI:20204409431574]</span>
-                  <span class="tag-info-wos">[WOS:001309199902028]</span>
-                  <span class="tag-info-doi">[DOI:10.1109/CVPR42600.2020.00943]</span>
-                  <span class="tag-link"><a href="https://arxiv.org/abs/2007.09062" target="_blank">[Paper]</a></span>
-                  <span class="tag-link"><a href="https://github.com/lartpang/MINet" target="_blank">[Code]</a></span>
-                </p>
-              </div>
-
+          <!-- News -->
+          <div style="margin-bottom: 8px;">
+            <p class="subsec-title">📢 News</p>
+            <div class="scroll-box">
+              <ul class="news-list" id="render-news"></ul>
             </div>
           </div>
-        </div>
+
+          <!-- Resource -->
+          <div>
+            <p class="subsec-title">📂 Resource</p>
+            <div class="scroll-box">
+              <ul class="news-list" id="render-resources"></ul>
+            </div>
+          </div>
+
+        </div><!-- /card -->
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer py-4">
-    <div class="content has-text-centered">
-      Last updated at <time class="info-date">2025-9-24</time>
-      © Youwei Pang. All rights reserved.
+    <!-- PROJECT -->
+    <section class="section" id="project">
+      <div class="container">
+        <h2 class="sec-title">💻 Project</h2>
+        <div class="proj-grid" id="render-projects"></div>
+      </div>
+    </section>
+
+    <!-- PAPERS -->
+    <section class="section" id="paper-list">
+      <div class="container">
+        <h2 class="sec-title">📖 Paper</h2>
+        <div class="ptl-wrap" id="render-papers">
+          <canvas id="ptl-canvas" aria-hidden="true"></canvas>
+          <div class="ptl-sprout">🌿</div>
+        </div><!-- /ptl-wrap -->
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      Last updated <time>2026-03-02</time> &nbsp;·&nbsp; © Youwei Pang. All rights reserved.
     </div>
   </footer>
-</body>
 
-<script>
-  // 定义映射关系
-  const classMap = {
-    'boldsubtitle': ['has-text-weight-bold', 'is-size-5'],
-    'paper-title': ['has-text-weight-bold', 'is-size-6'],
-    'paper-author': ['is-italic', 'is-size-7'],
-    'paper-conf': ['has-text-weight-semibold', 'is-size-7'],
-    'paper-info': ['is-size-7'],
-    'paper-item': ['card', 'my-2'],
-    'author-me': ['has-text-info', 'has-text-weight-bold'],
-    'tag-link': ['tag', 'is-link', 'is-light', 'has-text-weight-bold'],
-    'tag-info-ei': ['tag', 'is-info', 'has-text-weight-bold'],
-    'tag-info-wos': ['tag', 'is-primary', 'has-text-weight-bold'],
-    'tag-info-doi': ['tag', 'is-black', 'has-text-weight-bold'],
-  };
+  <script>
+    // 导航汉堡菜单
+    document.getElementById('navBurger').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
 
-  // 替换类别名为实际的类定义
-  function replaceClassAliases() {
-    // 遍历映射中的每个别名
-    Object.keys(classMap).forEach(alias => {
-      // 查找使用别名的所有元素
-      document.querySelectorAll('.' + alias).forEach(element => {
-        // 移除别名类
-        element.classList.remove(alias);
-        // 添加映射到的实际类
-        classMap[alias].forEach(actualClass => {
-          element.classList.add(actualClass);
+    // ===== 滚动控制：navbar 飞入 + 滚动提示消失 =====
+    const navbar = document.querySelector('.navbar');
+    const scrollHint = document.getElementById('scrollHint');
+    const THRESHOLD = 60;
+    let isScrolled = false;
+
+    function onScroll() {
+      const scrolled = window.scrollY > THRESHOLD;
+      if (scrolled === isScrolled) return;
+      isScrolled = scrolled;
+
+      if (scrolled) {
+        navbar.classList.add('scrolled');
+        if (scrollHint) scrollHint.classList.add('hidden');
+      } else {
+        navbar.classList.remove('scrolled');
+        if (scrollHint) scrollHint.classList.remove('hidden');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+
+
+
+    // 邮件解密
+    function decryptName(s) {
+      return s.split('').map(c => String.fromCharCode(c.charCodeAt(0) - 5)).join('');
+    }
+    function startDecoding() {
+      const el = document.getElementById('email');
+      const enc = el.textContent;
+      const real = decryptName(enc);
+      let i = 0;
+      const iv = setInterval(() => {
+        if (i < real.length) {
+          el.textContent = real.substring(0, i + 1) + enc.substring(i + 1);
+          i++;
+        } else {
+          clearInterval(iv);
+          el.style.color = 'rgba(255,255,255,0.9)';
+          el.style.cursor = 'default';
+          el.onclick = null;
+        }
+      }, 100);
+    }
+
+
+
+    // ===== AI 终端对话（持续追加 + 自动滚动） =====
+    (function () {
+      const dialogues = [
+        {
+          q: 'What is intelligence?',
+          a: 'The capacity to perceive, reason \u2014 and perhaps, to wonder.'
+        },
+        {
+          q: 'Can machines truly understand?',
+          a: 'Understanding may be less about mechanism, and more about connection.'
+        },
+        {
+          q: 'What does it mean to see?',
+          a: 'To extract meaning from light \u2014 to find signal within the noise.'
+        },
+        {
+          q: 'Where does thinking begin?',
+          a: 'At the edge of pattern \u2014 where repetition breaks into surprise.'
+        },
+        {
+          q: 'Why build tools for perception?',
+          a: 'Because seeing clearly is the first step to thinking clearly.'
+        },
+        {
+          q: 'What is the limit of a model?',
+          a: 'The boundary of its training \u2014 which is also the boundary of its world.'
+        },
+        {
+          q: 'Is curiosity computable?',
+          a: 'Not yet. But the question itself might be the closest thing.'
+        }
+      ];
+
+      const body = document.getElementById('termBody');
+      if (!body) return;
+      let cur = 0;
+
+      function scrollToBottom() {
+        body.scrollTop = body.scrollHeight;
+      }
+
+      // 创建一行 DOM
+      function mkLine(promptHtml, textClass) {
+        const line = document.createElement('div');
+        line.className = 'tline';
+        const prompt = document.createElement('span');
+        prompt.innerHTML = promptHtml;
+        const text = document.createElement('span');
+        text.className = textClass;
+        const cursor = document.createElement('span');
+        cursor.className = 'tcursor';
+        line.appendChild(prompt);
+        line.appendChild(text);
+        line.appendChild(cursor);
+        body.appendChild(line);
+        scrollToBottom();
+        return { text, cursor };
+      }
+
+      function typeText(el, str, speed, cb) {
+        let i = 0;
+        el.textContent = '';
+        const iv = setInterval(() => {
+          if (i < str.length) {
+            el.textContent += str[i++];
+            scrollToBottom();
+          } else {
+            clearInterval(iv);
+            cb && cb();
+          }
+        }, speed);
+      }
+
+      function runNext() {
+        const d = dialogues[cur % dialogues.length];
+        cur++;
+
+        // 创建用户行
+        const uPrompt = '<span class="tprompt-u">Me:</span>';
+        const u = mkLine(uPrompt, 'ttext-u');
+
+        typeText(u.text, d.q, 48, () => {
+          u.cursor.classList.add('hidden');
+
+          // 停顿后创建 AI 行
+          setTimeout(() => {
+            const aPrompt = '<span class="tprompt-ai">AI:</span>';
+            const a = mkLine(aPrompt, 'ttext-ai');
+
+            typeText(a.text, d.a, 30, () => {
+              a.cursor.classList.add('hidden');
+              // 停留后继续下一轮
+              setTimeout(runNext, 4000);
+            });
+          }, 600);
+        });
+      }
+
+      // 初始填充一行欢迎信息
+      const welcome = document.createElement('div');
+      welcome.className = 'tline';
+      welcome.innerHTML = '<span style="color:rgba(30,28,32,0.3);font-family:inherit;font-size:0.75rem;font-style:italic;">[ recording #402: reflecting on perception and engineering ]</span>';
+      body.appendChild(welcome);
+
+      setTimeout(runNext, 1800);
+    })();
+
+
+    /* ===== 蛇形布局初始化 ===== */
+    function initSnakeLayout() {
+      const wrap = document.querySelector('.ptl-wrap');
+      if (!wrap) return;
+
+      // 1. 扁平化每个 ptl-item：从 ptl-card-left / ptl-card-right 中提取 ptl-card
+      wrap.querySelectorAll('.ptl-item').forEach(item => {
+        const card = item.querySelector('.ptl-card');
+        if (!card) return;
+        // 清空并重新只放卡片
+        while (item.firstChild) item.removeChild(item.firstChild);
+        item.appendChild(card);
+      });
+
+      // 2. 按年份分组：在每个 .ptl-year 之后的连续 .ptl-item 组成一个蛇形行
+      const children = Array.from(wrap.childNodes).filter(n => n.nodeType === 1);
+      let rowDir = 0;           // 0=ltr, 1=rtl
+      let currentRow = null;
+
+      // 计算每行最大论文数（依容器宽度）
+      function getColsPerRow() {
+        const w = wrap.offsetWidth;
+        if (w >= 1000) return 4;
+        if (w >= 700) return 3;
+        return 2;
+      }
+      const COLS = getColsPerRow();
+
+      children.forEach(child => {
+        if (child.classList.contains('ptl-sprout')) {
+          currentRow = null;
+          return;
+        }
+        if (child.classList.contains('ptl-year')) {
+          currentRow = null;      // 年份标签：开启新的年份组
+          rowDir++;               // 每个年份切换一次方向
+          return;
+        }
+        if (child.classList.contains('ptl-item')) {
+          // 判断是否需要新建一行（满 COLS 张时新起一行）
+          if (!currentRow || currentRow.childElementCount >= COLS) {
+            currentRow = document.createElement('div');
+            const isRtl = (rowDir % 2 === 1);
+            currentRow.className = 'ptl-snake-row' + (isRtl ? ' rtl' : '');
+            wrap.insertBefore(currentRow, child);
+          }
+          currentRow.appendChild(child);
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initSnakeLayout);
+
+    /* ===== 滚动显现 (全局 IntersectionObserver) ===== */
+    function initScrollReveal() {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          el.classList.add('in');
+          io.unobserve(el);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+
+      // 普通页面块：card, timeline-item, proj-card
+      document.querySelectorAll(
+        '.card, .timeline-item, .proj-card, .about-intro, .ri-card'
+      ).forEach((el, i) => {
+        el.classList.add('sr');
+        el.style.transitionDelay = (i % 6) * 0.07 + 's';
+        io.observe(el);
+      });
+
+      // 论文卡片：逐张延迟
+      document.querySelectorAll('.ptl-item').forEach((el, i) => {
+        el.classList.add('sr');
+        el.style.transitionDelay = (i % 4) * 0.09 + 's';
+        io.observe(el);
+      });
+
+      // sec-title 来自左侧
+      document.querySelectorAll('.sec-title').forEach(el => {
+        el.classList.add('sr', 'sr-l');
+        io.observe(el);
+      });
+    }
+
+    /* ===== 论文序号徽章 ===== */
+    function numberPapers() {
+      const items = document.querySelectorAll('.ptl-item');
+      // 从最底部最旧的论文开始编号（页面最下方 = 最早）
+      const total = items.length;
+      items.forEach((item, i) => {
+        const num = total - i;           // 最底部论文编号最低（最老）
+        const badge = document.createElement('span');
+        badge.className = 'ptl-card-num';
+        badge.textContent = num;
+        // 颜色渐变：越新越蓝，越老越绿棕
+        const t = i / Math.max(total - 1, 1);  // 0=oldest…1=newest
+        const r = Math.round(122 + t * 30);
+        const g = Math.round(154 - t * 14);
+        const b = Math.round(170 + t * 18);
+        badge.style.background = `rgb(${r},${g},${b})`;
+        item.appendChild(badge);
+      });
+    }
+
+    /* ===== Canvas 赛道绘制 ===== */
+    function drawRacetrack() {
+      const canvas = document.getElementById('ptl-canvas');
+      const wrap = document.querySelector('.ptl-wrap');
+      if (!canvas || !wrap) return;
+
+      const wRect = wrap.getBoundingClientRect();
+      const W = wRect.width;
+      const H = wrap.offsetHeight;
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, W, H);
+
+      const rows = Array.from(wrap.querySelectorAll('.ptl-snake-row'));
+      if (!rows.length) return;
+
+      // 收集每行的"入射点"和"出射点"（中心纵轴）以及横向位置
+      const segments = rows.map(row => {
+        const r = row.getBoundingClientRect();
+        const top = r.top - wRect.top;
+        const bot = r.bottom - wRect.top;
+        const midY = (top + bot) / 2;
+        const isRtl = row.classList.contains('rtl');
+        // 入点(流量入口) 和 出点(流量出口)
+        const entryX = isRtl ? W - 8 : 8;
+        const exitX = isRtl ? 8 : W - 8;
+        return { top, bot, midY, entryX, exitX, isRtl };
+      });
+
+      // ── 绘制宽赛道（多层）──
+      function drawTrackLayer(seg, alpha, lineW) {
+        ctx.globalAlpha = alpha;
+        ctx.lineWidth = lineW;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        ctx.beginPath();
+        ctx.moveTo(seg[0].entryX, seg[0].top - 24);
+
+        seg.forEach((s, i) => {
+          // 直线段：横穿整行
+          ctx.lineTo(s.entryX, s.midY);
+          ctx.lineTo(s.exitX, s.midY);
+
+          // 贝塞尔转角：连接到下一行
+          if (i < seg.length - 1) {
+            const next = seg[i + 1];
+            const cy1 = (s.bot + next.top) / 2;
+            ctx.bezierCurveTo(
+              s.exitX, cy1,
+              next.entryX, cy1,
+              next.entryX, next.midY
+            );
+          }
+        });
+
+        const last = seg[seg.length - 1];
+        ctx.lineTo(last.exitX, last.bot + 24);
+        ctx.stroke();
+      }
+
+      // 外阴影层
+      ctx.shadowColor = 'rgba(122,154,170,0.18)';
+      ctx.shadowBlur = 20;
+      ctx.strokeStyle = 'rgba(122,154,170,0.12)';
+      drawTrackLayer(segments, 1, 52);
+
+      ctx.shadowBlur = 0;
+
+      // 主道路（莫兰迪蓝灰渐变）
+      const grad = ctx.createLinearGradient(0, 0, 0, H);
+      // 从上（最新 2026 蓝灰）到下（最旧 2020 绿棕）
+      grad.addColorStop(0.00, 'rgba(154,184,194,0.28)');
+      grad.addColorStop(0.30, 'rgba(138,172,186,0.22)');
+      grad.addColorStop(0.60, 'rgba(158,171,138,0.20)');
+      grad.addColorStop(1.00, 'rgba(138,155,106,0.22)');
+      ctx.strokeStyle = grad;
+      drawTrackLayer(segments, 1, 36);
+
+      // 道路中心虚线（赛道分割线）
+      ctx.setLineDash([14, 10]);
+      ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+      ctx.lineWidth = 2;
+      ctx.shadowBlur = 0;
+      drawTrackLayer(segments, 1, 2);
+      ctx.setLineDash([]);
+
+      // 方向箭头（每行中间标箭头）
+      segments.forEach(s => {
+        const arrowX = (s.entryX + s.exitX) / 2;
+        const arrowY = s.midY;
+        const dir = s.isRtl ? -1 : 1;
+        ctx.save();
+        ctx.translate(arrowX, arrowY);
+        ctx.rotate(s.isRtl ? Math.PI : 0);
+        ctx.globalAlpha = 0.35;
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.moveTo(10 * dir, 0);
+        ctx.lineTo(-6 * dir, -6);
+        ctx.lineTo(-6 * dir, 6);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      });
+
+      ctx.globalAlpha = 1;
+    }
+
+    /* 蛇形布局完成后再绘赛道和编号 */
+    document.addEventListener('DOMContentLoaded', () => {
+      // 等待 initSnakeLayout 完成（同是 DOMContentLoaded）
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          drawRacetrack();
+          numberPapers();
+          initScrollReveal();    // 全页滚动动画
         });
       });
-    });
-  }
-
-  // navbar active, https://bulma.io/documentation/components/navbar/#navbar-menu
-  function activateNavbarMenu() {
-    // Get all "navbar-burger" elements
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-    // Add a click event on each of them
-    $navbarBurgers.forEach(el => {
-      el.addEventListener('click', () => {
-        // Get the target from the "data-target" attribute
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
+      // 窗口缩放时重绘
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(drawRacetrack, 150);
       });
     });
-  }
 
-  function decryptName(encryptedName) {
-    return encryptedName.split('').map(char =>
-      String.fromCharCode(char.charCodeAt(0) - 5)
-    ).join('');
-  }
 
-  // 逐步显示解码后的名称
-  function startDecoding() {
-    const nameElement = document.getElementById("email");
-    const encryptedName = nameElement.textContent;
-    const realName = decryptName(encryptedName);
-    let currentIndex = 0;
+  </script>
 
-    const interval = setInterval(() => {
-      if (currentIndex < realName.length) {
-        nameElement.textContent = realName.substring(0, currentIndex + 1) + encryptedName.substring(currentIndex + 1);
-        currentIndex++;
-      } else {
-        clearInterval(interval); // 停止定时器
-        nameElement.style.color = "black";
-        nameElement.style.textDecoration = "none";
-        nameElement.onclick = null; // 移除点击事件
+
+  <!-- SITE DATA -->
+  <script src="./data.js"></script>
+  <script>
+    function renderSiteData() {
+      if (typeof SITE_DATA === 'undefined') return;
+
+      const birdIcon = `<div class="item-icon"><svg viewBox="0 0 1024 1024"><path d="M484.32 375.24C575.25 255.5 857.87 527.6 788.67 581.07c-94.76 73.21-491.01 39.99-304.35-205.83z" fill="var(--primary)"/><path d="M900.53 638.76c-18.3 86.91-221.86 208.13-478 171.54C150.46 771.44 26 281.88 315 103.56c161.25-99.49 326.71 5 356.8 130.37C713 405.47 583.15 534.58 749.57 609c86.91 38.91 164.43-34.33 150.96 29.76z" fill="var(--accent)"/></svg></div>`;
+
+      const newsList = document.getElementById("render-news");
+      if (newsList && SITE_DATA.news) {
+        newsList.innerHTML = SITE_DATA.news.map(item => `
+          <li class="news-item">
+            ${birdIcon}
+            <span class="news-date">${item.date}</span>
+            <span class="news-content">${item.content}</span>
+          </li>
+        `).join("");
       }
-    }, 100); // 每100毫秒显示一个字符
-  }
 
-  // 创建粒子
-  function createParticles(count, width, height, colors) {
-    const particles = [];
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 3 + 1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        speedX: Math.random() * 2 - 1,
-        speedY: Math.random() * 2 - 1
-      });
-    }
-    return particles;
-  }
+      const resList = document.getElementById("render-resources");
+      if (resList && SITE_DATA.resources) {
+        resList.innerHTML = SITE_DATA.resources.map(item => `
+          <li class="news-item">
+            ${birdIcon}
+            <span class="news-date">${item.date}</span>
+            <span class="news-content">${item.content}</span>
+          </li>
+        `).join("");
+      }
 
-  // 更新粒子位置
-  function updateParticlePosition(p, canvasWidth, canvasHeight) {
-    p.x += p.speedX;
-    p.y += p.speedY;
+      const projGrid = document.getElementById("render-projects");
+      if (projGrid && SITE_DATA.projects) {
+        projGrid.innerHTML = SITE_DATA.projects.map(item => `
+          <div class="proj-card">
+            <a class="proj-card-name" href="${item.url}" target="_blank">${item.name}</a>
+            <p class="proj-card-desc">${item.desc}</p>
+            <div class="proj-card-foot"><img src="${item.shield}" alt="stars"></div>
+          </div>
+        `).join("");
+      }
 
-    if (p.x < 0 || p.x > canvasWidth) p.speedX *= -1;
-    if (p.y < 0 || p.y > canvasHeight) p.speedY *= -1;
-  }
+      const ptlWrap = document.getElementById("render-papers");
+      if (ptlWrap && SITE_DATA.papers) {
+        let html = `
+          <canvas id="ptl-canvas" aria-hidden="true"></canvas>
+          <div class="ptl-sprout">🌿</div>
+        `;
+        let currentYear = "";
+        let isRight = false;
 
-  // 绘制粒子
-  function drawParticle(ctx, p) {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-    ctx.fillStyle = p.color;
-    ctx.fill();
-  }
+        SITE_DATA.papers.forEach(p => {
+          if (p.year !== currentYear) {
+            currentYear = p.year;
+            html += `<div class="ptl-year"><span>${currentYear}</span></div>`;
+          }
 
-  // 绘制粒子间的连线
-  function drawParticleConnections(ctx, particles, index) {
-    for (let j = index + 1; j < particles.length; j++) {
-      const p2 = particles[j];
-      const distance = Math.sqrt(Math.pow(particles[index].x - p2.x, 2) +
-        Math.pow(particles[index].y - p2.y, 2));
+          const tagsHtml = p.tags.map(t => `<span class="tag ${t.class}">${t.html}</span>`).join("\n");
+          const cardHtml = `
+            <div class="ptl-card">
+              <p class="paper-title">${p.title}</p>
+              <p class="paper-author">${p.authorsHtml}</p>
+              <p class="paper-conf">${p.conf}</p>
+              <div class="paper-tags">${tagsHtml}</div>
+            </div>
+          `;
 
-      if (distance < 100) {
-        ctx.beginPath();
-        ctx.strokeStyle = particles[index].color;
-        ctx.globalAlpha = 1 - distance / 100;
-        ctx.lineWidth = 0.5;
-        ctx.moveTo(particles[index].x, particles[index].y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.stroke();
-        ctx.globalAlpha = 1;
+          if (isRight) {
+            html += `
+              <div class="ptl-item" id="${p.id || ''}">
+                <div class="ptl-empty"></div>
+                <div class="ptl-dot"></div>
+                <div class="ptl-card-right">${cardHtml}</div>
+              </div>
+            `;
+          } else {
+            html += `
+              <div class="ptl-item" id="${p.id || ''}">
+                <div class="ptl-card-left">${cardHtml}</div>
+                <div class="ptl-dot"></div>
+                <div class="ptl-empty"></div>
+              </div>
+            `;
+          }
+          isRight = !isRight;
+        });
+        ptlWrap.innerHTML = html;
       }
     }
-  }
 
-  // 初始化粒子动画
-  function initParticleAnimation() {
-    const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
+    // Call it before other layout scripts bind
+    renderSiteData();
+  </script>
+</body>
 
-    // 设置canvas尺寸
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    // 粒子配置
-    const colors = ['#1C80AA', '#3B5174', '#DE7B56', '#FDD2BE', '#22B0C3'];
-    const particleCount = Math.floor(window.innerWidth / 10);
-    const particles = createParticles(particleCount, canvas.width, canvas.height, colors);
-
-    // 动画循环
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((p, index) => {
-        updateParticlePosition(p, canvas.width, canvas.height);
-        drawParticle(ctx, p);
-        drawParticleConnections(ctx, particles, index);
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    // 处理窗口大小变化
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    animate();
-  }
-
-  // 在文档加载完成后执行自定义功能
-  document.addEventListener('DOMContentLoaded', () => {
-    replaceClassAliases();
-    activateNavbarMenu();
-    initParticleAnimation();
-  });
-</script>
 
 </html>
