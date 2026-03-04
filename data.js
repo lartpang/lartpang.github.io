@@ -3,7 +3,7 @@ const SITE_DATA = {
     {
       "date": "2024-12",
       "content": "Finished defending my doctoral dissertation."
-    }
+    },
   ],
   "resources": [
     {
@@ -184,7 +184,7 @@ const SITE_DATA = {
       ]
     },
     {
-      "id": "multimodal-unimerseg",
+      "id": "multimodal-unimrseg",
       "year": "2025",
       "title": "UniMRSeg: Unified Modality-Relax Segmentation via Hierarchical Self-Supervised Compensation",
       "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Chenyang Yu, Lihe Zhang, Huchuan Lu, Shijian Lu, Georges El Fakhri, Xiaofeng Liu",
