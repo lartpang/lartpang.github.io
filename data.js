@@ -111,10 +111,44 @@ const SITE_DATA = {
   ],
   "papers": [
     {
+      "id": "lamofcbench",
+      "year": "2026",
+      "title": "Towards Large Model Feature Coding",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Changsheng Gao*, Dong Liu, Huchuan Lu, Weisi Lin#",
+      "conf": "ArXiv 2026",
+      "tags": [
+        {
+          "class": "tag-link",
+          "html": "<a href=\"https://arxiv.org/abs/2605.24025\" target=\"_blank\">[Paper (ArXiv)]</a>"
+        },
+        {
+          "class": "tag-link",
+          "html": "<a href=\"https://github.com/lartpang/LaMoFCBench\" target=\"_blank\">[Code (GitHub)]</a>"
+        }
+      ]
+    },
+    {
+      "id": "conceptsegr1",
+      "year": "2026",
+      "title": "ConceptSeg-R1: Segment Any Concept via Meta-Reinforcement Learning",
+      "authorsHtml": "Yuan Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Jiaming Zuo, Wei Ji, Kailai Zhou, Bin Fan, Yunkang Cao, Lihe Zhang#, Xiaofeng Liu, Huchuan Lu, Weisi Lin, Dacheng Tao, Xiaoqi Zhao#",
+      "conf": "ArXiv 2026",
+      "tags": [
+        {
+          "class": "tag-link",
+          "html": "<a href=\"https://arxiv.org/abs/2605.20385\" target=\"_blank\">[Paper (ArXiv)]</a>"
+        },
+        {
+          "class": "tag-link",
+          "html": "<a href=\"https://github.com/NTU-AI4X/ConceptSeg-R1\" target=\"_blank\">[Code (GitHub)]</a>"
+        }
+      ]
+    },
+    {
       "id": "finmtm",
       "year": "2026",
       "title": "FinMTM: A Multi-Turn Multimodal Benchmark for Financial Reasoning and Agent Evaluation",
-      "authorsHtml": "Chenxi Zhang, Ziliang Gan, Liyun Zhu, <span class=\"author-me\">Youwei Pang</span>, Qing Zhang, Rongjunchen Zhang",
+      "authorsHtml": "Chenxi Zhang*, Ziliang Gan*, Liyun Zhu*, <span class=\"author-me\">Youwei Pang</span>, Qing Zhang, Rongjunchen Zhang#",
       "conf": "ArXiv 2026",
       "tags": [
         {
@@ -131,7 +165,7 @@ const SITE_DATA = {
       "id": "unimmad",
       "year": "2026",
       "title": "UniMMAD: Unified Multi-Modal and Multi-Class Anomaly Detection via MoE-Driven Feature Decompression",
-      "authorsHtml": "Yuan Zhao, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang, Hanqi Liu, Jiaming Zuo, Huchuan Lu, Xiaoqi Zhao",
+      "authorsHtml": "Yuan Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Lihe Zhang#, Hanqi Liu, Jiaming Zuo#, Huchuan Lu, Xiaoqi Zhao#",
       "conf": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2026, IEEE",
       "tags": [
         {
@@ -172,10 +206,10 @@ const SITE_DATA = {
     },
     {
       "id": "pbd-jnl",
-      "year": "2025",
+      "year": "2026",
       "title": "Power Battery Detection",
-      "authorsHtml": "Xiaoqi Zhao, Peiqian Cao, Lihe Zhang, Zonglei Feng, Hanqi Liu, Jiaming Zuo, <span class=\"author-me\">Youwei Pang</span>, Weisi Lin, Georges El Fakhri, Huchuan Lu, Xiaofeng Liu",
-      "conf": "ArXiv 2025",
+      "authorsHtml": "Xiaoqi Zhao, Peiqian Cao, Lihe Zhang#, Zonglei Feng, Hanqi Liu, Jiaming Zuo, <span class=\"author-me\">Youwei Pang</span>#, Weisi Lin, Georges El Fakhri, Huchuan Lu, Xiaofeng Liu",
+      "conf": "International Journal of Computer Vision (IJCV) 2026, Springer",
       "tags": [
         {
           "class": "tag-link",
@@ -187,7 +221,7 @@ const SITE_DATA = {
       "id": "multimodal-unimrseg",
       "year": "2025",
       "title": "UniMRSeg: Unified Modality-Relax Segmentation via Hierarchical Self-Supervised Compensation",
-      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Chenyang Yu, Lihe Zhang, Huchuan Lu, Shijian Lu, Georges El Fakhri, Xiaofeng Liu",
+      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>#, Chenyang Yu, Lihe Zhang#, Huchuan Lu, Shijian Lu, Georges El Fakhri, Xiaofeng Liu",
       "conf": "The Conference on Neural Information Processing Systems (NeurIPS) 2025",
       "tags": [
         {
@@ -204,7 +238,7 @@ const SITE_DATA = {
       "id": "rethinking-irstd",
       "year": "2025",
       "title": "Rethinking Evaluation of Infrared Small Target Detection",
-      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu, Georges El Fakhri, Xiaofeng Liu, Shijian Lu",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>, Xiaoqi Zhao#, Lihe Zhang#, Huchuan Lu, Georges El Fakhri, Xiaofeng Liu, Shijian Lu",
       "conf": "The Conference on Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track 2025",
       "tags": [
         {
@@ -238,7 +272,7 @@ const SITE_DATA = {
       "id": "multimodal-comptr",
       "year": "2025",
       "title": "ComPtr: Towards Diverse Bi-source Dense Prediction Tasks via A Simple yet General Complementary Transformer",
-      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang#, Huchuan Lu",
       "conf": "Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2025, IEEE",
       "tags": [
         {
@@ -280,7 +314,7 @@ const SITE_DATA = {
       "id": "fss-beyoudmask",
       "year": "2025",
       "title": "Beyond Mask: Rethinking Guidance Types in Few-shot Segmentation",
-      "authorsHtml": "Shijie Chang, <span class=\"author-me\">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "Shijie Chang, <span class=\"author-me\">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang#, Huchuan Lu",
       "conf": "Pattern Recognition (PR) 2025, Elsevier",
       "tags": [
         {
@@ -305,7 +339,7 @@ const SITE_DATA = {
       "id": "sam-cdeval",
       "year": "2024",
       "title": "Inspiring the Next Generation of Segment Anything Models: Comprehensively Evaluate SAM and SAM 2 with Diverse Prompts Towards Context-Dependent Concepts under Different Scenes",
-      "authorsHtml": "Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Shijie Chang*, Yuan Zhao*, Lihe Zhang, Huchuan Lu, Jinsong Ouyang, Georges El Fakhri, Xiaofeng Liu",
+      "authorsHtml": "Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Shijie Chang*, Yuan Zhao*, Lihe Zhang#, Huchuan Lu, Jinsong Ouyang, Georges El Fakhri, Xiaofeng Liu",
       "conf": "ArXiv 2024",
       "tags": [
         {
@@ -322,7 +356,7 @@ const SITE_DATA = {
       "id": "cod-zoomnext",
       "year": "2024",
       "title": "ZoomNeXt: A Unified Collaborative Pyramid Network for Camouflaged Object Detection",
-      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Xiaoqi Zhao*, Tian-Zhu Xiang*, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Xiaoqi Zhao*, Tian-Zhu Xiang*, Lihe Zhang#, Huchuan Lu",
       "conf": "Transactions on Pattern Analysis and Machine Intelligence (TPAMI) 2024, IEEE",
       "tags": [
         {
@@ -347,7 +381,7 @@ const SITE_DATA = {
       "id": "cod-ovcos",
       "year": "2024",
       "title": "Open-Vocabulary Camouflaged Object Segmentation",
-      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Xiaoqi Zhao*, Jiaming Zuo, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Xiaoqi Zhao*, Jiaming Zuo, Lihe Zhang#, Huchuan Lu",
       "conf": "European Conference on Computer Vision (ECCV) 2024, Springer",
       "tags": [
         {
@@ -372,7 +406,7 @@ const SITE_DATA = {
       "id": "dis-mvanet",
       "year": "2024",
       "title": "Multi-view Aggregation Network for Dichotomous Image Segmentation",
-      "authorsHtml": "Qian Yu*, Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "Qian Yu*, Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Lihe Zhang#, Huchuan Lu",
       "conf": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2024, IEEEHighlight",
       "tags": [
         {
@@ -397,7 +431,7 @@ const SITE_DATA = {
       "id": "pbd-conf",
       "year": "2024",
       "title": "Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline",
-      "authorsHtml": "Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Zhenyu Chen, Qian Yu, Lihe Zhang, Hanqi Liu, Jiaming Zuo",
+      "authorsHtml": "Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Zhenyu Chen, Qian Yu, Lihe Zhang#, Hanqi Liu, Jiaming Zuo",
       "conf": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2024, IEEE",
       "tags": [
         {
@@ -430,7 +464,7 @@ const SITE_DATA = {
       "id": "unified-spider",
       "year": "2024",
       "title": "Spider: A Unified Framework for Context-dependent Concept Understanding",
-      "authorsHtml": "Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Wei Ji*, Baicheng Sheng, Jiaming Zuo, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Wei Ji*, Baicheng Sheng, Jiaming Zuo, Lihe Zhang#, Huchuan Lu",
       "conf": "International Conference on Machine Learning (ICML) 2024, PMLR",
       "tags": [
         {
@@ -451,7 +485,7 @@ const SITE_DATA = {
       "id": "gatenet-jnl",
       "year": "2024",
       "title": "Towards Diverse Binary Segmentation via A Simple yet General Gated Network",
-      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Lei Zhang",
+      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang#, Huchuan Lu, Lei Zhang",
       "conf": "International Journal of Computer Vision (IJCV) 2024, Springer",
       "tags": [
         {
@@ -480,7 +514,7 @@ const SITE_DATA = {
       "id": "zsvos-amsp",
       "year": "2024",
       "title": "Adaptive Multi-source Predictor for Zero-shot Video Object Segmentation",
-      "authorsHtml": "Xiaoqi Zhao, Shijie Chang, <span class=\"author-me\">Youwei Pang</span>, Jiaxing Yang, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "Xiaoqi Zhao, Shijie Chang, <span class=\"author-me\">Youwei Pang</span>, Jiaxing Yang, Lihe Zhang#, Huchuan Lu",
       "conf": "International Journal of Computer Vision (IJCV) 2024, Springer",
       "tags": [
         {
@@ -503,10 +537,10 @@ const SITE_DATA = {
     },
     {
       "id": "medical-m2snet",
-      "year": "2023",
+      "year": "2026",
       "title": "M2SNet: Multi-scale in Multi-scale Subtraction Network for Medical Image Segmentation",
-      "authorsHtml": "Xiaoqi Zhao, Hongpeng Jia, <span class=\"author-me\">Youwei Pang</span>, Long Lv, Feng Tian, Lihe Zhang, Weibing Sun, Huchuan Lu",
-      "conf": "The second place (2/100) in the MICCAI 2022 Challenge: Glaucoma Oct Analysis and Layer Segmentation (GOALS)",
+      "authorsHtml": "Xiaoqi Zhao, Hongpeng Jia, <span class=\"author-me\">Youwei Pang</span>, Long Lv, Feng Tian, Lihe Zhang#, Weibing Sun, Huchuan Lu",
+      "conf": "Machine Intelligence Research (🏆 The second place (2/100) in the MICCAI 2022 Challenge: Glaucoma Oct Analysis and Layer Segmentation)",
       "tags": [
         {
           "class": "tag-link",
@@ -518,7 +552,7 @@ const SITE_DATA = {
       "id": "multimodal-caver",
       "year": "2023",
       "title": "CAVER: Cross-Modal View-Mixed Transformer for Bi-Modal Salient Object Detection",
-      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>, Xiaoqi Zhao, Lihe Zhang#, Huchuan Lu",
       "conf": "Transactions on Image Processing (TIP) 2023, IEEE",
       "tags": [
         {
@@ -555,7 +589,7 @@ const SITE_DATA = {
       "id": "rawsd-sara",
       "year": "2023",
       "title": "Adaptive Illumination Mapping for Shadow Detection in Raw Images",
-      "authorsHtml": "Jiayu Sun, Ke Xu, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Gerhard Hancke, Rynson Lau",
+      "authorsHtml": "Jiayu Sun*, Ke Xu*, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang#, Huchuan Lu, Gerhard Hancke, Rynson Lau#",
       "conf": "IEEE/CVF International Conference on Computer Vision (ICCV) 2023, IEEE",
       "tags": [
         {
@@ -584,7 +618,7 @@ const SITE_DATA = {
       "id": "multimodal-jlsdc",
       "year": "2022",
       "title": "Joint Learning of Salient Object Detection, Depth Estimation and Contour Extraction",
-      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang#, Huchuan Lu",
       "conf": "Transactions on Image Processing (TIP) 2022, IEEE",
       "tags": [
         {
@@ -613,7 +647,7 @@ const SITE_DATA = {
       "id": "cod-zoomnet",
       "year": "2022",
       "title": "Zoom In and Out: A Mixed-scale Triplet Network for Camouflaged Object Detection",
-      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Xiaoqi Zhao*, Tian-zhu Xiang, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Xiaoqi Zhao*, Tian-zhu Xiang, Lihe Zhang#, Huchuan Lu",
       "conf": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2022, IEEE",
       "tags": [
         {
@@ -646,7 +680,7 @@ const SITE_DATA = {
       "id": "sslsod",
       "year": "2022",
       "title": "Self-Supervised Pretraining for RGB-D Salient Object Detection",
-      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang, Huchuan Lu, Xiang Ruan",
+      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Lihe Zhang#, Huchuan Lu, Xiang Ruan",
       "conf": "Association for the Advancement of Artificial Intelligence (AAAI) 2022",
       "tags": [
         {
@@ -675,7 +709,7 @@ const SITE_DATA = {
       "id": "zsvos-msfaps",
       "year": "2021",
       "title": "Multi-Source Fusion and Automatic Predictor Selection for Zero-Shot Video Object Segmentation",
-      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Jiaxing Yang, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "Xiaoqi Zhao, <span class=\"author-me\">Youwei Pang</span>, Jiaxing Yang, Lihe Zhang#, Huchuan Lu",
       "conf": "ACM International Conference on Multimedia (ACM MM) 2021Oral",
       "tags": [
         {
@@ -704,7 +738,7 @@ const SITE_DATA = {
       "id": "multimodal-hdfnet",
       "year": "2020",
       "title": "Hierarchical Dynamic Filtering Network for RGB-D Salient Object Detection",
-      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>, Lihe Zhang, Xiaoqi Zhao, Huchuan Lu",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>, Lihe Zhang#, Xiaoqi Zhao, Huchuan Lu",
       "conf": "European Conference on Computer Vision (ECCV) 2020, Springer",
       "tags": [
         {
@@ -733,7 +767,7 @@ const SITE_DATA = {
       "id": "gatenet-conf",
       "year": "2020",
       "title": "Suppress and Balance: A Simple Gated Network for Salient Object Detection",
-      "authorsHtml": "Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Lihe Zhang, Huchuan Lu, Lei Zhang",
+      "authorsHtml": "Xiaoqi Zhao*, <span class=\"author-me\">Youwei Pang</span>*, Lihe Zhang#, Huchuan Lu, Lei Zhang",
       "conf": "European Conference on Computer Vision (ECCV) 2020, SpringerOral",
       "tags": [
         {
@@ -762,7 +796,7 @@ const SITE_DATA = {
       "id": "multimodal-danet",
       "year": "2020",
       "title": "A Single Stream Network for Robust and Real-time RGB-D Salient Object Detection",
-      "authorsHtml": "Xiaoqi Zhao, Lihe Zhang, <span class=\"author-me\">Youwei Pang</span>, Huchuan Lu, Lei Zhang",
+      "authorsHtml": "Xiaoqi Zhao, Lihe Zhang, <span class=\"author-me\">Youwei Pang</span>, Huchuan Lu, Lei Zhang#",
       "conf": "European Conference on Computer Vision (ECCV) 2020, Springer",
       "tags": [
         {
@@ -787,7 +821,7 @@ const SITE_DATA = {
       "id": "sod-minet",
       "year": "2020",
       "title": "Multi-scale Interactive Network for Salient Object Detection",
-      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Xiaoqi Zhao*, Lihe Zhang, Huchuan Lu",
+      "authorsHtml": "<span class=\"author-me\">Youwei Pang</span>*, Xiaoqi Zhao*, Lihe Zhang#, Huchuan Lu",
       "conf": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2020, IEEE",
       "tags": [
         {
