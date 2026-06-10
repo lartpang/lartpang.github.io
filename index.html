@@ -65,10 +65,9 @@
       font-family: 'IBM Plex Mono', monospace;
       background: var(--bg);
       color: var(--text);
-      font-size: clamp(15px, 0.4vw + 13px, 18px);
-      /* 基础字号随屏幕宽度微分增长 */
+      font-size: 16px;
       line-height: 1.6;
-      letter-spacing: -0.012em;
+      letter-spacing: 0;
     }
 
     a {
@@ -91,10 +90,9 @@
     }
 
     .container {
-      max-width: clamp(800px, 85vw, 1100px);
-      /* 容器宽度随比例扩展，最大放宽至 1100px */
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 4vw;
+      padding: 0 32px;
     }
 
     .section {
@@ -204,15 +202,14 @@
       border-bottom: 1px solid transparent;
       transition:
         background 0.45s cubic-bezier(.4, 0, .2, 1),
-        border-color 0.45s cubic-bezier(.4, 0, .2, 1),
-        backdrop-filter 0.45s;
+        border-color 0.45s cubic-bezier(.4, 0, .2, 1);
       backdrop-filter: blur(0px);
     }
 
     /* 滚动后：从 Hero 飞出，变为毛玻璃栏 */
     .navbar.scrolled {
       background: rgba(254, 252, 249, 0.92);
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(8px);
       border-bottom-color: var(--border);
       animation: navFlyIn 0.55s cubic-bezier(.34, 1.56, .64, 1) both;
     }
@@ -370,6 +367,7 @@
       position: relative;
       overflow: hidden;
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -408,7 +406,7 @@
         radial-gradient(ellipse 70% 60% at 20% 30%, rgba(180, 200, 220, 0.65) 0%, transparent 70%),
         radial-gradient(ellipse 55% 65% at 80% 70%, rgba(220, 190, 200, 0.55) 0%, transparent 65%),
         radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200, 215, 205, 0.3) 0%, transparent 75%);
-      animation: overlayBreath 14s ease-in-out infinite alternate;
+      animation: overlayBreath 28s ease-in-out infinite alternate;
     }
 
     @keyframes overlayBreath {
@@ -434,6 +432,7 @@
       z-index: 2;
       width: 100%;
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -448,13 +447,12 @@
     /* 超大姓名：换用华丽衬线体 Cinzel Decorative */
     .hero-name {
       font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(2.4rem, 7.2vw, 7.8rem);
-      /* 缩小上限，避免在超宽屏下侵占过多空间 */
+      font-size: 6rem;
       font-weight: 700;
       color: rgba(30, 28, 32, 0.82);
       line-height: 1.02;
       /* 稍微压缩行高，使标题更紧凑有力 */
-      letter-spacing: -0.01em;
+      letter-spacing: 0;
       margin-bottom: 0.1em;
     }
 
@@ -474,8 +472,7 @@
     .hero-bird-ghost svg {
       width: clamp(280px, 42vw, 680px);
       height: auto;
-      animation: birdGhostFloat 18s ease-in-out infinite alternate;
-      filter: blur(0.5px);
+      animation: birdGhostFloat 32s ease-in-out infinite alternate;
     }
 
     @keyframes birdGhostFloat {
@@ -505,7 +502,9 @@
 
     .about-avatar-panel img {
       width: clamp(64px, 10vw, 100px);
+      height: clamp(64px, 10vw, 100px);
       /* 限制在 960px 容器内的适度比例 */
+      flex: 0 0 auto;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       border: 2.5px solid var(--border);
@@ -546,8 +545,7 @@
     /* 大标题通证行：简介一行字 */
     .hero-tagline {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: clamp(0.95rem, 2.2vw, 1.45rem);
-      /* 缩小上限，提升基准大小，使其更稳重 */
+      font-size: 1.2rem;
       font-weight: 400;
       color: rgba(40, 35, 40, 0.62);
       letter-spacing: 0.02em;
@@ -604,14 +602,11 @@
     /* 单行输出 */
     .tline {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: clamp(0.85rem, 1.4vw, 1.2rem);
-      /* 修正上限：对话文字不应无限膨胀，保持在舒适的阅读字号 */
-      line-height: 1.7;
+      font-size: 1rem;
+      line-height: 1.32;
       display: flex;
       align-items: flex-start;
       gap: 0;
-      white-space: pre-wrap;
-      word-break: break-word;
       opacity: 0;
       animation: cmdFadeIn 0.8s ease forwards;
     }
@@ -631,42 +626,52 @@
     }
 
     .tline+.tline {
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     /* 提示符与文字风格 */
+    .tprompt {
+      flex: 0 0 2rem;
+      white-space: nowrap;
+      user-select: none;
+    }
+
     .tprompt-u {
       color: rgba(30, 28, 32, 0.40);
       /* 极度收敛的灰色 */
       margin-right: 8px;
-      flex-shrink: 0;
-      user-select: none;
       font-weight: 600;
       letter-spacing: 0.05em;
-      min-width: 1.1rem;
     }
 
     .ttext-u {
+      flex: 1 1 auto;
+      min-width: 0;
       color: rgba(30, 28, 32, 0.85);
       /* 深灰实体感 */
       font-weight: 500;
       text-shadow: 0 0 1px rgba(30, 28, 32, 0.1);
+      line-height: 1.32;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
 
     .tprompt-ai {
       color: rgba(50, 90, 140, 0.45);
       /* 微弱的深蓝预设 */
       margin-right: 8px;
-      flex-shrink: 0;
-      user-select: none;
       font-weight: 600;
-      min-width: 1.1rem;
     }
 
     .ttext-ai {
+      flex: 1 1 auto;
+      min-width: 0;
       color: rgba(30, 32, 40, 0.7);
       font-style: italic;
       text-shadow: 0 0 1px rgba(50, 90, 140, 0.1);
+      line-height: 1.32;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
 
     /* 闪烁光标 */
@@ -677,6 +682,7 @@
       background: rgba(30, 28, 32, 0.4);
       vertical-align: text-bottom;
       margin-left: 4px;
+      flex: 0 0 auto;
       animation: chatBlink 0.9s step-end infinite;
     }
 
@@ -734,7 +740,7 @@
       align-items: center;
       gap: 10px;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: clamp(0.7rem, 1.05vw, 0.95rem);
+      font-size: 0.85rem;
       font-weight: 400;
       color: rgba(30, 28, 32, 0.45);
       letter-spacing: 0.02em;
@@ -834,21 +840,111 @@
       opacity: 0.4;
     }
 
+    @media (max-width: 900px) {
+      .hero-name {
+        font-size: 4.5rem;
+      }
+
+      .hero-tagline {
+        font-size: 1.05rem;
+      }
+    }
+
     @media (max-width: 640px) {
+      #hero {
+        min-height: auto;
+        justify-content: flex-start;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .card {
+        padding: 20px 18px;
+      }
+
+      .section {
+        padding: 10px 0;
+      }
+
+      .hero-overlay,
+      .hero-bird-ghost svg,
+      .hero-scroll-hint .hint-arrow span {
+        animation: none;
+      }
+
+      .hero-inner {
+        min-height: auto;
+        padding: 84px 0 28px;
+      }
+
       .hero-headline {
         padding: 0 5vw;
       }
 
+      .hero-name {
+        font-size: 2.8rem;
+      }
+
+      .hero-tagline,
+      .tline {
+        font-size: 0.95rem;
+      }
+
       .hero-bottom {
-        padding: 0 5vw 24px;
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        gap: 16px;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+        padding: 6px 5vw 34px;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        margin-top: 10px;
+      }
+
+      .hero-left-stub {
+        display: none;
+      }
+
+      .hero-right {
+        width: 100%;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .hero-chat {
+        max-width: 100%;
+        margin-top: 2em;
+      }
+
+      .hero-scroll-hint {
+        display: none;
       }
 
       .hero-avatar img {
-        width: 18vw;
-        min-width: 60px;
+        width: clamp(96px, 28vw, 124px);
+        height: clamp(96px, 28vw, 124px);
+        min-width: 0;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .hero-meta {
+        width: 100%;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .hero-meta-line {
+        width: 100%;
+        justify-content: center;
+        gap: 8px 10px;
+        text-align: center;
+        line-height: 1.45;
       }
     }
 
@@ -1052,6 +1148,44 @@
       content: ' —';
       opacity: 0.35;
       font-weight: 400;
+    }
+
+    @media (max-width: 560px) {
+      .about-avatar-panel,
+      .timeline-item,
+      .news-item {
+        flex-direction: column;
+      }
+
+      .about-avatar-panel {
+        align-items: flex-start;
+      }
+
+      .about-avatar-panel img {
+        width: 88px;
+        height: 88px;
+      }
+
+      .timeline-logo {
+        width: 2.8rem;
+        height: 2.8rem;
+      }
+
+      .news-list {
+        gap: 16px;
+      }
+
+      .news-item {
+        gap: 3px;
+      }
+
+      .news-date {
+        white-space: normal;
+      }
+
+      .news-date::after {
+        content: '';
+      }
     }
 
     .news-grid {
@@ -1485,6 +1619,7 @@
 
     .proj-card-foot img {
       height: 18px;
+      width: auto;
     }
 
     /* ===== PAPER TIMELINE — 蛇形布局 ===== */
@@ -1498,7 +1633,7 @@
       text-align: center;
       font-size: 1.6rem;
       margin-bottom: 4px;
-      letter-spacing: -2px;
+      letter-spacing: 0;
     }
 
     /* 年份节点：占满整行，带方向箭头 */
@@ -1554,7 +1689,7 @@
       color: var(--text-3);
       font-size: 0.85rem;
       margin: -2px 0 4px;
-      letter-spacing: -1px;
+      letter-spacing: 0;
     }
 
     /* ── 单个论文条目  ── */
@@ -1630,6 +1765,9 @@
 
     /* 响应式：小屏改为单列，不再蛇形 */
     @media (max-width: 680px) {
+      #ptl-canvas {
+        display: none;
+      }
 
       .ptl-snake-row,
       .ptl-snake-row.rtl {
@@ -1642,6 +1780,28 @@
 
       .ptl-sprout {
         font-size: 1.2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .hero-overlay,
+      .hero-bird-ghost svg,
+      .tcursor,
+      .hero-scroll-hint .hint-arrow span {
+        animation: none !important;
       }
     }
 
@@ -1780,7 +1940,7 @@
 
       <div class="hero-right">
         <div class="hero-avatar">
-          <img src="https://avatars.githubusercontent.com/u/26847524" alt="Youwei Pang" />
+          <img src="https://avatars.githubusercontent.com/u/26847524" alt="Youwei Pang" width="180" height="180" fetchpriority="high" decoding="async" />
         </div>
 
         <div class="hero-meta">
@@ -1826,7 +1986,7 @@
 
           <!-- 头像面板（滚过hero后浮现） -->
           <div class="about-avatar-panel">
-            <img src="https://avatars.githubusercontent.com/u/26847524" alt="Youwei Pang" />
+            <img src="https://avatars.githubusercontent.com/u/26847524" alt="Youwei Pang" width="100" height="100" loading="lazy" decoding="async" />
             <div class="about-avatar-info">
               <div class="about-avatar-name">Youwei Pang</div>
               <div class="about-avatar-role">AI Researcher &amp; Enthusiast · Ph.D.</div>
@@ -1838,7 +1998,7 @@
             <p class="subsec-title">My Life</p>
             <p class="about-intro">
               🌎 In my free time, I enjoy
-              focused programming⌨️ (current Github <img alt="GitHub User's stars" src="https://img.shields.io/github/stars/lartpang?style=plastic&logo=github&label=Stars&color=red" style="display:inline;vertical-align:middle;height:18px">),
+              focused programming⌨️ (current Github <img alt="GitHub User's stars" src="https://img.shields.io/github/stars/lartpang?style=plastic&logo=github&label=Stars&color=red" loading="lazy" decoding="async" style="display:inline;vertical-align:middle;height:18px">),
               <a href="https://www.yuque.com/lart/record/zf2tgt">patient reading📚</a>,
               <a href="https://www.yuque.com/lart/record/ladtsq01s675c9g9">musical adventures🎧</a>,
               fast running🏃‍♂️,
@@ -1856,7 +2016,7 @@
             <div class="timeline">
               <div class="timeline-item">
                 <div class="timeline-logo">
-                  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Nanyang_Technological_University_coat_of_arms_vector.svg/1280px-Nanyang_Technological_University_coat_of_arms_vector.svg.png" alt="NTU" />
+                  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Nanyang_Technological_University_coat_of_arms_vector.svg/1280px-Nanyang_Technological_University_coat_of_arms_vector.svg.png" alt="NTU" loading="lazy" decoding="async" />
                 </div>
                 <div class="timeline-body">
                   <p class="timeline-period">2025 - Present</p>
@@ -1869,7 +2029,7 @@
               </div>
               <div class="timeline-item">
                 <div class="timeline-logo">
-                  <img src="https://www.dlut.edu.cn/__local/B/E6/D2/C96F6B930EC74F5666EDEA31D38_CAC1603C_6CB6.png" alt="DUT" />
+                  <img src="https://www.dlut.edu.cn/__local/B/E6/D2/C96F6B930EC74F5666EDEA31D38_CAC1603C_6CB6.png" alt="DUT" loading="lazy" decoding="async" />
                 </div>
                 <div class="timeline-body">
                   <p class="timeline-period">2019 - 2025</p>
@@ -1882,7 +2042,7 @@
               </div>
               <div class="timeline-item">
                 <div class="timeline-logo">
-                  <img src="https://www.dlut.edu.cn/__local/B/E6/D2/C96F6B930EC74F5666EDEA31D38_CAC1603C_6CB6.png" alt="DUT" />
+                  <img src="https://www.dlut.edu.cn/__local/B/E6/D2/C96F6B930EC74F5666EDEA31D38_CAC1603C_6CB6.png" alt="DUT" loading="lazy" decoding="async" />
                 </div>
                 <div class="timeline-body">
                   <p class="timeline-period">2015 - 2019</p>
@@ -2107,9 +2267,17 @@
       let cur = 0;
       const body = document.getElementById('termBody');
       if (!body) return;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const MAX_LINES = 20;
 
       function scrollToBottom() {
         body.scrollTop = body.scrollHeight;
+      }
+
+      function trimLines() {
+        while (body.children.length > MAX_LINES) {
+          body.removeChild(body.firstElementChild);
+        }
       }
 
       function mkLine(promptHtml, textClass, extraStyle = "") {
@@ -2117,6 +2285,7 @@
         line.className = 'tline';
         if (extraStyle) line.setAttribute('style', extraStyle);
         const prompt = document.createElement('span');
+        prompt.className = 'tprompt';
         prompt.innerHTML = promptHtml;
         const text = document.createElement('span');
         text.className = textClass;
@@ -2126,11 +2295,18 @@
         line.appendChild(text);
         line.appendChild(cursor);
         body.appendChild(line);
+        trimLines();
         scrollToBottom();
         return { text, cursor };
       }
 
       function typeText(el, str, speed, cb) {
+        if (prefersReducedMotion) {
+          el.textContent = str;
+          cb && cb();
+          return;
+        }
+
         let i = 0;
         el.textContent = '';
         const iv = setInterval(() => {
@@ -2154,7 +2330,7 @@
           u.cursor.classList.add('hidden');
 
           // 用户提问：中文行 (淡化显示)
-          const uc = mkLine('<span class="tprompt-u" style="opacity:0">🙂:</span>', 'ttext-u', "margin-top:-6px; opacity:0.6; font-size:0.9em;");
+          const uc = mkLine('<span class="tprompt-u" style="opacity:0">🙂:</span>', 'ttext-u', "margin-top:-2px; opacity:0.6; font-size:0.9em;");
           typeText(uc.text, d.qc, 30, () => {
             uc.cursor.classList.add('hidden');
 
@@ -2165,13 +2341,13 @@
                 a.cursor.classList.add('hidden');
 
                 // AI 回答：中文行 (淡化显示)
-                const ac = mkLine('<span class="tprompt-ai" style="opacity:0">🤖:</span>', 'ttext-ai', "margin-top:-6px; opacity:0.6; font-size:0.9em;");
+                const ac = mkLine('<span class="tprompt-ai" style="opacity:0">🤖:</span>', 'ttext-ai', "margin-top:-2px; opacity:0.6; font-size:0.9em;");
                 typeText(ac.text, d.ac, 20, () => {
                   ac.cursor.classList.add('hidden');
                   setTimeout(runNext, 4500);
                 });
               });
-            }, 800);
+            }, prefersReducedMotion ? 0 : 800);
           });
         });
       }
@@ -2185,6 +2361,13 @@
     function initSnakeLayout() {
       const wrap = document.querySelector('.ptl-wrap');
       if (!wrap) return;
+
+      wrap.querySelectorAll('.ptl-snake-row').forEach(row => {
+        while (row.firstChild) {
+          wrap.insertBefore(row.firstChild, row);
+        }
+        row.remove();
+      });
 
       // 1. 扁平化每个 ptl-item：从 ptl-card-left / ptl-card-right 中提取 ptl-card
       wrap.querySelectorAll('.ptl-item').forEach(item => {
@@ -2203,7 +2386,7 @@
       // 计算每行最大论文数（依容器宽度）
       function getColsPerRow() {
         const w = wrap.offsetWidth;
-        if (w >= 1000) return 4;
+        if (w < 680) return 1;
         if (w >= 700) return 3;
         return 2;
       }
@@ -2274,6 +2457,7 @@
       // 从最底部最旧的论文开始编号（页面最下方 = 最早）
       const total = items.length;
       items.forEach((item, i) => {
+        item.querySelector('.ptl-card-num')?.remove();
         const num = total - i;           // 最底部论文编号最低（最老）
         const badge = document.createElement('span');
         badge.className = 'ptl-card-num';
@@ -2297,6 +2481,11 @@
       const wRect = wrap.getBoundingClientRect();
       const W = wRect.width;
       const H = wrap.offsetHeight;
+      if (W < 680) {
+        canvas.width = 0;
+        canvas.height = 0;
+        return;
+      }
       canvas.width = W;
       canvas.height = H;
       const ctx = canvas.getContext('2d');
@@ -2412,7 +2601,10 @@
       let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(drawRacetrack, 150);
+        resizeTimer = setTimeout(() => {
+          initSnakeLayout();
+          drawRacetrack();
+        }, 150);
       });
     });
 
@@ -2456,13 +2648,22 @@
           <div class="proj-card">
             <a class="proj-card-name" href="${item.url}" target="_blank">${item.name}</a>
             <p class="proj-card-desc">${item.desc}</p>
-            <div class="proj-card-foot"><img src="${item.shield}" alt="stars"></div>
+            <div class="proj-card-foot"><img src="${item.shield}" alt="stars" loading="lazy" decoding="async"></div>
           </div>
         `).join("");
       }
 
       const ptlWrap = document.getElementById("render-papers");
       if (ptlWrap && SITE_DATA.papers) {
+        const papers = SITE_DATA.papers.slice().sort((a, b) => {
+          const yearA = Number.parseInt(a.year, 10) || 0;
+          const yearB = Number.parseInt(b.year, 10) || 0;
+          if (yearA !== yearB) return yearB - yearA;
+          return String(a.title || "").localeCompare(String(b.title || ""), undefined, {
+            sensitivity: "base"
+          });
+        });
+
         let html = `
           <canvas id="ptl-canvas" aria-hidden="true"></canvas>
           <div class="ptl-sprout">🌿</div>
@@ -2470,13 +2671,13 @@
         let currentYear = "";
         let isRight = false;
 
-        SITE_DATA.papers.forEach(p => {
+        papers.forEach(p => {
           if (p.year !== currentYear) {
             currentYear = p.year;
             html += `<div class="ptl-year"><span>${currentYear}</span></div>`;
           }
 
-          const tagsHtml = p.tags.map(t => `<span class="tag ${t.class}">${t.html}</span>`).join("\n");
+          const tagsHtml = (p.tags || []).map(t => `<span class="tag ${t.class}">${t.html}</span>`).join("\n");
           const cardHtml = `
             <div class="ptl-card">
               <p class="paper-title">${p.title}</p>
