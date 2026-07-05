@@ -778,6 +778,9 @@
     /* 头像—圆形小壳 */
     .hero-avatar img {
       width: clamp(80px, 10vw, 180px);
+      height: clamp(80px, 10vw, 180px);
+      flex: 0 0 auto;
+      display: block;
       /* 稍微加大上线，且使用 vw 驱动 */
       aspect-ratio: 1 / 1;
       border-radius: 50%;
@@ -1555,52 +1558,153 @@
       color: inherit;
     }
 
-    /* ===== PROJECT GRID CARDS ===== */
+    /* ===== PROJECT SHOWCASE ===== */
     .proj-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      width: min(1480px, calc(100vw - 32px));
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .proj-carousel {
+      position: relative;
+      overflow: hidden;
+      padding: 4px 0 18px;
+      contain: layout paint;
+    }
+
+    .proj-carousel::before,
+    .proj-carousel::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 3;
+      width: min(10vw, 120px);
+      pointer-events: none;
+    }
+
+    .proj-carousel::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg), rgba(244, 241, 236, 0));
+    }
+
+    .proj-carousel::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg), rgba(244, 241, 236, 0));
+    }
+
+    .proj-rows {
+      display: flex;
+      flex-direction: column;
       gap: 14px;
     }
 
-    @media (max-width: 860px) {
-      .proj-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .proj-viewport {
+      overflow: hidden;
+      padding: 4px 0 12px;
+      mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+    }
+
+    .proj-track {
+      display: flex;
+      width: max-content;
+      animation: projectMarquee 58s linear infinite;
+      will-change: transform;
+    }
+
+    .proj-track--reverse {
+      animation-name: projectMarqueeReverse;
+      animation-duration: 64s;
+    }
+
+    .proj-strip {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 14px;
+      padding-right: 14px;
+    }
+
+    .proj-carousel:hover .proj-track,
+    .proj-carousel:focus-within .proj-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes projectMarquee {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: translate3d(-50%, 0, 0);
       }
     }
 
-    @media (max-width: 540px) {
-      .proj-grid {
-        grid-template-columns: 1fr;
+    @keyframes projectMarqueeReverse {
+      from {
+        transform: translate3d(-50%, 0, 0);
+      }
+
+      to {
+        transform: translate3d(0, 0, 0);
       }
     }
 
     .proj-card {
+      flex: 0 0 clamp(270px, 24vw, 350px);
+      min-height: 218px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 16px 18px;
+      padding: 18px 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
+      box-shadow: var(--shadow);
+      content-visibility: auto;
+      contain-intrinsic-size: 350px 218px;
       transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
     }
 
-    .proj-card:hover {
+    .proj-card:hover,
+    .proj-card:focus-within {
       box-shadow: var(--shadow-h);
       transform: translateY(-3px);
       border-color: var(--primary);
     }
 
     .proj-card-name {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--primary-d);
       text-decoration: none;
-      line-height: 1.3;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
     .proj-card-name:hover {
       color: var(--accent);
+    }
+
+    .proj-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 22px;
+    }
+
+    .proj-card-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 20px;
+      border-radius: 999px;
+      padding: 2px 8px;
+      background: var(--surface2);
+      color: var(--text-3);
+      font-size: 0.66rem;
+      font-weight: 600;
+      line-height: 1.25;
+      white-space: nowrap;
     }
 
     .proj-card-desc {
@@ -1613,13 +1717,66 @@
     .proj-card-foot {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      gap: 10px;
       margin-top: 4px;
     }
 
     .proj-card-foot img {
       height: 18px;
       width: auto;
+    }
+
+    .proj-card-live {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 860px) {
+      .proj-grid {
+        width: calc(100vw - 20px);
+      }
+
+      .proj-card {
+        flex-basis: clamp(250px, 42vw, 320px);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .proj-grid {
+        width: calc(100vw - 12px);
+      }
+
+      .proj-carousel::before,
+      .proj-carousel::after {
+        width: 34px;
+      }
+
+      .proj-viewport {
+        mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+      }
+
+      .proj-track {
+        animation-duration: 70s;
+      }
+
+      .proj-track--reverse {
+        animation-duration: 76s;
+      }
+
+      .proj-strip {
+        gap: 10px;
+        padding-right: 10px;
+      }
+
+      .proj-card {
+        flex-basis: min(82vw, 310px);
+        min-height: 230px;
+        padding: 16px;
+      }
     }
 
     /* ===== PAPER TIMELINE — 蛇形布局 ===== */
@@ -1800,8 +1957,15 @@
       .hero-overlay,
       .hero-bird-ghost svg,
       .tcursor,
-      .hero-scroll-hint .hint-arrow span {
+      .hero-scroll-hint .hint-arrow span,
+      .proj-track {
         animation: none !important;
+      }
+
+      .proj-viewport {
+        overflow-x: auto;
+        mask-image: none;
+        -webkit-mask-image: none;
       }
     }
 
@@ -2192,7 +2356,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      Last updated <time>2026-03-02</time> &nbsp;·&nbsp; © Youwei Pang. All rights reserved.
+      Last updated <time>2026-07-05</time> &nbsp;·&nbsp; © Youwei Pang. All rights reserved.
     </div>
   </footer>
 
@@ -2619,6 +2783,13 @@
       if (typeof SITE_DATA === 'undefined') return;
 
       const birdIcon = `<div class="item-dot"></div>`;
+      const esc = value => String(value || "").replace(/[&<>"']/g, ch => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      })[ch]);
 
       const newsList = document.getElementById("render-news");
       if (newsList && SITE_DATA.news) {
@@ -2644,13 +2815,53 @@
 
       const projGrid = document.getElementById("render-projects");
       if (projGrid && SITE_DATA.projects) {
-        projGrid.innerHTML = SITE_DATA.projects.map(item => `
-          <div class="proj-card">
-            <a class="proj-card-name" href="${item.url}" target="_blank">${item.name}</a>
-            <p class="proj-card-desc">${item.desc}</p>
-            <div class="proj-card-foot"><img src="${item.shield}" alt="stars" loading="lazy" decoding="async"></div>
+        const renderProjectCards = (items, isClone = false) => items.map(item => {
+          const language = item.language ? `<span class="proj-card-pill">${esc(item.language)}</span>` : "";
+          const linkTab = isClone ? ` tabindex="-1"` : "";
+          const homepage = item.homepage ? `<a class="proj-card-live" href="${esc(item.homepage)}" target="_blank" rel="noopener"${linkTab}>Live</a>` : "";
+          const cloneAttrs = isClone ? ` aria-hidden="true"` : "";
+
+          return `
+            <article class="proj-card"${cloneAttrs}>
+              <a class="proj-card-name" href="${esc(item.url)}" target="_blank" rel="noopener"${linkTab}>${esc(item.name)}</a>
+              <div class="proj-card-meta">${language}</div>
+              <p class="proj-card-desc">${esc(item.desc)}</p>
+              <div class="proj-card-foot">
+                <img src="${esc(item.shield)}" alt="${esc(item.name)} GitHub stars" loading="lazy" decoding="async">
+                ${homepage}
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        const renderProjectRow = (items, options = {}) => {
+          const reverse = options.reverse ? " proj-track--reverse" : "";
+          return `
+            <div class="proj-viewport">
+              <div class="proj-track${reverse}">
+                <div class="proj-strip">
+                  ${renderProjectCards(items)}
+                </div>
+                <div class="proj-strip" aria-hidden="true">
+                  ${renderProjectCards(items, true)}
+                </div>
+              </div>
+            </div>
+          `;
+        };
+
+        const projects = SITE_DATA.projects;
+        const upperProjects = projects.filter((_, index) => index % 2 === 0);
+        const lowerProjects = projects.filter((_, index) => index % 2 === 1);
+
+        projGrid.innerHTML = `
+          <div class="proj-carousel" aria-label="Project showcase">
+            <div class="proj-rows">
+              ${renderProjectRow(upperProjects)}
+              ${renderProjectRow(lowerProjects, { reverse: true })}
+            </div>
           </div>
-        `).join("");
+        `;
       }
 
       const ptlWrap = document.getElementById("render-papers");

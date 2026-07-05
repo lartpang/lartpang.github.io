@@ -13,6 +13,36 @@ const SITE_DATA = {
   ],
   "projects": [
     {
+      "name": "FileShelf",
+      "url": "https://github.com/lartpang/FileShelf",
+      "desc": "A portable Windows file shelf for temporarily staging files and folders between Explorer windows or applications.",
+      "shield": "https://img.shields.io/github/stars/lartpang/FileShelf?style=flat-square",
+      "language": "C#"
+    },
+    {
+      "name": "BibSentry",
+      "url": "https://github.com/lartpang/BibSentry",
+      "homepage": "https://lartpang.github.io/BibSentry/",
+      "desc": "A browser-based BibTeX review tool that parses entries locally, checks public metadata sources, shows field-level differences, and exports a cleaned .bib file.",
+      "shield": "https://img.shields.io/github/stars/lartpang/BibSentry?style=flat-square",
+      "language": "JavaScript"
+    },
+    {
+      "name": "DailyArxiv",
+      "url": "https://github.com/lartpang/DailyArxiv",
+      "homepage": "https://lartpang.github.io/DailyArxiv/",
+      "desc": "A daily arXiv paper tracker for topic-specific feeds such as spiking neural networks, with generated JSON data and a browsable web page.",
+      "shield": "https://img.shields.io/github/stars/lartpang/DailyArxiv?style=flat-square",
+      "language": "Python"
+    },
+    {
+      "name": "DynamicConvolutionOperator",
+      "url": "https://github.com/lartpang/DynamicConvolutionOperator",
+      "desc": "A Triton-optimized implementation of the Dynamic Dilated Pyramid Module from HDFNet, reducing unfold-style memory overhead for dynamic convolution.",
+      "shield": "https://img.shields.io/github/stars/lartpang/DynamicConvolutionOperator?style=flat-square",
+      "language": "Python"
+    },
+    {
       "name": "Hands-on-Docker (中文)",
       "url": "https://github.com/lartpang/Hands-on-Docker",
       "desc": "一份详尽的 Docker 使用指南。",
