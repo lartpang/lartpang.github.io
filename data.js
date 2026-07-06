@@ -26,8 +26,8 @@ const SITE_DATA = {
       "watchers": 0,
       "license": "MIT",
       "topics": [],
-      "updatedAt": "2026-07-06T06:31:03Z",
-      "pushedAt": "2026-07-05T14:31:15Z"
+      "updatedAt": "2026-07-06T07:50:25Z",
+      "pushedAt": "2026-07-06T07:49:38Z"
     },
     {
       "name": "BibSentry",
@@ -66,8 +66,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-07-05T06:17:29Z",
-      "pushedAt": "2026-07-05T06:17:26Z"
+      "updatedAt": "2026-07-06T06:50:21Z",
+      "pushedAt": "2026-07-06T06:50:17Z"
     },
     {
       "name": "DynamicConvolutionOperator",
