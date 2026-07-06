@@ -1560,7 +1560,7 @@
 
     /* ===== PROJECT SHOWCASE ===== */
     .proj-grid {
-      width: min(1480px, calc(100vw - 32px));
+      width: min(1540px, calc(100vw - 32px));
       margin-left: 50%;
       transform: translateX(-50%);
     }
@@ -1596,12 +1596,12 @@
     .proj-rows {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .proj-viewport {
       overflow: hidden;
-      padding: 4px 0 12px;
+      padding: 4px 0 14px;
       mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
     }
@@ -1609,20 +1609,20 @@
     .proj-track {
       display: flex;
       width: max-content;
-      animation: projectMarquee 58s linear infinite;
+      animation: projectMarquee 72s linear infinite;
       will-change: transform;
     }
 
     .proj-track--reverse {
       animation-name: projectMarqueeReverse;
-      animation-duration: 64s;
+      animation-duration: 78s;
     }
 
     .proj-strip {
       display: flex;
       flex: 0 0 auto;
-      gap: 14px;
-      padding-right: 14px;
+      gap: 16px;
+      padding-right: 16px;
     }
 
     .proj-carousel:hover .proj-track,
@@ -1651,18 +1651,26 @@
     }
 
     .proj-card {
-      flex: 0 0 clamp(270px, 24vw, 350px);
-      min-height: 218px;
-      background: var(--surface);
+      position: relative;
+      flex: 0 0 clamp(390px, 34vw, 520px);
+      height: clamp(372px, 26vw, 396px);
+      min-height: 372px;
+      overflow: hidden;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      padding: 22px 26px 20px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 12px;
+      background:
+        linear-gradient(135deg, rgba(122, 154, 170, 0.08) 0 25%, transparent 25% 100%),
+        linear-gradient(135deg, transparent 0 62%, rgba(176, 140, 122, 0.08) 62% 100%),
+        radial-gradient(circle at 88% 14%, color-mix(in srgb, var(--proj-lang-color, var(--primary)) 26%, transparent), transparent 32%),
+        linear-gradient(to right, rgba(122, 154, 170, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(122, 154, 170, 0.08) 1px, transparent 1px),
+        var(--surface);
+      background-size: auto, auto, auto, 28px 28px, 28px 28px, auto;
       box-shadow: var(--shadow);
-      content-visibility: auto;
-      contain-intrinsic-size: 350px 218px;
       transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
     }
 
@@ -1670,68 +1678,216 @@
     .proj-card:focus-within {
       box-shadow: var(--shadow-h);
       transform: translateY(-3px);
-      border-color: var(--primary);
+      border-color: color-mix(in srgb, var(--proj-lang-color, var(--primary)) 50%, var(--border));
+    }
+
+    .proj-card::before {
+      content: attr(data-language-mark);
+      position: absolute;
+      right: 14px;
+      bottom: -18px;
+      z-index: 0;
+      max-width: 70%;
+      overflow: hidden;
+      color: var(--proj-lang-color, var(--primary));
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(15rem, 19vw, 17rem);
+      font-weight: 700;
+      line-height: 0.68;
+      letter-spacing: 0;
+      opacity: 0.042;
+      pointer-events: none;
+      text-align: right;
+      white-space: nowrap;
+      transform: scaleX(0.36);
+      transform-origin: right bottom;
+      text-shadow: 0 12px 30px color-mix(in srgb, var(--proj-lang-color, var(--primary)) 34%, transparent);
+    }
+
+    .proj-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.55), transparent 24%);
+      pointer-events: none;
+    }
+
+    .proj-card-head,
+    .proj-card-body,
+    .proj-card-tags,
+    .proj-card-foot {
+      position: relative;
+      z-index: 1;
+    }
+
+    .proj-card-head {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      align-items: center;
+      gap: 18px;
+      min-height: 92px;
+    }
+
+    .proj-card-avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      object-fit: cover;
+      opacity: 0.13;
+      filter: grayscale(1);
+      background: var(--surface2);
+    }
+
+    .proj-card-title {
+      min-width: 0;
+    }
+
+    .proj-card-owner {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      font-size: 0.94rem;
+      color: var(--primary-d);
+      line-height: 1.15;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .proj-card-name {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--primary-d);
+      display: block;
+      margin-top: 2px;
+      font-size: clamp(1.08rem, 1.28vw, 1.35rem);
+      font-weight: 800;
+      color: var(--text);
       text-decoration: none;
-      line-height: 1.35;
+      line-height: 1.16;
       overflow-wrap: anywhere;
     }
 
-    .proj-card-name:hover {
+    .proj-card-name:hover,
+    .proj-card-owner:hover {
       color: var(--accent);
     }
 
-    .proj-card-meta {
+    .proj-card-body {
+      min-width: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .proj-card-desc {
+      font-size: clamp(0.86rem, 1vw, 0.98rem);
+      color: var(--text);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .proj-card-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      min-height: 22px;
+      max-height: 24px;
+      overflow: hidden;
     }
 
     .proj-card-pill {
       display: inline-flex;
       align-items: center;
-      min-height: 20px;
+      min-height: 22px;
       border-radius: 999px;
       padding: 2px 8px;
-      background: var(--surface2);
-      color: var(--text-3);
+      background: rgba(237, 234, 227, 0.8);
+      color: var(--text-2);
+      border: 1px solid rgba(219, 213, 202, 0.7);
       font-size: 0.66rem;
       font-weight: 600;
       line-height: 1.25;
       white-space: nowrap;
     }
 
-    .proj-card-desc {
-      font-size: 0.78rem;
-      color: var(--text-2);
-      line-height: 1.6;
-      flex: 1;
+    .proj-card-foot {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 18px;
+      min-height: 70px;
     }
 
-    .proj-card-foot {
+    .proj-card-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(58px, 1fr));
+      gap: 10px;
+    }
+
+    .proj-card-stat strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.26rem;
+      line-height: 1.1;
+    }
+
+    .proj-card-stat span {
+      display: block;
+      margin-top: 4px;
+      color: var(--text-2);
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+
+    .proj-card-side {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+      color: var(--text-2);
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .proj-card-license {
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .proj-card-links {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 4px;
+      justify-content: flex-end;
+      gap: 8px;
     }
 
-    .proj-card-foot img {
-      height: 18px;
-      width: auto;
-    }
-
-    .proj-card-live {
-      font-size: 0.72rem;
-      font-weight: 700;
+    .proj-card-repo {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 11px;
+      border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--border));
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+      box-shadow: 0 6px 16px rgba(80, 65, 55, 0.08);
       color: var(--accent);
+      font-size: 0.76rem;
+      font-weight: 800;
+      line-height: 1;
+      text-decoration: none;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
       white-space: nowrap;
+    }
+
+    .proj-card-repo:hover,
+    .proj-card-repo:focus-visible {
+      border-color: color-mix(in srgb, var(--accent) 68%, var(--border));
+      background: color-mix(in srgb, var(--accent) 15%, var(--surface));
+      color: var(--accent);
+      transform: translateY(-1px);
     }
 
     @media (max-width: 860px) {
@@ -1740,7 +1896,7 @@
       }
 
       .proj-card {
-        flex-basis: clamp(250px, 42vw, 320px);
+        flex-basis: clamp(340px, 72vw, 460px);
       }
     }
 
@@ -1760,11 +1916,11 @@
       }
 
       .proj-track {
-        animation-duration: 70s;
+        animation-duration: 86s;
       }
 
       .proj-track--reverse {
-        animation-duration: 76s;
+        animation-duration: 92s;
       }
 
       .proj-strip {
@@ -1773,9 +1929,67 @@
       }
 
       .proj-card {
-        flex-basis: min(82vw, 310px);
-        min-height: 230px;
+        flex-basis: min(88vw, 352px);
+        height: 374px;
+        min-height: 374px;
         padding: 16px;
+        gap: 10px;
+      }
+
+      .proj-card::before {
+        right: 6px;
+        bottom: -16px;
+        max-width: 78%;
+        font-size: 15.4rem;
+        transform: scaleX(0.32);
+      }
+
+      .proj-card-head {
+        grid-template-columns: 56px minmax(0, 1fr);
+        gap: 12px;
+        min-height: 56px;
+      }
+
+      .proj-card-avatar {
+        width: 56px;
+        height: 56px;
+      }
+
+      .proj-card-name {
+        font-size: 1.05rem;
+      }
+
+      .proj-card-desc {
+        font-size: 0.82rem;
+        -webkit-line-clamp: 4;
+      }
+
+      .proj-card-tags {
+        max-height: 24px;
+      }
+
+      .proj-card-foot {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 10px;
+        min-height: 118px;
+      }
+
+      .proj-card-stat strong {
+        font-size: 1.08rem;
+      }
+
+      .proj-card-stat span {
+        font-size: 0.62rem;
+      }
+
+      .proj-card-side {
+        align-items: flex-start;
+        font-size: 0.7rem;
+      }
+
+      .proj-card-license {
+        font-size: 0.82rem;
       }
     }
 
@@ -2815,20 +3029,87 @@
 
       const projGrid = document.getElementById("render-projects");
       if (projGrid && SITE_DATA.projects) {
+        const formatCount = value => {
+          const number = Number(value) || 0;
+          if (number >= 1000000) return (number / 1000000).toFixed(1).replace(/\.0$/, "") + "m";
+          if (number >= 1000) return (number / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+          return String(number);
+        };
+
+        const formatDate = value => {
+          if (!value) return "";
+          const date = new Date(value);
+          if (Number.isNaN(date.getTime())) return "";
+          return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}`;
+        };
+
+        const languageColor = language => ({
+          "C#": "#6f86a8",
+          "C++": "#7a9aaa",
+          "CSS": "#b08c7a",
+          "Go": "#6fa8ad",
+          "HTML": "#b58f72",
+          "JavaScript": "#b5a36f",
+          "Jupyter Notebook": "#a97962",
+          "Markdown": "#8c9098",
+          "Python": "#6f9a82",
+          "TypeScript": "#6d8cad",
+        })[language] || "#7a9aaa";
+
+        const languageMark = language => ({
+          "C#": "C#",
+          "C++": "C++",
+          "CSS": "CSS",
+          "Go": "GO",
+          "HTML": "HTML",
+          "JavaScript": "JS",
+          "Jupyter Notebook": "NB",
+          "Markdown": "md",
+          "Python": "PY",
+          "TypeScript": "TS",
+        })[language] || String(language || "").slice(0, 3).toUpperCase();
+
         const renderProjectCards = (items, isClone = false) => items.map(item => {
-          const language = item.language ? `<span class="proj-card-pill">${esc(item.language)}</span>` : "";
+          const repo = item.fullName || item.repo || item.name;
+          const owner = item.owner || String(repo).split("/")[0] || "lartpang";
+          const updated = formatDate(item.pushedAt || item.updatedAt);
+          const license = item.license || "No license";
+          const topics = (item.topics || []).slice(0, 4).map(topic => (
+            `<span class="proj-card-pill">${esc(topic)}</span>`
+          )).join("");
+          const language = item.language || "";
+          const languageStyle = language ? ` style="--proj-lang-color:${esc(languageColor(language))}" data-language="${esc(language)}" data-language-mark="${esc(languageMark(language))}"` : "";
           const linkTab = isClone ? ` tabindex="-1"` : "";
-          const homepage = item.homepage ? `<a class="proj-card-live" href="${esc(item.homepage)}" target="_blank" rel="noopener"${linkTab}>Live</a>` : "";
+          const githubLink = `<a class="proj-card-repo" href="${esc(item.url)}" target="_blank" rel="noopener"${linkTab}>GitHub Repo</a>`;
           const cloneAttrs = isClone ? ` aria-hidden="true"` : "";
+          const avatar = item.ownerAvatar ? `
+            <img class="proj-card-avatar" src="${esc(item.ownerAvatar)}" alt="" loading="lazy" decoding="async">
+          ` : `<div class="proj-card-avatar" aria-hidden="true"></div>`;
 
           return `
-            <article class="proj-card"${cloneAttrs}>
-              <a class="proj-card-name" href="${esc(item.url)}" target="_blank" rel="noopener"${linkTab}>${esc(item.name)}</a>
-              <div class="proj-card-meta">${language}</div>
-              <p class="proj-card-desc">${esc(item.desc)}</p>
+            <article class="proj-card"${cloneAttrs}${languageStyle}>
+              <div class="proj-card-head">
+                ${avatar}
+                <div class="proj-card-title">
+                  <a class="proj-card-owner" href="https://github.com/${esc(owner)}" target="_blank" rel="noopener"${linkTab}>${esc(owner)}/</a>
+                  <a class="proj-card-name" href="${esc(item.url)}" target="_blank" rel="noopener"${linkTab}>${esc(item.name)}</a>
+                </div>
+              </div>
+              <div class="proj-card-body">
+                <p class="proj-card-desc">${esc(item.desc)}</p>
+                <div class="proj-card-tags">${topics}</div>
+              </div>
               <div class="proj-card-foot">
-                <img src="${esc(item.shield)}" alt="${esc(item.name)} GitHub stars" loading="lazy" decoding="async">
-                ${homepage}
+                <div class="proj-card-stats">
+                  <div class="proj-card-stat"><strong>${formatCount(item.stars)}</strong><span>Stars</span></div>
+                  <div class="proj-card-stat"><strong>${formatCount(item.forks)}</strong><span>Forks</span></div>
+                  <div class="proj-card-stat"><strong>${formatCount(item.watchers)}</strong><span>Watchers</span></div>
+                </div>
+                <div class="proj-card-side">
+                  <div class="proj-card-license">License: ${esc(license)}</div>
+                  <div>Updated ${esc(updated || "recently")}</div>
+                  <div class="proj-card-links">${githubLink}</div>
+                </div>
               </div>
             </article>
           `;

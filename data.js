@@ -14,129 +14,429 @@ const SITE_DATA = {
   "projects": [
     {
       "name": "FileShelf",
+      "repo": "lartpang/FileShelf",
+      "fullName": "lartpang/FileShelf",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/FileShelf",
       "desc": "A portable Windows file shelf for temporarily staging files and folders between Explorer windows or applications.",
-      "shield": "https://img.shields.io/github/stars/lartpang/FileShelf?style=flat-square",
-      "language": "C#"
+      "language": "C#",
+      "stars": 3,
+      "forks": 0,
+      "watchers": 0,
+      "license": "MIT",
+      "topics": [],
+      "updatedAt": "2026-07-06T06:31:03Z",
+      "pushedAt": "2026-07-05T14:31:15Z"
     },
     {
       "name": "BibSentry",
+      "repo": "lartpang/BibSentry",
+      "fullName": "lartpang/BibSentry",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/BibSentry",
-      "homepage": "https://lartpang.github.io/BibSentry/",
-      "desc": "A browser-based BibTeX review tool that parses entries locally, checks public metadata sources, shows field-level differences, and exports a cleaned .bib file.",
-      "shield": "https://img.shields.io/github/stars/lartpang/BibSentry?style=flat-square",
-      "language": "JavaScript"
+      "desc": "BibSentry is a browser-based tool for checking and correcting `.bib` files. It parses entries locally, searches selected academic sources, shows what changed, and exports a reviewed BibTeX file.",
+      "language": "JavaScript",
+      "stars": 3,
+      "forks": 0,
+      "watchers": 0,
+      "license": "MIT",
+      "topics": [],
+      "updatedAt": "2026-06-19T03:39:00Z",
+      "pushedAt": "2026-05-22T04:30:03Z"
     },
     {
       "name": "DailyArxiv",
+      "repo": "lartpang/DailyArxiv",
+      "fullName": "lartpang/DailyArxiv",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/DailyArxiv",
-      "homepage": "https://lartpang.github.io/DailyArxiv/",
-      "desc": "A daily arXiv paper tracker for topic-specific feeds such as spiking neural networks, with generated JSON data and a browsable web page.",
-      "shield": "https://img.shields.io/github/stars/lartpang/DailyArxiv?style=flat-square",
-      "language": "Python"
+      "desc": "Update arXiv daily papers about the specific topics like Spiking Neural Networks...",
+      "language": "Python",
+      "stars": 7,
+      "forks": 0,
+      "watchers": 0,
+      "license": "",
+      "topics": [
+        "infrared-small-target-detection",
+        "irstd",
+        "neuromorphic-computing",
+        "snn",
+        "spiking-neural-network"
+      ],
+      "updatedAt": "2026-07-05T06:17:29Z",
+      "pushedAt": "2026-07-05T06:17:26Z"
     },
     {
       "name": "DynamicConvolutionOperator",
+      "repo": "lartpang/DynamicConvolutionOperator",
+      "fullName": "lartpang/DynamicConvolutionOperator",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/DynamicConvolutionOperator",
       "desc": "A Triton-optimized implementation of the Dynamic Dilated Pyramid Module from HDFNet, reducing unfold-style memory overhead for dynamic convolution.",
-      "shield": "https://img.shields.io/github/stars/lartpang/DynamicConvolutionOperator?style=flat-square",
-      "language": "Python"
+      "language": "Python",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 0,
+      "license": "MIT",
+      "topics": [],
+      "updatedAt": "2026-03-26T06:52:04Z",
+      "pushedAt": "2026-03-26T06:21:31Z"
     },
     {
       "name": "Hands-on-Docker (中文)",
+      "repo": "lartpang/Hands-on-Docker",
+      "fullName": "lartpang/Hands-on-Docker",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/Hands-on-Docker",
-      "desc": "一份详尽的 Docker 使用指南。",
-      "shield": "https://img.shields.io/github/stars/lartpang/Hands-on-Docker?style=flat-square"
+      "desc": "一份详尽的Docker使用指南",
+      "language": "Markdown",
+      "stars": 24,
+      "forks": 3,
+      "watchers": 1,
+      "license": "MIT",
+      "topics": [],
+      "updatedAt": "2026-04-20T01:49:55Z",
+      "pushedAt": "2023-11-02T05:58:42Z"
     },
     {
       "name": "Awesome-Class-Activation-Map",
+      "repo": "lartpang/awesome-class-activation-map",
+      "fullName": "lartpang/awesome-class-activation-map",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/awesome-class-activation-map",
       "desc": "An awesome list of papers and tools about the class activation map (CAM) technology.",
-      "shield": "https://img.shields.io/github/stars/lartpang/awesome-class-activation-map?style=flat-square"
+      "language": "Markdown",
+      "stars": 12,
+      "forks": 1,
+      "watchers": 1,
+      "license": "MIT",
+      "topics": [
+        "awesome",
+        "awesome-list",
+        "awesome-readme",
+        "cam",
+        "class-activation-map"
+      ],
+      "updatedAt": "2025-12-02T08:47:28Z",
+      "pushedAt": "2023-09-26T14:30:56Z"
     },
     {
       "name": "PyTorchTricks",
+      "repo": "lartpang/PyTorchTricks",
+      "fullName": "lartpang/PyTorchTricks",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/PyTorchTricks",
-      "desc": "Some tricks of pytorch…",
-      "shield": "https://img.shields.io/github/stars/lartpang/PyTorchTricks?style=flat-square"
+      "desc": "Some tricks of pytorch... :star:",
+      "language": "Markdown",
+      "stars": 1191,
+      "forks": 123,
+      "watchers": 31,
+      "license": "",
+      "topics": [
+        "pytorch",
+        "pytorch-trick",
+        "pytorch-tutorial",
+        "tricks"
+      ],
+      "updatedAt": "2026-06-14T05:46:07Z",
+      "pushedAt": "2024-06-20T07:40:54Z"
     },
     {
       "name": "MethodsCmp",
+      "repo": "lartpang/MethodsCmp",
+      "fullName": "lartpang/MethodsCmp",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/MethodsCmp",
-      "desc": "A Simple Toolkit for Counting the FLOPs/MACs, Parameters and FPS of Pytorch-based Methods.",
-      "shield": "https://img.shields.io/github/stars/lartpang/MethodsCmp?style=flat-square"
+      "desc": "MethodsCmp: A Simple Toolkit for Counting the FLOPs/MACs, Parameters and FPS of Pytorch-based Methods",
+      "language": "Python",
+      "stars": 19,
+      "forks": 4,
+      "watchers": 3,
+      "license": "",
+      "topics": [
+        "flops",
+        "flops-counter",
+        "fps",
+        "fps-counter",
+        "macs"
+      ],
+      "updatedAt": "2025-11-05T06:48:32Z",
+      "pushedAt": "2024-05-13T09:06:43Z"
     },
     {
       "name": "PySODEvalToolkit",
+      "repo": "lartpang/PySODEvalToolkit",
+      "fullName": "lartpang/PySODEvalToolkit",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/PySODEvalToolkit",
-      "desc": "A Python-based salient object detection and video object segmentation evaluation toolbox.",
-      "shield": "https://img.shields.io/github/stars/lartpang/PySODEvalToolkit?style=flat-square"
+      "desc": "PySODEvalToolkit: A Python-based Evaluation Toolbox for Salient Object Detection and Camouflaged Object Detection",
+      "language": "Python",
+      "stars": 354,
+      "forks": 32,
+      "watchers": 9,
+      "license": "MIT",
+      "topics": [
+        "camouflaged-object-detection",
+        "co-saliency",
+        "co-salient-object-detection",
+        "e-measure",
+        "evaluation"
+      ],
+      "updatedAt": "2026-07-03T11:21:33Z",
+      "pushedAt": "2024-09-27T05:36:49Z"
     },
     {
       "name": "PySODMetrics",
+      "repo": "lartpang/PySODMetrics",
+      "fullName": "lartpang/PySODMetrics",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/PySODMetrics",
-      "desc": "A simple and efficient implementation of SOD metrcis.",
-      "shield": "https://img.shields.io/github/stars/lartpang/PySODMetrics?style=flat-square"
+      "desc": "PySODMetrics: A Simple and Efficient Implementation of Grayscale/Binary Segmentation Metrics",
+      "language": "Python",
+      "stars": 447,
+      "forks": 37,
+      "watchers": 15,
+      "license": "MIT",
+      "topics": [
+        "metrics",
+        "metrics-evaluation",
+        "metrics-library",
+        "metrics-reported",
+        "python3"
+      ],
+      "updatedAt": "2026-07-02T14:16:16Z",
+      "pushedAt": "2026-07-02T07:09:01Z"
     },
     {
       "name": "PyIRSTDMetrics",
+      "repo": "lartpang/PyIRSTDMetrics",
+      "fullName": "lartpang/PyIRSTDMetrics",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/PyIRSTDMetrics",
-      "desc": "A simple and efficient implementation for the IRSTD performance analysis.",
-      "shield": "https://img.shields.io/github/stars/lartpang/PyIRSTDMetrics?style=flat-square"
+      "desc": "[NeurIPS 2025 (D&B)] Rethinking Evaluation of Infrared Small Target Detection",
+      "language": "Python",
+      "stars": 358,
+      "forks": 25,
+      "watchers": 18,
+      "license": "MIT",
+      "topics": [
+        "error-analysis",
+        "infrared-small-target-detction",
+        "infrared-small-target-images",
+        "infrared-small-target-segmentation",
+        "irstd"
+      ],
+      "updatedAt": "2026-06-29T06:38:49Z",
+      "pushedAt": "2026-03-23T10:05:32Z"
     },
     {
       "name": "PyLoss",
+      "repo": "lartpang/PyLoss",
+      "fullName": "lartpang/PyLoss",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/PyLoss",
       "desc": "Some loss functions for deeplearning.",
-      "shield": "https://img.shields.io/github/stars/lartpang/PyLoss?style=flat-square"
+      "language": "Python",
+      "stars": 3,
+      "forks": 1,
+      "watchers": 1,
+      "license": "MIT",
+      "topics": [],
+      "updatedAt": "2024-03-07T23:42:05Z",
+      "pushedAt": "2021-04-05T06:17:10Z"
     },
     {
       "name": "OpticalFlowBasedVOS",
+      "repo": "lartpang/OpticalFlowBasedVOS",
+      "fullName": "lartpang/OpticalFlowBasedVOS",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/OpticalFlowBasedVOS",
       "desc": "A simple and efficient codebase for the optical flow based video object segmentation.",
-      "shield": "https://img.shields.io/github/stars/lartpang/OpticalFlowBasedVOS?style=flat-square"
+      "language": "Python",
+      "stars": 7,
+      "forks": 2,
+      "watchers": 1,
+      "license": "MIT",
+      "topics": [
+        "video-object-segmentation",
+        "video-seg",
+        "video-segmentation",
+        "vos"
+      ],
+      "updatedAt": "2025-03-20T03:22:19Z",
+      "pushedAt": "2020-11-19T08:50:32Z"
     },
     {
       "name": "CoSaliencyProj",
+      "repo": "lartpang/CoSaliencyProj",
+      "fullName": "lartpang/CoSaliencyProj",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/CoSaliencyProj",
-      "desc": "A project for co-saliency detection. Some codes are borrowed from ICNet (NIPS2020).",
-      "shield": "https://img.shields.io/github/stars/lartpang/CoSaliencyProj?style=flat-square"
+      "desc": "A project for co-saliency detection. Some codes are borrowed from ICNet. Thanks to ICNet Intra-saliency Correlation Network for Co-Saliency Detection (NIPS2020)~",
+      "language": "Python",
+      "stars": 2,
+      "forks": 0,
+      "watchers": 1,
+      "license": "MIT",
+      "topics": [
+        "co-saliency",
+        "python",
+        "python3",
+        "saliency-detection"
+      ],
+      "updatedAt": "2023-07-22T09:51:45Z",
+      "pushedAt": "2020-12-26T03:58:54Z"
     },
     {
       "name": "RunIt",
+      "repo": "lartpang/RunIt",
+      "fullName": "lartpang/RunIt",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/RunIt",
       "desc": "A simple program scheduler for your code on different devices.",
-      "shield": "https://img.shields.io/github/stars/lartpang/RunIt?style=flat-square"
+      "language": "Python",
+      "stars": 12,
+      "forks": 1,
+      "watchers": 2,
+      "license": "MIT",
+      "topics": [
+        "deeplearning-tool",
+        "multi-gpu-scheduler",
+        "multi-process",
+        "multi-process-scheduler",
+        "python"
+      ],
+      "updatedAt": "2026-03-08T06:07:40Z",
+      "pushedAt": "2026-03-08T06:07:37Z"
     },
     {
       "name": "RegisterIt",
+      "repo": "lartpang/RegisterIt",
+      "fullName": "lartpang/RegisterIt",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/RegisterIt",
-      "desc": "Register it: A more flexible register for the DeepLearning project.",
-      "shield": "https://img.shields.io/github/stars/lartpang/RegisterIt?style=flat-square"
+      "desc": "A more flexible register for the DeepLearning project.",
+      "language": "Python",
+      "stars": 4,
+      "forks": 0,
+      "watchers": 2,
+      "license": "MIT",
+      "topics": [
+        "deeplearning-tool",
+        "registry",
+        "tool",
+        "utility"
+      ],
+      "updatedAt": "2022-12-06T09:43:24Z",
+      "pushedAt": "2022-07-04T11:37:18Z"
     },
     {
       "name": "mssim.pytorch",
+      "repo": "lartpang/mssim.pytorch",
+      "fullName": "lartpang/mssim.pytorch",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/mssim.pytorch",
       "desc": "A better pytorch-based implementation for the mean structural similarity. Differentiable simpler SSIM and MS-SSIM.",
-      "shield": "https://img.shields.io/github/stars/lartpang/mssim.pytorch?style=flat-square"
+      "language": "Python",
+      "stars": 110,
+      "forks": 8,
+      "watchers": 6,
+      "license": "MIT",
+      "topics": [
+        "loss-function",
+        "loss-functions",
+        "ssim",
+        "ssim-loss",
+        "ssim-metric"
+      ],
+      "updatedAt": "2026-02-01T07:59:37Z",
+      "pushedAt": "2024-12-04T09:10:54Z"
     },
     {
       "name": "tta.pytorch",
+      "repo": "lartpang/tta.pytorch",
+      "fullName": "lartpang/tta.pytorch",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/tta.pytorch",
-      "desc": "Test-Time Augmentation library for Pytorch.",
-      "shield": "https://img.shields.io/github/stars/lartpang/tta.pytorch?style=flat-square"
+      "desc": "Test-Time Augmentation library for Pytorch",
+      "language": "Python",
+      "stars": 84,
+      "forks": 6,
+      "watchers": 7,
+      "license": "",
+      "topics": [
+        "deeplearning",
+        "machine-learning",
+        "pytorch",
+        "pytorch-implementation",
+        "test-time-augmentation"
+      ],
+      "updatedAt": "2026-04-06T10:26:42Z",
+      "pushedAt": "2024-01-02T06:54:28Z"
     },
     {
       "name": "YuQueTools",
+      "repo": "lartpang/YuQueTools",
+      "fullName": "lartpang/YuQueTools",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/YuQueTools",
-      "desc": "A simple tool to download your own articles from yuque.",
-      "shield": "https://img.shields.io/github/stars/lartpang/YuQueTools?style=flat-square"
+      "desc": "用于语雀的小工具",
+      "language": "Python",
+      "stars": 2,
+      "forks": 0,
+      "watchers": 1,
+      "license": "",
+      "topics": [
+        "tools",
+        "toolset",
+        "yuque",
+        "yuque-documents",
+        "yuque-plugin"
+      ],
+      "updatedAt": "2022-09-01T05:57:47Z",
+      "pushedAt": "2022-08-24T08:26:42Z"
     },
     {
       "name": "ManageMyAttachments",
+      "repo": "lartpang/ManageMyAttachments",
+      "fullName": "lartpang/ManageMyAttachments",
+      "owner": "lartpang",
+      "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/ManageMyAttachments",
-      "desc": "Manage the attachments of your own obsidian vault.",
-      "shield": "https://img.shields.io/github/stars/lartpang/ManageMyAttachments?style=flat-square"
+      "desc": "Some useful tools to help manage attachments in my local markdown projects.",
+      "language": "Go",
+      "stars": 6,
+      "forks": 0,
+      "watchers": 1,
+      "license": "MIT",
+      "topics": [
+        "attachment-files",
+        "knowledge-management",
+        "markdown-mate",
+        "obsidian",
+        "obsidian-mate"
+      ],
+      "updatedAt": "2026-02-24T00:54:15Z",
+      "pushedAt": "2022-02-15T06:59:16Z"
     }
   ],
   "papers": [
