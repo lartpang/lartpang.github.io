@@ -1653,12 +1653,12 @@
     .proj-card {
       position: relative;
       flex: 0 0 clamp(390px, 34vw, 520px);
-      height: clamp(372px, 26vw, 396px);
-      min-height: 372px;
+      height: clamp(314px, 22vw, 340px);
+      min-height: 314px;
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px 26px 20px;
+      padding: 18px 24px 18px;
       display: grid;
       grid-template-rows: auto minmax(0, 1fr) auto;
       gap: 12px;
@@ -1691,17 +1691,17 @@
       overflow: hidden;
       color: var(--proj-lang-color, var(--primary));
       font-family: 'IBM Plex Mono', monospace;
-      font-size: clamp(15rem, 19vw, 17rem);
+      font-size: clamp(14.2rem, 17.2vw, 15.8rem);
       font-weight: 700;
       line-height: 0.68;
       letter-spacing: 0;
-      opacity: 0.042;
+      opacity: 0.068;
       pointer-events: none;
       text-align: right;
       white-space: nowrap;
       transform: scaleX(0.36);
       transform-origin: right bottom;
-      text-shadow: 0 12px 30px color-mix(in srgb, var(--proj-lang-color, var(--primary)) 34%, transparent);
+      text-shadow: 0 14px 34px color-mix(in srgb, var(--proj-lang-color, var(--primary)) 46%, transparent);
     }
 
     .proj-card::after {
@@ -1722,15 +1722,15 @@
 
     .proj-card-head {
       display: grid;
-      grid-template-columns: 92px minmax(0, 1fr);
+      grid-template-columns: 74px minmax(0, 1fr);
       align-items: center;
-      gap: 18px;
-      min-height: 92px;
+      gap: 16px;
+      min-height: 74px;
     }
 
     .proj-card-avatar {
-      width: 92px;
-      height: 92px;
+      width: 74px;
+      height: 74px;
       border-radius: 50%;
       border: 1px solid rgba(255, 255, 255, 0.8);
       object-fit: cover;
@@ -1784,7 +1784,7 @@
       color: var(--text);
       line-height: 1.5;
       display: -webkit-box;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -1817,7 +1817,7 @@
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: end;
       gap: 18px;
-      min-height: 70px;
+      min-height: 62px;
     }
 
     .proj-card-stats {
@@ -1829,7 +1829,7 @@
     .proj-card-stat strong {
       display: block;
       color: var(--text);
-      font-size: 1.26rem;
+      font-size: 1.18rem;
       line-height: 1.1;
     }
 
@@ -1853,7 +1853,7 @@
 
     .proj-card-license {
       color: var(--text);
-      font-size: 0.92rem;
+      font-size: 0.86rem;
       font-weight: 700;
     }
 
@@ -1930,8 +1930,8 @@
 
       .proj-card {
         flex-basis: min(88vw, 352px);
-        height: 374px;
-        min-height: 374px;
+        height: 326px;
+        min-height: 326px;
         padding: 16px;
         gap: 10px;
       }
@@ -1940,7 +1940,7 @@
         right: 6px;
         bottom: -16px;
         max-width: 78%;
-        font-size: 15.4rem;
+        font-size: 14.5rem;
         transform: scaleX(0.32);
       }
 
@@ -1961,7 +1961,7 @@
 
       .proj-card-desc {
         font-size: 0.82rem;
-        -webkit-line-clamp: 4;
+        -webkit-line-clamp: 3;
       }
 
       .proj-card-tags {
@@ -1971,8 +1971,8 @@
       .proj-card-foot {
         grid-template-columns: 1fr;
         align-items: start;
-        gap: 10px;
-        min-height: 118px;
+        gap: 8px;
+        min-height: 104px;
       }
 
       .proj-card-stat strong {
@@ -2991,7 +2991,9 @@
 
 
   <!-- SITE DATA -->
-  <script src="./data.js"></script>
+  <script>
+    document.write('<script src="./data.js?v=' + Date.now() + '"><\/script>');
+  </script>
   <script>
     function renderSiteData() {
       if (typeof SITE_DATA === 'undefined') return;
@@ -3064,7 +3066,7 @@
           "HTML": "HTML",
           "JavaScript": "JS",
           "Jupyter Notebook": "NB",
-          "Markdown": "md",
+          "Markdown": "MD",
           "Python": "PY",
           "TypeScript": "TS",
         })[language] || String(language || "").slice(0, 3).toUpperCase();
