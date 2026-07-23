@@ -1,6 +1,10 @@
 const SITE_DATA = {
   "news": [
     {
+      "date": "2026-07",
+      "content": "Received the Outstanding Reviewer Award from the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)."
+    },
+    {
       "date": "2024-12",
       "content": "Finished defending my doctoral dissertation."
     },
