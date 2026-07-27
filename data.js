@@ -25,12 +25,12 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/FileShelf",
       "desc": "A portable Windows file shelf for temporarily staging files and folders between Explorer windows or applications.",
       "language": "C#",
-      "stars": 8,
+      "stars": 9,
       "forks": 0,
       "watchers": 0,
       "license": "MIT",
       "topics": [],
-      "updatedAt": "2026-07-08T02:09:41Z",
+      "updatedAt": "2026-07-20T06:13:45Z",
       "pushedAt": "2026-07-07T12:12:57Z"
     },
     {
@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-07-19T08:33:39Z",
-      "pushedAt": "2026-07-19T08:33:21Z"
+      "updatedAt": "2026-07-26T08:39:57Z",
+      "pushedAt": "2026-07-26T08:39:53Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -80,15 +80,20 @@ const SITE_DATA = {
       "owner": "lartpang",
       "ownerAvatar": "https://avatars.githubusercontent.com/u/26847524?v=4",
       "url": "https://github.com/lartpang/DynamicConvolutionOperator",
-      "desc": "A Triton-optimized implementation of the Dynamic Dilated Pyramid Module from HDFNet, reducing unfold-style memory overhead for dynamic convolution.",
+      "desc": "Better and Faster Implementation Dynamic Dilated Pyramid Module from HDFNet (ECCV 2020)",
       "language": "Python",
       "stars": 1,
       "forks": 0,
       "watchers": 0,
       "license": "MIT",
-      "topics": [],
-      "updatedAt": "2026-03-26T06:52:04Z",
-      "pushedAt": "2026-03-26T06:21:31Z"
+      "topics": [
+        "operator",
+        "operator-kernel",
+        "triton-kernels",
+        "triton-operator"
+      ],
+      "updatedAt": "2026-07-24T05:50:28Z",
+      "pushedAt": "2026-07-24T04:37:46Z"
     },
     {
       "name": "Hands-on-Docker (中文)",
@@ -139,7 +144,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PyTorchTricks",
       "desc": "Some tricks of pytorch... :star:",
       "language": "Markdown",
-      "stars": 1191,
+      "stars": 1190,
       "forks": 123,
       "watchers": 31,
       "license": "",
@@ -149,7 +154,7 @@ const SITE_DATA = {
         "pytorch-tutorial",
         "tricks"
       ],
-      "updatedAt": "2026-06-14T05:46:07Z",
+      "updatedAt": "2026-07-22T13:51:36Z",
       "pushedAt": "2024-06-20T07:40:54Z"
     },
     {
@@ -207,8 +212,8 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODMetrics",
       "desc": "PySODMetrics: A Simple and Efficient Implementation of Grayscale/Binary Segmentation Metrics",
       "language": "Python",
-      "stars": 447,
-      "forks": 37,
+      "stars": 448,
+      "forks": 38,
       "watchers": 15,
       "license": "MIT",
       "topics": [
@@ -218,7 +223,7 @@ const SITE_DATA = {
         "metrics-reported",
         "python3"
       ],
-      "updatedAt": "2026-07-02T14:16:16Z",
+      "updatedAt": "2026-07-23T10:43:58Z",
       "pushedAt": "2026-07-02T07:09:01Z"
     },
     {
@@ -230,7 +235,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PyIRSTDMetrics",
       "desc": "[NeurIPS 2025 (D&B)] Rethinking Evaluation of Infrared Small Target Detection",
       "language": "Python",
-      "stars": 358,
+      "stars": 359,
       "forks": 25,
       "watchers": 18,
       "license": "MIT",
@@ -241,7 +246,7 @@ const SITE_DATA = {
         "infrared-small-target-segmentation",
         "irstd"
       ],
-      "updatedAt": "2026-06-29T06:38:49Z",
+      "updatedAt": "2026-07-24T08:57:55Z",
       "pushedAt": "2026-03-23T10:05:32Z"
     },
     {
