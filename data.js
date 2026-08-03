@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-07-26T08:39:57Z",
-      "pushedAt": "2026-07-26T08:39:53Z"
+      "updatedAt": "2026-08-02T08:37:38Z",
+      "pushedAt": "2026-08-02T08:37:25Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -212,7 +212,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODMetrics",
       "desc": "PySODMetrics: A Simple and Efficient Implementation of Grayscale/Binary Segmentation Metrics",
       "language": "Python",
-      "stars": 448,
+      "stars": 449,
       "forks": 38,
       "watchers": 15,
       "license": "MIT",
@@ -223,7 +223,7 @@ const SITE_DATA = {
         "metrics-reported",
         "python3"
       ],
-      "updatedAt": "2026-07-23T10:43:58Z",
+      "updatedAt": "2026-07-30T09:32:40Z",
       "pushedAt": "2026-07-02T07:09:01Z"
     },
     {
@@ -235,7 +235,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PyIRSTDMetrics",
       "desc": "[NeurIPS 2025 (D&B)] Rethinking Evaluation of Infrared Small Target Detection",
       "language": "Python",
-      "stars": 359,
+      "stars": 360,
       "forks": 25,
       "watchers": 18,
       "license": "MIT",
@@ -246,8 +246,8 @@ const SITE_DATA = {
         "infrared-small-target-segmentation",
         "irstd"
       ],
-      "updatedAt": "2026-07-24T08:57:55Z",
-      "pushedAt": "2026-03-23T10:05:32Z"
+      "updatedAt": "2026-07-29T08:17:02Z",
+      "pushedAt": "2026-07-28T04:02:47Z"
     },
     {
       "name": "PyLoss",
