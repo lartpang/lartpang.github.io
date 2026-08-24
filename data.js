@@ -30,8 +30,8 @@ const SITE_DATA = {
       "watchers": 0,
       "license": "MIT",
       "topics": [],
-      "updatedAt": "2026-07-20T06:13:45Z",
-      "pushedAt": "2026-07-07T12:12:57Z"
+      "updatedAt": "2026-08-23T14:13:50Z",
+      "pushedAt": "2026-08-23T14:12:42Z"
     },
     {
       "name": "BibSentry",
@@ -47,8 +47,8 @@ const SITE_DATA = {
       "watchers": 0,
       "license": "MIT",
       "topics": [],
-      "updatedAt": "2026-06-19T03:39:00Z",
-      "pushedAt": "2026-05-22T04:30:03Z"
+      "updatedAt": "2026-08-23T14:12:31Z",
+      "pushedAt": "2026-08-23T14:11:18Z"
     },
     {
       "name": "DailyArxiv",
@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-08-16T06:59:19Z",
-      "pushedAt": "2026-08-16T06:58:27Z"
+      "updatedAt": "2026-08-23T07:02:58Z",
+      "pushedAt": "2026-08-23T07:01:24Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -144,7 +144,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PyTorchTricks",
       "desc": "Some tricks of pytorch... :star:",
       "language": "Markdown",
-      "stars": 1190,
+      "stars": 1188,
       "forks": 123,
       "watchers": 31,
       "license": "",
@@ -154,7 +154,7 @@ const SITE_DATA = {
         "pytorch-tutorial",
         "tricks"
       ],
-      "updatedAt": "2026-08-16T08:39:57Z",
+      "updatedAt": "2026-08-22T10:18:24Z",
       "pushedAt": "2024-06-20T07:40:54Z"
     },
     {
@@ -189,7 +189,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODEvalToolkit",
       "desc": "PySODEvalToolkit: A Python-based Evaluation Toolbox for Salient Object Detection and Camouflaged Object Detection",
       "language": "Python",
-      "stars": 354,
+      "stars": 353,
       "forks": 32,
       "watchers": 9,
       "license": "MIT",
@@ -200,8 +200,8 @@ const SITE_DATA = {
         "e-measure",
         "evaluation"
       ],
-      "updatedAt": "2026-07-03T11:21:33Z",
-      "pushedAt": "2024-09-27T05:36:49Z"
+      "updatedAt": "2026-08-23T14:11:46Z",
+      "pushedAt": "2026-08-23T14:11:36Z"
     },
     {
       "name": "PySODMetrics",
@@ -212,7 +212,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODMetrics",
       "desc": "PySODMetrics: A Simple and Efficient Implementation of Grayscale/Binary Segmentation Metrics",
       "language": "Python",
-      "stars": 449,
+      "stars": 450,
       "forks": 39,
       "watchers": 15,
       "license": "MIT",
@@ -223,8 +223,8 @@ const SITE_DATA = {
         "metrics-reported",
         "python3"
       ],
-      "updatedAt": "2026-07-30T09:32:40Z",
-      "pushedAt": "2026-07-02T07:09:01Z"
+      "updatedAt": "2026-08-23T14:10:57Z",
+      "pushedAt": "2026-08-23T14:10:43Z"
     },
     {
       "name": "PyIRSTDMetrics",
@@ -236,7 +236,7 @@ const SITE_DATA = {
       "desc": "[NeurIPS 2025 (D&B)] Rethinking Evaluation of Infrared Small Target Detection",
       "language": "Python",
       "stars": 361,
-      "forks": 25,
+      "forks": 26,
       "watchers": 18,
       "license": "MIT",
       "topics": [
@@ -375,8 +375,8 @@ const SITE_DATA = {
         "ssim-loss",
         "ssim-metric"
       ],
-      "updatedAt": "2026-07-08T11:31:23Z",
-      "pushedAt": "2026-07-08T11:31:19Z"
+      "updatedAt": "2026-08-23T14:11:13Z",
+      "pushedAt": "2026-08-23T14:11:02Z"
     },
     {
       "name": "tta.pytorch",
