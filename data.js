@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-08-23T07:02:58Z",
-      "pushedAt": "2026-08-23T07:01:24Z"
+      "updatedAt": "2026-08-30T11:54:02Z",
+      "pushedAt": "2026-08-30T11:53:55Z"
     },
     {
       "name": "DynamicConvolutionOperator",
