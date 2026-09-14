@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-09-06T13:34:08Z",
-      "pushedAt": "2026-09-06T10:56:49Z"
+      "updatedAt": "2026-09-13T12:10:17Z",
+      "pushedAt": "2026-09-13T12:10:13Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -235,7 +235,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PyIRSTDMetrics",
       "desc": "[NeurIPS 2025 (D&B)] Rethinking Evaluation of Infrared Small Target Detection",
       "language": "Python",
-      "stars": 361,
+      "stars": 362,
       "forks": 26,
       "watchers": 18,
       "license": "MIT",
@@ -246,7 +246,7 @@ const SITE_DATA = {
         "infrared-small-target-segmentation",
         "irstd"
       ],
-      "updatedAt": "2026-08-08T08:49:56Z",
+      "updatedAt": "2026-09-07T12:52:22Z",
       "pushedAt": "2026-07-28T04:02:47Z"
     },
     {
