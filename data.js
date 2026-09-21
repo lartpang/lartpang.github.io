@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-09-13T12:10:17Z",
-      "pushedAt": "2026-09-13T12:10:13Z"
+      "updatedAt": "2026-09-20T11:23:37Z",
+      "pushedAt": "2026-09-20T11:23:30Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -189,7 +189,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODEvalToolkit",
       "desc": "PySODEvalToolkit: A Python-based Evaluation Toolbox for Salient Object Detection and Camouflaged Object Detection",
       "language": "Python",
-      "stars": 353,
+      "stars": 354,
       "forks": 32,
       "watchers": 9,
       "license": "MIT",
@@ -200,7 +200,7 @@ const SITE_DATA = {
         "e-measure",
         "evaluation"
       ],
-      "updatedAt": "2026-08-23T14:11:46Z",
+      "updatedAt": "2026-09-19T08:15:20Z",
       "pushedAt": "2026-08-23T14:11:36Z"
     },
     {
