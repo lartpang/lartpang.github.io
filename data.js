@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-10-04T12:20:24Z",
-      "pushedAt": "2026-10-04T12:20:20Z"
+      "updatedAt": "2026-10-11T12:47:58Z",
+      "pushedAt": "2026-10-11T12:47:54Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -104,12 +104,12 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/Hands-on-Docker",
       "desc": "一份详尽的Docker使用指南",
       "language": "Markdown",
-      "stars": 24,
+      "stars": 25,
       "forks": 3,
       "watchers": 1,
       "license": "MIT",
       "topics": [],
-      "updatedAt": "2026-04-20T01:49:55Z",
+      "updatedAt": "2026-10-08T14:51:45Z",
       "pushedAt": "2023-11-02T05:58:42Z"
     },
     {
@@ -212,7 +212,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODMetrics",
       "desc": "PySODMetrics: A Simple and Efficient Implementation of Grayscale/Binary Segmentation Metrics",
       "language": "Python",
-      "stars": 450,
+      "stars": 452,
       "forks": 39,
       "watchers": 15,
       "license": "MIT",
@@ -223,7 +223,7 @@ const SITE_DATA = {
         "metrics-reported",
         "python3"
       ],
-      "updatedAt": "2026-10-04T04:41:03Z",
+      "updatedAt": "2026-10-09T08:02:02Z",
       "pushedAt": "2026-08-23T14:10:43Z"
     },
     {
