@@ -61,7 +61,7 @@ const SITE_DATA = {
       "language": "Python",
       "stars": 7,
       "forks": 0,
-      "watchers": 0,
+      "watchers": 1,
       "license": "",
       "topics": [
         "infrared-small-target-detection",
@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-10-11T12:47:58Z",
-      "pushedAt": "2026-10-11T12:47:54Z"
+      "updatedAt": "2026-10-18T11:02:11Z",
+      "pushedAt": "2026-10-18T11:02:07Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -145,7 +145,7 @@ const SITE_DATA = {
       "desc": "Some tricks of pytorch... :star:",
       "language": "Markdown",
       "stars": 1188,
-      "forks": 123,
+      "forks": 122,
       "watchers": 31,
       "license": "",
       "topics": [
@@ -200,7 +200,7 @@ const SITE_DATA = {
         "e-measure",
         "evaluation"
       ],
-      "updatedAt": "2026-09-19T08:15:20Z",
+      "updatedAt": "2026-10-16T02:14:55Z",
       "pushedAt": "2026-08-23T14:11:36Z"
     },
     {
@@ -212,7 +212,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODMetrics",
       "desc": "PySODMetrics: A Simple and Efficient Implementation of Grayscale/Binary Segmentation Metrics",
       "language": "Python",
-      "stars": 452,
+      "stars": 454,
       "forks": 39,
       "watchers": 15,
       "license": "MIT",
@@ -223,7 +223,7 @@ const SITE_DATA = {
         "metrics-reported",
         "python3"
       ],
-      "updatedAt": "2026-10-09T08:02:02Z",
+      "updatedAt": "2026-10-19T02:05:18Z",
       "pushedAt": "2026-08-23T14:10:43Z"
     },
     {
