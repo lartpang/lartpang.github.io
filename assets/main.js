@@ -302,7 +302,15 @@ const cosmos = (function () {
 /* ===================== nav ===================== */
 {
   const nav = $('nav'), links = $('navLinks'), burger = $('burger'), secs = [...document.querySelectorAll('main section[id]')];
-  const setOpen = open => { links.classList.toggle('open', open); burger.setAttribute('aria-expanded', open); };
+  const drawer = matchMedia('(max-width: 1100px)');
+  // a closed drawer is only moved off-screen, so take its links out of the tab order too
+  const setOpen = open => {
+    links.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    links.inert = drawer.matches && !open;
+  };
+  drawer.addEventListener('change', () => setOpen(false));
+  setOpen(false);
   burger.addEventListener('click', () => setOpen(!links.classList.contains('open')));
   links.addEventListener('click', e => e.target.tagName === 'A' && setOpen(false));
   addEventListener('keydown', e => e.key === 'Escape' && setOpen(false));
@@ -311,10 +319,11 @@ const cosmos = (function () {
   const onScroll = () => {
     const y = scrollY;
     nav.classList.toggle('solid', y > 40);
-    // hide while reading downward, return on any upward scroll
-    nav.classList.toggle('away', y > innerHeight * .6 && y > lastY + 4 && !links.classList.contains('open'));
-    if (y < lastY - 4 || y < innerHeight * .6) nav.classList.remove('away');
-    lastY = y;
+    // hide while reading downward, return on a real upward scroll or near the top;
+    // small jitters in between keep the current state
+    if (y < innerHeight * .6 || y < lastY - 4 || links.classList.contains('open')) nav.classList.remove('away');
+    else if (y > lastY + 4) nav.classList.add('away');
+    if (Math.abs(y - lastY) > 4) lastY = y;
     const cur = secs.filter(s => s.getBoundingClientRect().top < innerHeight * .4).pop()?.id;
     links.querySelectorAll('a').forEach(a => a.classList.toggle('on', a.hash === '#' + cur));
   };

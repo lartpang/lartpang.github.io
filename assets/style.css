@@ -143,6 +143,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     padding: 110px 40px 40px;
     background: #000;
     border-left: 1px solid var(--line);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     transform: translateX(100%);
     transition: transform .45s var(--ease);
   }
