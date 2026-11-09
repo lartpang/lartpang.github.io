@@ -22,7 +22,9 @@ function rng(seed) {
    A fixed canvas behind everything, painted like a long-exposure astrophoto.
    A single band of the galaxy winds down the page: faint blue reflection
    nebulae near the top, red emission clouds and dark dust lanes in the middle,
-   and the warm, star-packed galactic core at the very bottom. */
+   and the warm, star-packed galactic core at the very bottom. The sky is alive
+   but slow: bright stars scintillate, thin gas drifts along the band, the nearer
+   stars creep sideways, and now and then a meteor crosses. */
 const layer = (w, h) => { const c = document.createElement('canvas'); c.width = Math.max(1, w | 0); c.height = Math.max(1, h | 0); return c; };
 
 // value noise + fractal sums
@@ -42,6 +44,18 @@ function fbm(x, y, oct, s) {
   for (let i = 0; i < oct; i++) { sum += amp * vnoise(x, y, s + i * 17); norm += amp; x = x * 2.03 + 11.3; y = y * 2.03 + 7.1; amp *= .5; }
   return sum / norm;
 }
+// the same, but wrapping every P cells so a tile repeats seamlessly
+function pnoise(x, y, P, s) {
+  const ix = Math.floor(x), iy = Math.floor(y), fx = x - ix, fy = y - iy, w = i => ((i % P) + P) % P;
+  const u = fx * fx * (3 - 2 * fx), v = fy * fy * (3 - 2 * fy);
+  const a = hash2(w(ix), w(iy), s), b = hash2(w(ix + 1), w(iy), s), c = hash2(w(ix), w(iy + 1), s), d = hash2(w(ix + 1), w(iy + 1), s);
+  return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+}
+function pfbm(x, y, oct, P, s) {
+  let sum = 0, amp = .5, norm = 0, f = 1;
+  for (let i = 0; i < oct; i++) { sum += amp * pnoise(x * f, y * f, P * f, s + i * 17); norm += amp; f *= 2; amp *= .5; }
+  return sum / norm;
+}
 const smooth = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 const mix = (a, b, t) => a + (b - a) * t;
 
@@ -50,6 +64,9 @@ const cosmos = (function () {
   const F = .25;                               // the sky scrolls at a quarter of the page speed
   let W = 0, H = 0, D = 1, vw = 0, vh = 0, docH = 0, bgH = 0, cols = 0, rows = 0, T = 1;
   let tex = null, texCtx = null, img = null, mask = null, dust = null, job = 0, chunks = new Map(), near = null, dirty = true;
+  let bandTex = null, bandCtx = null, bandImg = null, gas = null, gasCv = null, gasCtx = null, sprites = null;
+  let px = 0, py = 0, tpx = 0, tpy = 0, meteors = [], nextMeteor = 0, lastT = 0;
+  const live = !RM;                              // reduced motion keeps the sky still
 
   // the galaxy band: where its centre lies and how wide it is at page depth v (0 top → 1 bottom)
   const bandAt = v => {
@@ -70,6 +87,9 @@ const cosmos = (function () {
     tex = layer(cols, rows); texCtx = tex.getContext('2d');
     img = texCtx.createImageData(cols, rows);
     mask = new Float32Array(cols * rows); dust = new Float32Array(cols * rows);
+    bandTex = layer(cols, rows); bandCtx = bandTex.getContext('2d'); bandImg = bandCtx.createImageData(cols, rows);
+    gasCv = layer(cols, Math.ceil(vh / T) + 3); gasCtx = gasCv.getContext('2d');
+    sprites = makeSprites();
     chunks.clear(); near = makeNear();
     return true;
   }
@@ -110,9 +130,11 @@ const cosmos = (function () {
           const i = ty * cols + tx, k = i * 4;
           data[k] = Math.min(255, R); data[k + 1] = Math.min(255, G); data[k + 2] = Math.min(255, B); data[k + 3] = 255;
           mask[i] = m * lift; dust[i] = du;
+          bandImg.data[k + 3] = 255 * Math.min(1, m * lift) * (1 - du * .8);   // where drifting gas may show
         }
       }
       texCtx.putImageData(img, 0, 0, 0, y0, cols, y1 - y0);
+      bandCtx.putImageData(bandImg, 0, 0, 0, y0, cols, y1 - y0);
       y0 = y1; dirty = true;
       if (y0 < rows) setTimeout(step, 0);
     };
@@ -125,8 +147,11 @@ const cosmos = (function () {
   };
 
   // a star with a realistic colour and, for the brightest few, a soft halo and faint spikes
-  function star(s, x, y, a, r) {
-    const t = r(), col = t < .12 ? '170,195,255' : t < .5 ? '235,240,255' : t < .82 ? '255,240,215' : '255,205,165';
+  const COLS = ['170,195,255', '235,240,255', '255,240,215', '255,205,165'];
+  function star(s, x, y, a, r, out) {
+    const t = r(), ci = t < .12 ? 0 : t < .5 ? 1 : t < .82 ? 2 : 3, col = COLS[ci];
+    // the brighter stars are drawn every frame instead, so they can scintillate
+    if (out && a > .55) { out.push({ x, y, a, ci, f: .0012 + r() * .0035, p: r() * 6.3, q: r() * 6.3 }); return; }
     const size = (.55 + a * .9) * D;
     s.fillStyle = `rgba(${col},${.25 + a * .75})`;
     s.fillRect(x * D - size / 2, y * D - size / 2, size, size);
@@ -146,17 +171,18 @@ const cosmos = (function () {
   const CH = 512;
   function chunk(ci) {
     if (chunks.has(ci)) return chunks.get(ci);
-    const c = layer(W, CH * D), s = c.getContext('2d'), r = rng(9001 + ci * 131);
+    const c = layer(W, CH * D), s = c.getContext('2d'), r = rng(9001 + ci * 131), out = [];
     const area = vw * CH, y0 = ci * CH;
-    for (let i = 0, n = area / 1500; i < n; i++) star(s, r() * vw, r() * CH, r() ** 4, r);          // everywhere
+    for (let i = 0, n = area / 1500; i < n; i++) star(s, r() * vw, r() * CH, r() ** 4, r, out);     // everywhere
     for (let i = 0, n = area / 110; i < n; i++) {                                                   // the band
       const x = r() * vw, y = r() * CH, m = sample(mask, x, y0 + y), du = sample(dust, x, y0 + y);
       if (r() > m * .85 * (1 - du)) continue;
-      star(s, x, y, r() ** 7, r);
+      star(s, x, y, r() ** 7, r, out);
     }
     if (chunks.size > 14) chunks.delete(chunks.keys().next().value);
-    chunks.set(ci, c);
-    return c;
+    const ch = { c, out };
+    chunks.set(ci, ch);
+    return ch;
   }
 
   // a sparse layer of nearer stars that drifts a little faster, for depth
@@ -166,27 +192,121 @@ const cosmos = (function () {
     D = save; return c;
   }
 
-  function draw() {
+  // one soft star image per colour, scaled per star
+  function makeSprites() {
+    return COLS.map(col => {
+      const c = layer(32, 32), s = c.getContext('2d'), gl = s.createRadialGradient(16, 16, 0, 16, 16, 16);
+      gl.addColorStop(0, `rgba(${col},1)`); gl.addColorStop(.12, `rgba(${col},.85)`);
+      gl.addColorStop(.3, `rgba(${col},.12)`); gl.addColorStop(1, `rgba(${col},0)`);
+      s.fillStyle = gl; s.fillRect(0, 0, 32, 32);
+      return c;
+    });
+  }
+
+  // a seamless tile of thin, filamentary gas; two copies drift across the band in opposite directions
+  function makeGas() {
+    const N = 256, P = 4, c = layer(N, N), s = c.getContext('2d'), im = s.createImageData(N, N);
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+      const u = x / N * P, v = y / N * P;
+      const qx = pfbm(u, v, 3, P, 21), qy = pfbm(u + 2.3, v + 1.7, 3, P, 23);
+      const n = pfbm(u + 1.6 * qx, v + 1.6 * qy, 4, P, 25), h = pfbm(u + .7, v + 3.1, 2, P, 27);
+      const al = Math.pow(smooth(.42, .85, n), 1.6), red = smooth(.35, .65, h), k = (y * N + x) * 4;
+      im.data[k] = mix(110, 255, red); im.data[k + 1] = mix(150, 105, red); im.data[k + 2] = mix(255, 150, red); im.data[k + 3] = 255 * al;
+    }
+    s.putImageData(im, 0, 0);
+    return c;
+  }
+
+  function drawGas(t, off, sy0, gh) {
+    const x = gasCtx, sky = -off / T, pat = x.createPattern(gas, 'repeat');
+    x.globalCompositeOperation = 'source-over'; x.clearRect(0, 0, gasCv.width, gasCv.height);
+    const sheet = (sc, dx, dy) => {
+      x.save(); x.translate(dx, dy); x.scale(sc, sc); x.fillStyle = pat;
+      x.fillRect(-dx / sc, -dy / sc, gasCv.width / sc, gasCv.height / sc); x.restore();
+    };
+    sheet(1, t * .003 + px * 1.5, sky + t * .0008 + py * 1.5);
+    x.globalCompositeOperation = 'lighter';
+    sheet(1.7, -t * .002 + px * 2.5 + 97, sky - t * .0006 + py * 2.5 + 41);
+    x.globalCompositeOperation = 'destination-in';             // keep it inside the galaxy band, out of the dust
+    x.drawImage(bandTex, 0, sy0, cols, gh, 0, 0, cols, gh);
+    g.globalCompositeOperation = 'lighter'; g.globalAlpha = .2;
+    g.drawImage(gasCv, 0, 0, cols, gh, 0, 0, W, gh * T * D);
+    g.globalCompositeOperation = 'source-over'; g.globalAlpha = 1;
+  }
+
+  function meteor(t, dt) {
+    if (t > nextMeteor) {
+      if (nextMeteor) {
+        const dir = Math.random() < .5 ? -1 : 1, ang = (.25 + Math.random() * .4) * dir;
+        meteors.push({ x: vw * (.15 + Math.random() * .7), y: vh * Math.random() * .55, vx: Math.cos(ang) * dir * .9, vy: Math.abs(Math.sin(ang)) * .9 + .15,
+          len: 110 + Math.random() * 160, life: 0, dur: 550 + Math.random() * 500 });
+      }
+      nextMeteor = t + 6000 + Math.random() * 9000;
+    }
+    g.globalCompositeOperation = 'lighter'; g.lineCap = 'round';
+    meteors = meteors.filter(m => {
+      m.life += dt; m.x += m.vx * dt; m.y += m.vy * dt;
+      const k = m.life / m.dur; if (k >= 1) return false;
+      const fade = Math.sin(Math.PI * k), sp = Math.hypot(m.vx, m.vy), tx = m.x - m.vx / sp * m.len, ty = m.y - m.vy / sp * m.len;
+      const gl = g.createLinearGradient(m.x * D, m.y * D, tx * D, ty * D);
+      gl.addColorStop(0, `rgba(255,250,240,${.85 * fade})`); gl.addColorStop(.15, `rgba(190,215,255,${.35 * fade})`); gl.addColorStop(1, 'rgba(120,160,255,0)');
+      g.strokeStyle = gl; g.lineWidth = 1.3 * D;
+      g.beginPath(); g.moveTo(m.x * D, m.y * D); g.lineTo(tx * D, ty * D); g.stroke();
+      return true;
+    });
+    g.globalCompositeOperation = 'source-over';
+  }
+
+  function draw(t, dt) {
     if (!tex) return;
     const off = scrollY * F;
     g.fillStyle = '#020309'; g.fillRect(0, 0, W, H);
     g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
     // only the slice of the texture that is on screen
     const sy0 = Math.max(0, off / T), sh = Math.min(rows - sy0, vh / T + 2);
-    if (sh > 0) g.drawImage(tex, 0, sy0, cols, sh, 0, 0, W, sh * T * D);
-    for (let ci = Math.floor(off / CH), last = Math.floor((off + vh) / CH); ci <= last; ci++) g.drawImage(chunk(ci), 0, Math.round((ci * CH - off) * D));
-    const S = near.width, oy = -((scrollY * .32 * D) % S);
-    g.globalAlpha = .8;
-    for (let y = oy; y < H; y += S) for (let x = 0; x < W; x += S) g.drawImage(near, x, y);
+    if (sh > 0) {
+      g.drawImage(tex, 0, sy0, cols, sh, 0, 0, W, sh * T * D);
+      if (gas) drawGas(t, off, sy0, Math.min(gasCv.height, Math.ceil(sh)));
+    }
+    // the sky's own stars, with the brighter ones scintillating; a touch of pointer parallax for depth
+    const sx = px * 4, syp = py * 4;
+    for (let ci = Math.floor(off / CH), last = Math.floor((off + vh) / CH); ci <= last; ci++) {
+      const ch = chunk(ci), top = ci * CH - off;
+      g.drawImage(ch.c, Math.round(sx * D), Math.round((top + syp) * D));
+      for (const st of ch.out) {
+        const y = top + st.y + syp; if (y < -20 || y > vh + 20) continue;
+        const tw = live ? 1 + .32 * Math.sin(t * st.f + st.p) * Math.sin(t * st.f * 2.7 + st.q) : 1;
+        const R = (1.6 + st.a ** 3 * 9) * D * (.9 + .1 * tw);
+        g.globalAlpha = Math.min(1, (.3 + st.a * .7) * tw);
+        g.drawImage(sprites[st.ci], (st.x + sx) * D - R, y * D - R, R * 2, R * 2);
+      }
+    }
     g.globalAlpha = 1;
+    // nearer stars: faster scroll, a slow sideways drift and more parallax
+    const S = near.width, oy = -((scrollY * .32 * D) % S) + py * 14 * D, ox = (((t * .004 + px * 14) * D) % S + S) % S - S;
+    g.globalAlpha = .8;
+    for (let y = oy - (oy > 0 ? S : 0); y < H; y += S) for (let x = ox; x < W; x += S) g.drawImage(near, x, y);
+    g.globalAlpha = 1;
+    if (live) meteor(t, dt);
   }
 
-  function loop() { if (dirty) { dirty = false; draw(); } requestAnimationFrame(loop); }
+  function loop(t) {
+    requestAnimationFrame(loop);
+    if (!live) { if (dirty) { dirty = false; draw(0, 0); } return; }
+    const dt = Math.min(64, t - lastT);
+    if (vw < 700 && dt < 30) return;                         // ~30 fps is plenty on phones
+    lastT = t;
+    px += (tpx - px) * .04; py += (tpy - py) * .04;
+    draw(t, dt);
+  }
   addEventListener('scroll', () => { dirty = true; }, { passive: true });
+  if (live && matchMedia('(pointer: fine)').matches)
+    addEventListener('pointermove', e => { tpx = e.clientX / innerWidth * 2 - 1; tpy = e.clientY / innerHeight * 2 - 1; }, { passive: true });
   const rebuild = debounce(() => { if (plan()) paint(); dirty = true; }, 120);
   addEventListener('resize', rebuild);
   if ('ResizeObserver' in window) new ResizeObserver(rebuild).observe(document.body);
   if (plan()) paint();
+  setTimeout(() => { gas = makeGas(); dirty = true; }, 300);
   requestAnimationFrame(loop);
   return { refresh: rebuild };
 })();
