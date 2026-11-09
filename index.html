@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Youwei Pang - Computer Vision Researcher" />
+  <meta name="keywords" content="Computer Vision, Deep Learning, Academic Homepage" />
+  <meta name="author" content="Youwei Pang" />
+  <meta name="theme-color" content="#000000" />
+  <title>Youwei Pang</title>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/main.js" defer></script>
+</head>
+
+<body>
+  <canvas id="cosmos" aria-hidden="true"></canvas>
+
+  <nav class="nav" id="nav">
+    <a class="brand" href="#hero" aria-label="Top">Youwei Pang</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#mission">Mission</a>
+      <a href="#trajectory">Trajectory</a>
+      <a href="#stats">Stats</a>
+      <a href="#papers">Papers</a>
+      <a href="#code">Code</a>
+      <a href="#photos">Photos</a>
+      <a href="#honors">Honors</a>
+      <a href="#service">Service</a>
+    </div>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header id="hero">
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="wrap hero-ui">
+      <div class="hero-line">AI Researcher &amp; Enthusiast</div>
+      <h1 class="hero-name">Youwei Pang<span lang="zh">庞有伟</span></h1>
+      <div class="hero-links">
+        <a class="btn" href="https://scholar.google.com/citations?user=jdo9_goAAAAJ" target="_blank" rel="noopener">Scholar</a>
+        <a class="btn" href="https://github.com/lartpang" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://orcid.org/0000-0002-3950-0956" target="_blank" rel="noopener">ORCID</a>
+        <a class="btn" href="https://yowey.blog.csdn.net/" target="_blank" rel="noopener">CSDN</a>
+        <a class="btn" href="https://www.yuque.com/lart" target="_blank" rel="noopener">语雀</a>
+        <a class="btn" href="https://yooweey.tuchong.com/" target="_blank" rel="noopener">图虫</a>
+        <button class="btn" id="mailBtn" type="button"><span id="mailText">Email</span></button>
+      </div>
+    </div>
+    <button class="hint" id="hint" type="button" aria-label="Scroll down"><svg viewBox="0 0 24 12" width="24" height="12"><path d="M1 1l11 10L23 1" fill="none" stroke="currentColor" stroke-width="1.5" /></svg></button>
+  </header>
+
+  <main>
+    <!-- ================= MISSION ================= -->
+    <section class="sec" id="mission">
+      <div class="wrap">
+        <div class="crew rv">
+          <img class="avatar" src="https://avatars.githubusercontent.com/u/26847524?s=240" alt="Youwei Pang" width="88" height="88" />
+          <div>
+            <div class="crew-name">Youwei Pang <span lang="zh">庞有伟</span></div>
+            <div class="crew-role">Research Fellow · <a href="https://www.ntu.edu.sg/computing" target="_blank" rel="noopener">CCDS, Nanyang Technological University</a></div>
+          </div>
+        </div>
+        <p class="vision rv">
+          My long-term goal is visual intelligence that <strong>generalizes</strong> across scales, tasks and modalities, stays <strong>efficient</strong> from large models down to real deployments, and earns trust through <strong>reliable</strong>, diagnostic evaluation — so that what a model perceives can be <strong>measured, compared and relied on</strong>.
+        </p>
+        <div class="pillars">
+          <div class="pillar rv">
+            <div class="pillar-n">01</div>
+            <h3>Generalizable</h3>
+            <ul>
+              <li><b>Multi-scale perception</b> — mixed-scale, high-res, tiny targets</li>
+              <li><b>Unified multi-task</b> — context-dependent concepts</li>
+              <li><b>Multimodal</b> — RGB-D/T, video, open-vocabulary, missing modality</li>
+            </ul>
+          </div>
+          <div class="pillar rv">
+            <div class="pillar-n">02</div>
+            <h3>Efficient</h3>
+            <ul>
+              <li><b>Architectures</b> — efficient attention, dynamic operators</li>
+              <li><b>Deployment</b> — large model feature coding, lithium battery &amp; semiconductor inspection</li>
+            </ul>
+          </div>
+          <div class="pillar rv">
+            <div class="pillar-n">03</div>
+            <h3>Reliable</h3>
+            <ul>
+              <li><b>Evaluation</b> — metric decomposition, diagnosis, toolkits</li>
+              <li><b>Benchmarks</b> — X-ray inspection, feature coding, agents</li>
+              <li><b>Content safety</b> — harmful content</li>
+            </ul>
+          </div>
+        </div>
+        <p class="life rv">
+          Off the clock: coding, <a href="https://www.yuque.com/lart/record/zf2tgt" target="_blank" rel="noopener">reading</a>, <a href="https://www.yuque.com/lart/record/ladtsq01s675c9g9" target="_blank" rel="noopener">music</a>, running, swimming, city walks and good food. Most projects are built together with my best friend <a href="https://xiaoqi-zhao-dlut.github.io/" target="_blank" rel="noopener">Xiaoqi Zhao</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= TRAJECTORY ================= -->
+    <section class="sec" id="trajectory">
+      <div class="wrap">
+        <h2 class="title rv">Trajectory</h2>
+        <ol class="track">
+          <li class="stage rv">
+            <div class="stage-year">2015 – 2019</div>
+            <div class="stage-org"><a href="https://www.dlut.edu.cn/" target="_blank" rel="noopener">Dalian Univ. of Technology</a></div>
+            <div class="stage-role">B.E. Electronic Information Engineering</div>
+          </li>
+          <li class="stage rv">
+            <div class="stage-year">2019 – 2025</div>
+            <div class="stage-org"><a href="https://www.dlut.edu.cn/" target="_blank" rel="noopener">Dalian Univ. of Technology</a></div>
+            <div class="stage-role">Ph.D. Signal &amp; Information Processing, with <a href="http://faculty.dlut.edu.cn/lhzhang" target="_blank" rel="noopener">Prof. Lihe Zhang</a> &amp; <a href="http://faculty.dlut.edu.cn/Huchuan_Lu" target="_blank" rel="noopener">Prof. Huchuan Lu</a></div>
+          </li>
+          <li class="stage now rv">
+            <div class="stage-year">2025.09 – now</div>
+            <div class="stage-org"><a href="https://www.ntu.edu.sg/" target="_blank" rel="noopener">Nanyang Technological Univ.</a></div>
+            <div class="stage-role">Research Fellow, CCDS, with <a href="https://personal.ntu.edu.sg/wslin/Home.html" target="_blank" rel="noopener">Prof. Weisi Lin</a></div>
+            <div class="stage-note">Large model feature coding · Harmful content detection</div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= STATS ================= -->
+    <section class="sec" id="stats">
+      <div class="wrap">
+        <h2 class="title rv">Stats</h2>
+        <div class="figures">
+          <a class="figure rv" href="https://www.yuque.com/lart" target="_blank" rel="noopener"><b data-live="yuqueDocs">319</b><span>语雀 notes</span></a>
+          <a class="figure rv" href="https://www.yuque.com/lart" target="_blank" rel="noopener"><b data-live="yuqueFollowers">626</b><span>语雀 followers</span></a>
+          <a class="figure rv" href="https://yowey.blog.csdn.net/" target="_blank" rel="noopener"><b data-live="csdnVisitors">966K+</b><span>CSDN visitors</span></a>
+          <a class="figure rv" href="https://yowey.blog.csdn.net/" target="_blank" rel="noopener"><b data-live="csdnFollowers">1.8K+</b><span>CSDN followers</span></a>
+        </div>
+        <div class="gh rv" id="gh">
+          <a class="gh-head" href="https://github.com/lartpang" target="_blank" rel="noopener">GitHub</a>
+          <div class="heat-wrap"><div class="heat" id="heat"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PAPERS ================= -->
+    <section class="sec" id="papers">
+      <div class="wrap">
+        <div class="title-row rv">
+          <h2 class="title">Papers</h2>
+          <span class="legend">* equal contribution &nbsp; # corresponding</span>
+          <a class="title-link" href="https://scholar.google.com/citations?user=jdo9_goAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        </div>
+        <div class="papers" id="paperList"></div>
+      </div>
+    </section>
+
+    <!-- ================= CODE ================= -->
+    <section class="sec" id="code">
+      <div class="wrap">
+        <div class="title-row rv">
+          <h2 class="title">Code</h2>
+          <a class="title-link" href="https://github.com/lartpang" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="repos" id="repos"></div>
+        <div class="more"><button class="btn" id="moreRepos" type="button" hidden><span>+ <i></i> more</span></button></div>
+      </div>
+    </section>
+
+    <!-- ================= PHOTOS ================= -->
+    <section class="sec" id="photos">
+      <div class="wrap">
+        <div class="title-row rv">
+          <h2 class="title">Photos</h2>
+          <div class="strip-nav">
+            <button type="button" id="shotPrev" aria-label="Previous"><svg viewBox="0 0 12 24" width="10" height="20"><path d="M11 1L1 12l10 11" fill="none" stroke="currentColor" stroke-width="1.5" /></svg></button>
+            <button type="button" id="shotNext" aria-label="Next"><svg viewBox="0 0 12 24" width="10" height="20"><path d="M1 1l10 11L1 23" fill="none" stroke="currentColor" stroke-width="1.5" /></svg></button>
+          </div>
+          <a class="title-link" href="https://yooweey.tuchong.com/" target="_blank" rel="noopener">图虫</a>
+        </div>
+      </div>
+      <div class="strip" id="shots"></div>
+    </section>
+
+    <!-- ================= HONORS ================= -->
+    <section class="sec" id="honors">
+      <div class="wrap">
+        <h2 class="title rv">Honors</h2>
+        <ul class="rows">
+          <li class="row rv"><span class="row-k">2025–26</span><span class="row-v"><b><a href="https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw/9" target="_blank" rel="noopener">World's Top 2% Scientists</a></b> (Stanford / Elsevier)</span></li>
+          <li class="row rv"><span class="row-k">2026</span><span class="row-v"><b>Outstanding Reviewer</b>, ACL 2026</span></li>
+          <li class="row rv"><span class="row-k">2023</span><span class="row-v"><b>Gold Award</b>, 8th China International College Students' "Internet+" Innovation &amp; Entrepreneurship Competition (161 / 3.4M+)</span></li>
+          <li class="row rv"><span class="row-k">2022</span><span class="row-v"><b>MICCAI GOALS Challenge 2 / 100</b> — Glaucoma Detection 1st, OCT Layer Segmentation 3rd</span></li>
+        </ul>
+        <div class="log">
+          <div class="rv">
+            <h3 class="sub">News</h3>
+            <ul class="rows" id="news"></ul>
+          </div>
+          <div class="rv">
+            <h3 class="sub">Resources</h3>
+            <ul class="rows" id="resources"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICE ================= -->
+    <section class="sec" id="service">
+      <div class="wrap">
+        <h2 class="title rv">Service</h2>
+        <div class="svc">
+          <div class="rv">
+            <h3 class="sub">Program Committee / Reviewer</h3>
+            <dl class="spec">
+              <div><dt>CVPR</dt><dd>22–26</dd></div>
+              <div><dt>ICCV</dt><dd>21–25</dd></div>
+              <div><dt>ECCV</dt><dd>22–26</dd></div>
+              <div><dt>NeurIPS</dt><dd>23–26</dd></div>
+              <div><dt>ICLR</dt><dd>24–27</dd></div>
+              <div><dt>ICML</dt><dd>25</dd></div>
+              <div><dt>ACM MM</dt><dd>25–26</dd></div>
+              <div><dt>AAAI</dt><dd>22, 27</dd></div>
+              <div><dt>ACL</dt><dd>26</dd></div>
+              <div><dt>WACV</dt><dd>27</dd></div>
+              <div><dt>BMVC</dt><dd>26</dd></div>
+              <div><dt>ACCV</dt><dd>26</dd></div>
+            </dl>
+          </div>
+          <div class="rv">
+            <h3 class="sub">Journal Reviewer</h3>
+            <div class="tags">
+              <span>TPAMI</span>
+              <span>IJCV</span>
+              <span>TIP</span>
+              <span>TNNLS</span>
+              <span>TCSVT</span>
+              <span>ACM CSUR</span>
+              <span>EAAI</span>
+            </div>
+            <h3 class="sub">Guest Editor</h3>
+            <p class="svc-p"><a href="https://www.mdpi.com/journal/jimaging/special_issues/63OE6916ZK" target="_blank" rel="noopener"><i>Journal of Imaging</i> Special Issue: Unified and Multimodal Segmentation: Foundations, Methods, and Applications</a> <span class="cfp">Submissions welcome</span></p>
+            <h3 class="sub">Talks</h3>
+            <p class="svc-p">VALSE 2024, Chongqing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Youwei Pang © 2026</span>
+      <span>Updated 2026-11</span>
+    </div>
+  </footer>
+</body>
+
+</html>

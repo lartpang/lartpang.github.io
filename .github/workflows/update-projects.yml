@@ -1,0 +1,40 @@
+name: Update site data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 1 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  update-projects:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch projects, GitHub, photos
+        run: node .github/actions/update-site-data.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- data.js; then
+            echo "No site data changes."
+            exit 0
+          fi
+
+          git config user.name "lartpang"
+          git config user.email "26847524+lartpang@users.noreply.github.com"
+          git add data.js
+          git commit -m "Update site data"
+          git push
