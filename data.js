@@ -70,8 +70,8 @@ const SITE_DATA = {
         "snn",
         "spiking-neural-network"
       ],
-      "updatedAt": "2026-11-07T12:58:28Z",
-      "pushedAt": "2026-11-07T12:58:24Z"
+      "updatedAt": "2026-11-12T16:11:39Z",
+      "pushedAt": "2026-11-15T13:55:36Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -189,7 +189,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODEvalToolkit",
       "desc": "PySODEvalToolkit: A Python-based Evaluation Toolbox for Salient Object Detection and Camouflaged Object Detection",
       "language": "Python",
-      "stars": 352,
+      "stars": 354,
       "forks": 32,
       "watchers": 9,
       "license": "MIT",
@@ -200,7 +200,7 @@ const SITE_DATA = {
         "e-measure",
         "evaluation"
       ],
-      "updatedAt": "2026-10-27T10:07:57Z",
+      "updatedAt": "2026-11-15T07:31:43Z",
       "pushedAt": "2026-08-23T14:11:36Z"
     },
     {
@@ -212,7 +212,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODMetrics",
       "desc": "PySODMetrics: A Simple and Efficient Implementation of Grayscale/Binary Segmentation Metrics",
       "language": "Python",
-      "stars": 453,
+      "stars": 454,
       "forks": 39,
       "watchers": 15,
       "license": "MIT",
@@ -223,7 +223,7 @@ const SITE_DATA = {
         "metrics-reported",
         "python3"
       ],
-      "updatedAt": "2026-10-27T10:08:02Z",
+      "updatedAt": "2026-11-14T23:55:12Z",
       "pushedAt": "2026-08-23T14:10:43Z"
     },
     {
@@ -235,7 +235,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PyIRSTDMetrics",
       "desc": "[NeurIPS 2025 (D&B)] Rethinking Evaluation of Infrared Small Target Detection",
       "language": "Python",
-      "stars": 364,
+      "stars": 365,
       "forks": 26,
       "watchers": 18,
       "license": "MIT",
@@ -246,7 +246,7 @@ const SITE_DATA = {
         "infrared-small-target-segmentation",
         "irstd"
       ],
-      "updatedAt": "2026-11-06T15:20:51Z",
+      "updatedAt": "2026-11-14T22:58:48Z",
       "pushedAt": "2026-07-28T04:02:47Z"
     },
     {
@@ -1363,12 +1363,12 @@ const SITE_DATA = {
     }
   ],
   "live": {
-    "updatedAt": "2026-11-07",
+    "updatedAt": "2026-11-16",
     "github": {
-      "followers": 524,
+      "followers": 533,
       "repos": 79,
-      "stars": 5905,
-      "forks": 634
+      "stars": 6022,
+      "forks": 650
     },
     "yuque": {
       "docs": 319,
@@ -1383,10 +1383,30 @@ const SITE_DATA = {
     "photos": [
       {
         "title": "法兰西一瞬 斯特拉斯堡 圣母大教堂",
+        "url": "https://yooweey.tuchong.com/142688593/",
+        "date": "2026-11-10",
+        "count": 10,
+        "favorites": 17,
+        "image": "https://photo.tuchong.com/11269264/ft640/1239044421.jpg",
+        "width": 3716,
+        "height": 2787
+      },
+      {
+        "title": "法兰西一瞬 斯特拉斯堡 圣母大教堂",
+        "url": "https://yooweey.tuchong.com/142678426/",
+        "date": "2026-11-09",
+        "count": 10,
+        "favorites": 18,
+        "image": "https://photo.tuchong.com/11269264/ft640/1058492547.jpg",
+        "width": 2044,
+        "height": 4032
+      },
+      {
+        "title": "法兰西一瞬 斯特拉斯堡 圣母大教堂",
         "url": "https://yooweey.tuchong.com/142598244/",
         "date": "2026-11-02",
         "count": 4,
-        "favorites": 20,
+        "favorites": 23,
         "image": "https://photo.tuchong.com/11269264/ft640/710365042.jpg",
         "width": 2914,
         "height": 3885
@@ -1480,26 +1500,6 @@ const SITE_DATA = {
         "image": "https://photo.tuchong.com/11269264/ft640/896684436.jpg",
         "width": 3840,
         "height": 5120
-      },
-      {
-        "title": "新加坡夕阳",
-        "url": "https://yooweey.tuchong.com/142457162/",
-        "date": "2026-10-19",
-        "count": 5,
-        "favorites": 22,
-        "image": "https://photo.tuchong.com/11269264/ft640/769347724.jpg",
-        "width": 4032,
-        "height": 3024
-      },
-      {
-        "title": "巴黎旧日",
-        "url": "https://yooweey.tuchong.com/142456869/",
-        "date": "2026-10-19",
-        "count": 7,
-        "favorites": 22,
-        "image": "https://photo.tuchong.com/11269264/ft640/815419432.jpg",
-        "width": 5120,
-        "height": 3840
       }
     ]
   }
