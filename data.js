@@ -71,7 +71,7 @@ const SITE_DATA = {
         "spiking-neural-network"
       ],
       "updatedAt": "2026-11-12T16:11:39Z",
-      "pushedAt": "2026-11-15T13:55:36Z"
+      "pushedAt": "2026-11-22T14:32:14Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -189,7 +189,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODEvalToolkit",
       "desc": "PySODEvalToolkit: A Python-based Evaluation Toolbox for Salient Object Detection and Camouflaged Object Detection",
       "language": "Python",
-      "stars": 354,
+      "stars": 353,
       "forks": 32,
       "watchers": 9,
       "license": "MIT",
@@ -200,7 +200,7 @@ const SITE_DATA = {
         "e-measure",
         "evaluation"
       ],
-      "updatedAt": "2026-11-15T07:31:43Z",
+      "updatedAt": "2026-11-19T21:53:55Z",
       "pushedAt": "2026-08-23T14:11:36Z"
     },
     {
@@ -212,7 +212,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/PySODMetrics",
       "desc": "PySODMetrics: A Simple and Efficient Implementation of Grayscale/Binary Segmentation Metrics",
       "language": "Python",
-      "stars": 454,
+      "stars": 453,
       "forks": 39,
       "watchers": 15,
       "license": "MIT",
@@ -223,8 +223,8 @@ const SITE_DATA = {
         "metrics-reported",
         "python3"
       ],
-      "updatedAt": "2026-11-14T23:55:12Z",
-      "pushedAt": "2026-08-23T14:10:43Z"
+      "updatedAt": "2026-11-19T22:02:43Z",
+      "pushedAt": "2026-11-19T05:41:15Z"
     },
     {
       "name": "PyIRSTDMetrics",
@@ -1363,12 +1363,12 @@ const SITE_DATA = {
     }
   ],
   "live": {
-    "updatedAt": "2026-11-16",
+    "updatedAt": "2026-11-23",
     "github": {
-      "followers": 533,
-      "repos": 79,
-      "stars": 6022,
-      "forks": 650
+      "followers": 541,
+      "repos": 80,
+      "stars": 6103,
+      "forks": 663
     },
     "yuque": {
       "docs": 319,
@@ -1386,7 +1386,7 @@ const SITE_DATA = {
         "url": "https://yooweey.tuchong.com/142688593/",
         "date": "2026-11-10",
         "count": 10,
-        "favorites": 17,
+        "favorites": 20,
         "image": "https://photo.tuchong.com/11269264/ft640/1239044421.jpg",
         "width": 3716,
         "height": 2787
