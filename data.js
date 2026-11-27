@@ -9,10 +9,231 @@ const SITE_DATA = {
       "content": "Finished defending my doctoral dissertation."
     },
   ],
-  "resources": [
+  "interests": [
     {
-      "date": "2024-05-31",
-      "content": "<a href=\"https://pan.baidu.com/s/1NaGtxGWzQSRLmEPukvZnBQ?pwd=abcd\">视觉与语言—开放词汇感知综述</a>"
+      "title": "Reading",
+      "url": "https://www.yuque.com/lart/record/zf2tgt"
+    },
+    {
+      "title": "Music",
+      "url": "https://www.yuque.com/lart/record/ladtsq01s675c9g9"
+    },
+    {
+      "title": "Games",
+      "url": "https://www.yuque.com/lart/record/gbrfqzruipyuc75y"
+    },
+    {
+      "title": "Running"
+    },
+    {
+      "title": "Swimming"
+    },
+    {
+      "title": "City walks",
+      "url": "https://yooweey.tuchong.com/"
+    },
+    {
+      "title": "Good food"
+    }
+  ],
+  "sections": [
+    {
+      "id": "web",
+      "title": "Research Websites"
+    },
+    {
+      "id": "eval",
+      "title": "Evaluation & Benchmarks"
+    },
+    {
+      "id": "models",
+      "title": "Models & Operators"
+    },
+    {
+      "id": "tools",
+      "title": "Tools"
+    },
+    {
+      "id": "notes",
+      "title": "Lists & Notes"
+    },
+    {
+      "id": "design",
+      "title": "Type & Design"
+    }
+  ],
+  "sharing": [
+    {
+      "date": "2024-08",
+      "title": "DailyArxiv",
+      "url": "https://lartpang.github.io/DailyArxiv/",
+      "desc": "Daily arXiv preprints on the topics I follow, from salient, camouflaged and infrared small target detection to change detection, spiking networks, datasets and evaluation.",
+      "section": "web",
+      "repo": "lartpang/DailyArxiv"
+    },
+    {
+      "date": "2026-10",
+      "title": "DailyDataset",
+      "url": "https://lartpang.github.io/DailyDataset/",
+      "source": "https://github.com/lartpang/DailyDataset",
+      "desc": "A daily calendar of dataset and benchmark preprints collected from arXiv and Preprints.org, archived back to 2021.",
+      "section": "web"
+    },
+    {
+      "date": "2026-05",
+      "title": "BibSentry",
+      "image": "https://raw.githubusercontent.com/lartpang/BibSentry/main/assets/logo.png",
+      "url": "https://lartpang.github.io/BibSentry/",
+      "desc": "Checks BibTeX entries against academic sources right in the browser, catching hallucinated references, wrong authors or years, missing DOIs and duplicates.",
+      "section": "web",
+      "repo": "lartpang/BibSentry",
+      "imageZoom": 1.15
+    },
+    {
+      "date": "2026-08",
+      "title": "CCF Conference Atlas",
+      "url": "https://lartpang.github.io/CCF-Atlas/",
+      "source": "https://github.com/lartpang/CCF-Atlas",
+      "desc": "Computer science conferences on a rotatable 3D globe, filterable by field, month, continent and country, with data from ccf-deadlines.",
+      "section": "web"
+    },
+    {
+      "section": "eval",
+      "repo": "lartpang/SAMs-CDConcepts-Eval"
+    },
+    {
+      "section": "eval",
+      "repo": "lartpang/PySODMetrics"
+    },
+    {
+      "section": "eval",
+      "repo": "lartpang/PyIRSTDMetrics",
+      "imageZoom": 1.3
+    },
+    {
+      "section": "eval",
+      "repo": "lartpang/PySODEvalToolkit"
+    },
+    {
+      "section": "eval",
+      "repo": "lartpang/MethodsCmp"
+    },
+    {
+      "section": "eval",
+      "repo": "lartpang/mssim.pytorch"
+    },
+    {
+      "section": "models",
+      "repo": "lartpang/tta.pytorch"
+    },
+    {
+      "section": "models",
+      "repo": "lartpang/OpticalFlowBasedVOS"
+    },
+    {
+      "section": "models",
+      "repo": "lartpang/PyLoss"
+    },
+    {
+      "section": "models",
+      "repo": "lartpang/CoSaliencyProj"
+    },
+    {
+      "section": "models",
+      "repo": "lartpang/DynamicConvolutionOperator"
+    },
+    {
+      "section": "tools",
+      "repo": "lartpang/FileShelf",
+      "imageZoom": 1.25
+    },
+    {
+      "section": "tools",
+      "repo": "lartpang/RunIt"
+    },
+    {
+      "section": "tools",
+      "repo": "lartpang/RegisterIt"
+    },
+    {
+      "section": "tools",
+      "repo": "lartpang/ManageMyAttachments"
+    },
+    {
+      "section": "tools",
+      "repo": "lartpang/YuQueTools"
+    },
+    {
+      "section": "tools",
+      "repo": "lartpang/spyder_tool"
+    },
+    {
+      "section": "notes",
+      "repo": "lartpang/PyTorchTricks"
+    },
+    {
+      "section": "notes",
+      "repo": "lartpang/awesome-segmentation-saliency-dataset"
+    },
+    {
+      "section": "notes",
+      "repo": "lartpang/Machine-Deep-Learning"
+    },
+    {
+      "section": "notes",
+      "repo": "lartpang/Hands-on-Docker"
+    },
+    {
+      "section": "notes",
+      "repo": "lartpang/awesome-class-activation-map"
+    },
+    {
+      "date": "2024-05",
+      "title": "视觉与语言—开放词汇感知综述",
+      "url": "https://pan.baidu.com/s/1NaGtxGWzQSRLmEPukvZnBQ?pwd=abcd",
+      "lang": "zh",
+      "desc": "A survey of open-vocabulary perception at the meeting point of vision and language.",
+      "section": "notes",
+      "tag": "Survey"
+    },
+    {
+      "date": "2026-10",
+      "title": "TeX Live 2026 英文字体样本与调用手册",
+      "url": "https://cdn.jsdelivr.net/gh/lartpang/MyCollection@master/MyPapers/TeX%20Live%202026%20%E8%8B%B1%E6%96%87%E5%AD%97%E4%BD%93%E6%A0%B7%E6%9C%AC%E4%B8%8E%E8%B0%83%E7%94%A8%E6%89%8B%E5%86%8C.pdf",
+      "source": "https://github.com/lartpang/MyCollection/blob/master/MyPapers/TeX%20Live%202026%20%E8%8B%B1%E6%96%87%E5%AD%97%E4%BD%93%E6%A0%B7%E6%9C%AC%E4%B8%8E%E8%B0%83%E7%94%A8%E6%89%8B%E5%86%8C.pdf",
+      "lang": "zh",
+      "section": "design",
+      "tag": "PDF",
+      "note": "10 MB",
+      "desc": "A specimen of the English typefaces that ship with TeX Live 2026, with how to load each one in LaTeX. Opens in the browser."
+    },
+    {
+      "date": "2026-11",
+      "title": "VesperaFont",
+      "image": "https://raw.githubusercontent.com/lartpang/VesperaFont/main/docs/images/display.png",
+      "imageFit": "cover",
+      "imagePosition": "50% 0%",
+      "url": "https://github.com/lartpang/VesperaFont",
+      "desc": "Vespera 长庚, a humanist roman with a Wei Bei stele movement, derived from TeX Gyre Pagella: a proportional Display and a monospaced Mono, each in three weights with italics. This site is set in it.",
+      "section": "design",
+      "tag": "Typeface"
+    },
+    {
+      "date": "2026-08",
+      "title": "雾中存档 · Gallery",
+      "url": "https://lartpang.github.io/gallery/",
+      "source": "https://github.com/lartpang/gallery",
+      "desc": "A date-organized archive of my AI-generated images, free for anyone to use.",
+      "section": "design",
+      "tag": "AI images"
+    },
+    {
+      "date": "2026-08",
+      "title": "semantic-field-editorial",
+      "url": "https://github.com/lartpang/semantic-field-editorial",
+      "desc": "A skill that reads long-form writing as a whole and turns its relationships, motion, tension and turning points into a coherent series of original editorial illustrations.",
+      "section": "design",
+      "tag": "Skill"
     }
   ],
   "projects": [
@@ -31,7 +252,8 @@ const SITE_DATA = {
       "license": "MIT",
       "topics": [],
       "updatedAt": "2026-09-28T10:06:57Z",
-      "pushedAt": "2026-08-23T14:12:42Z"
+      "pushedAt": "2026-08-23T14:12:42Z",
+      "image": "https://raw.githubusercontent.com/lartpang/FileShelf/main/src/FileShelf.Win/Resources/FileShelfIconNotion.ico"
     },
     {
       "name": "BibSentry",
@@ -48,7 +270,8 @@ const SITE_DATA = {
       "license": "MIT",
       "topics": [],
       "updatedAt": "2026-09-06T13:26:57Z",
-      "pushedAt": "2026-08-23T14:11:18Z"
+      "pushedAt": "2026-08-23T14:11:18Z",
+      "image": "https://raw.githubusercontent.com/lartpang/BibSentry/main/assets/logo.png"
     },
     {
       "name": "DailyArxiv",
@@ -71,7 +294,7 @@ const SITE_DATA = {
         "spiking-neural-network"
       ],
       "updatedAt": "2026-11-12T16:11:39Z",
-      "pushedAt": "2026-11-22T14:32:14Z"
+      "pushedAt": "2026-11-27T00:51:15Z"
     },
     {
       "name": "DynamicConvolutionOperator",
@@ -224,7 +447,8 @@ const SITE_DATA = {
         "python3"
       ],
       "updatedAt": "2026-11-19T22:02:43Z",
-      "pushedAt": "2026-11-19T05:41:15Z"
+      "pushedAt": "2026-11-19T05:41:15Z",
+      "image": "https://raw.githubusercontent.com/lartpang/PySODMetrics/main/images/logo.png"
     },
     {
       "name": "PyIRSTDMetrics",
@@ -247,7 +471,8 @@ const SITE_DATA = {
         "irstd"
       ],
       "updatedAt": "2026-11-14T22:58:48Z",
-      "pushedAt": "2026-07-28T04:02:47Z"
+      "pushedAt": "2026-07-28T04:02:47Z",
+      "image": "https://raw.githubusercontent.com/lartpang/PyIRSTDMetrics/main/images/logo.png"
     },
     {
       "name": "PyLoss",
@@ -468,7 +693,7 @@ const SITE_DATA = {
         "machine-learning"
       ],
       "updatedAt": "2026-10-29T12:59:10Z",
-      "pushedAt": "2026-09-15T07:48:27Z"
+      "pushedAt": "2026-11-25T14:38:51Z"
     },
     {
       "name": "SAMs-CDConcepts-Eval",
@@ -496,7 +721,7 @@ const SITE_DATA = {
       "url": "https://github.com/lartpang/Machine-Deep-Learning",
       "desc": ":wave: ML/DL学习笔记（基础+论文）",
       "language": "Markdown",
-      "stars": 293,
+      "stars": 292,
       "forks": 61,
       "watchers": 7,
       "license": "",
@@ -507,7 +732,7 @@ const SITE_DATA = {
         "learning",
         "linux"
       ],
-      "updatedAt": "2026-10-19T18:52:19Z",
+      "updatedAt": "2026-11-27T07:08:23Z",
       "pushedAt": "2019-12-22T07:40:17Z"
     },
     {
@@ -1363,12 +1588,12 @@ const SITE_DATA = {
     }
   ],
   "live": {
-    "updatedAt": "2026-11-23",
+    "updatedAt": "2026-11-27",
     "github": {
-      "followers": 541,
-      "repos": 80,
-      "stars": 6103,
-      "forks": 663
+      "followers": 547,
+      "repos": 79,
+      "stars": 6154,
+      "forks": 666
     },
     "yuque": {
       "docs": 319,
@@ -1377,7 +1602,7 @@ const SITE_DATA = {
       "likes": 320
     },
     "csdn": {
-      "visitors": "966K+",
+      "visitors": "970K+",
       "followers": "1.8K+"
     },
     "photos": [
@@ -1500,7 +1725,325 @@ const SITE_DATA = {
         "image": "https://photo.tuchong.com/11269264/ft640/896684436.jpg",
         "width": 3840,
         "height": 5120
+      },
+      {
+        "title": "新加坡夕阳",
+        "url": "https://yooweey.tuchong.com/142457162/",
+        "date": "2026-10-19",
+        "count": 5,
+        "favorites": 22,
+        "image": "https://photo.tuchong.com/11269264/ft640/769347724.jpg",
+        "width": 4032,
+        "height": 3024
+      },
+      {
+        "title": "巴黎旧日",
+        "url": "https://yooweey.tuchong.com/142456869/",
+        "date": "2026-10-19",
+        "count": 7,
+        "favorites": 22,
+        "image": "https://photo.tuchong.com/11269264/ft640/815419432.jpg",
+        "width": 5120,
+        "height": 3840
+      },
+      {
+        "title": "巴黎圣母院",
+        "url": "https://yooweey.tuchong.com/142452180/",
+        "date": "2026-10-19",
+        "count": 7,
+        "favorites": 18,
+        "image": "https://photo.tuchong.com/11269264/ft640/1237012745.jpg",
+        "width": 3072,
+        "height": 4096
+      },
+      {
+        "title": "巴黎旧日",
+        "url": "https://yooweey.tuchong.com/142442575/",
+        "date": "2026-10-18",
+        "count": 5,
+        "favorites": 23,
+        "image": "https://photo.tuchong.com/11269264/ft640/792678543.jpg",
+        "width": 2500,
+        "height": 3334
+      },
+      {
+        "title": "巴黎旧日",
+        "url": "https://yooweey.tuchong.com/142435100/",
+        "date": "2026-10-17",
+        "count": 7,
+        "favorites": 21,
+        "image": "https://photo.tuchong.com/11269264/ft640/1028084193.jpg",
+        "width": 4032,
+        "height": 3024
+      },
+      {
+        "title": "雾霾中反而想念以前清晰的日子",
+        "url": "https://yooweey.tuchong.com/142433669/",
+        "date": "2026-10-17",
+        "count": 1,
+        "favorites": 23,
+        "image": "https://photo.tuchong.com/11269264/ft640/1235964043.jpg",
+        "width": 3840,
+        "height": 5120
+      },
+      {
+        "title": "新加坡之旅 17",
+        "url": "https://yooweey.tuchong.com/138581304/",
+        "date": "2025-10-13",
+        "count": 3,
+        "favorites": 21,
+        "image": "https://photo.tuchong.com/11269264/ft640/1016024013.jpg",
+        "width": 3840,
+        "height": 5120
+      },
+      {
+        "title": "新加坡之旅 16",
+        "url": "https://yooweey.tuchong.com/138581204/",
+        "date": "2025-10-13",
+        "count": 2,
+        "favorites": 23,
+        "image": "https://photo.tuchong.com/11269264/ft640/1036078077.jpg",
+        "width": 5120,
+        "height": 3840
+      },
+      {
+        "title": "新加坡之旅 15",
+        "url": "https://yooweey.tuchong.com/138580939/",
+        "date": "2025-10-13",
+        "count": 4,
+        "favorites": 19,
+        "image": "https://photo.tuchong.com/11269264/ft640/802311257.jpg",
+        "width": 5120,
+        "height": 3839
+      },
+      {
+        "title": "新加坡之旅 14",
+        "url": "https://yooweey.tuchong.com/138521149/",
+        "date": "2025-10-08",
+        "count": 1,
+        "favorites": 20,
+        "image": "https://photo.tuchong.com/11269264/ft640/1273973692.jpg",
+        "width": 5120,
+        "height": 3840
+      },
+      {
+        "title": "新加坡之旅 13",
+        "url": "https://yooweey.tuchong.com/138481381/",
+        "date": "2025-10-05",
+        "count": 2,
+        "favorites": 18,
+        "image": "https://photo.tuchong.com/11269264/ft640/1042697296.jpg",
+        "width": 5120,
+        "height": 3840
+      },
+      {
+        "title": "新加坡之旅 12",
+        "url": "https://yooweey.tuchong.com/138477855/",
+        "date": "2025-10-05",
+        "count": 4,
+        "favorites": 21,
+        "image": "https://photo.tuchong.com/11269264/ft640/718687087.jpg",
+        "width": 4626,
+        "height": 3469
+      },
+      {
+        "title": "新加坡之旅 麦理芝水库 4",
+        "url": "https://yooweey.tuchong.com/138469447/",
+        "date": "2025-10-04",
+        "count": 4,
+        "favorites": 22,
+        "image": "https://photo.tuchong.com/11269264/ft640/1292520441.jpg",
+        "width": 3072,
+        "height": 4096
+      },
+      {
+        "title": "新加坡之旅 麦理芝水库 3",
+        "url": "https://yooweey.tuchong.com/138469343/",
+        "date": "2025-10-04",
+        "count": 12,
+        "favorites": 20,
+        "image": "https://photo.tuchong.com/11269264/ft640/1118784333.jpg",
+        "width": 5232,
+        "height": 3924
+      },
+      {
+        "title": "新加坡之旅 麦理芝水库 2",
+        "url": "https://yooweey.tuchong.com/138469118/",
+        "date": "2025-10-04",
+        "count": 7,
+        "favorites": 20,
+        "image": "https://photo.tuchong.com/11269264/ft640/711216184.jpg",
+        "width": 3281,
+        "height": 4376
+      },
+      {
+        "title": "新加坡之旅 麦里芝水库 1",
+        "url": "https://yooweey.tuchong.com/138466844/",
+        "date": "2025-10-04",
+        "count": 5,
+        "favorites": 21,
+        "image": "https://photo.tuchong.com/11269264/ft640/903760962.jpg",
+        "width": 3072,
+        "height": 2305
+      },
+      {
+        "title": "新加坡之旅 11",
+        "url": "https://yooweey.tuchong.com/138446740/",
+        "date": "2025-10-02",
+        "count": 3,
+        "favorites": 18,
+        "image": "https://photo.tuchong.com/11269264/ft640/1049316448.jpg",
+        "width": 1440,
+        "height": 1440
+      },
+      {
+        "title": "新加坡之旅 10",
+        "url": "https://yooweey.tuchong.com/138446717/",
+        "date": "2025-10-02",
+        "count": 2,
+        "favorites": 19,
+        "image": "https://photo.tuchong.com/11269264/ft640/1309625389.jpg",
+        "width": 3446,
+        "height": 4596
+      },
+      {
+        "title": "新加坡之旅 9",
+        "url": "https://yooweey.tuchong.com/138446675/",
+        "date": "2025-10-02",
+        "count": 5,
+        "favorites": 20,
+        "image": "https://photo.tuchong.com/11269264/ft640/763055014.jpg",
+        "width": 3424,
+        "height": 2570
+      },
+      {
+        "title": "新加坡之旅 8",
+        "url": "https://yooweey.tuchong.com/138446485/",
+        "date": "2025-10-02",
+        "count": 8,
+        "favorites": 20,
+        "image": "https://photo.tuchong.com/11269264/ft640/712592460.jpg",
+        "width": 4475,
+        "height": 3356
+      },
+      {
+        "title": "新加坡之旅 7",
+        "url": "https://yooweey.tuchong.com/138446310/",
+        "date": "2025-10-02",
+        "count": 2,
+        "favorites": 19,
+        "image": "https://photo.tuchong.com/11269264/ft640/1129401261.jpg",
+        "width": 4425,
+        "height": 3318
+      },
+      {
+        "title": "新加坡之旅 6",
+        "url": "https://yooweey.tuchong.com/138446238/",
+        "date": "2025-10-02",
+        "count": 2,
+        "favorites": 17,
+        "image": "https://photo.tuchong.com/11269264/ft640/1277971207.jpg",
+        "width": 3072,
+        "height": 3073
+      },
+      {
+        "title": "新加坡之旅 5",
+        "url": "https://yooweey.tuchong.com/138446131/",
+        "date": "2025-10-02",
+        "count": 1,
+        "favorites": 22,
+        "image": "https://photo.tuchong.com/11269264/ft640/1147686211.jpg",
+        "width": 5120,
+        "height": 3840
+      },
+      {
+        "title": "新加坡之旅 4",
+        "url": "https://yooweey.tuchong.com/138445946/",
+        "date": "2025-10-02",
+        "count": 1,
+        "favorites": 17,
+        "image": "https://photo.tuchong.com/11269264/ft640/1198410801.jpg",
+        "width": 4096,
+        "height": 3072
+      },
+      {
+        "title": "新加坡之旅 3",
+        "url": "https://yooweey.tuchong.com/138445910/",
+        "date": "2025-10-02",
+        "count": 1,
+        "favorites": 20,
+        "image": "https://photo.tuchong.com/11269264/ft640/1233407072.jpg",
+        "width": 3072,
+        "height": 4096
+      },
+      {
+        "title": "新加坡之旅 2",
+        "url": "https://yooweey.tuchong.com/138445875/",
+        "date": "2025-10-02",
+        "count": 1,
+        "favorites": 19,
+        "image": "https://photo.tuchong.com/11269264/ft640/770460827.jpg",
+        "width": 3569,
+        "height": 2677
+      },
+      {
+        "title": "新加坡之旅 1",
+        "url": "https://yooweey.tuchong.com/138445831/",
+        "date": "2025-10-02",
+        "count": 3,
+        "favorites": 20,
+        "image": "https://photo.tuchong.com/11269264/ft640/1211845934.jpg",
+        "width": 1211,
+        "height": 910
+      },
+      {
+        "title": "水与杯",
+        "url": "https://yooweey.tuchong.com/138445472/",
+        "date": "2025-10-02",
+        "count": 2,
+        "favorites": 24,
+        "image": "https://photo.tuchong.com/11269264/ft640/871255077.jpg",
+        "width": 1440,
+        "height": 1440
       }
     ]
+  },
+  "theme": {
+    "week": "2026-W48",
+    "seed": 1509042200,
+    "hue": 198,
+    "accentHue": 31,
+    "tones": {
+      "art": {
+        "paper": "#ecf1f3",
+        "raised": "#f2f6f7",
+        "ink": "#1a282e",
+        "soft": "#435056",
+        "faint": "#606c71",
+        "rule": "#d3dbdf",
+        "line": "#2f5160",
+        "accent": "#955e23"
+      },
+      "paper": {
+        "paper": "#f9fafa",
+        "raised": "#ffffff",
+        "ink": "#1f3037",
+        "soft": "#4a585e",
+        "faint": "#677479",
+        "rule": "#dee5e7",
+        "line": "#2f5160",
+        "accent": "#9d6325"
+      },
+      "ink": {
+        "paper": "#0d1011",
+        "raised": "#161b1d",
+        "ink": "#dde2e3",
+        "soft": "#b2babd",
+        "faint": "#8d969a",
+        "rule": "#2a2f32",
+        "line": "#a3b8c2",
+        "accent": "#e2a05a"
+      }
+    }
   }
 };

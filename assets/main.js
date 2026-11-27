@@ -1,12 +1,10 @@
-/* Youwei Pang — homepage behaviour. Content lives in data.js (SITE_DATA). */
+/* Youwei Pang — site behaviour, shared by all four pages. Content lives in data.js (SITE_DATA). */
 
 const $ = id => document.getElementById(id);
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const onView = (cb, opts) => 'IntersectionObserver' in window
-  ? new IntersectionObserver(es => es.forEach(e => e.isIntersecting && cb(e.target)), opts)
-  : { observe: cb, unobserve() { } };
-const debounce = (fn, ms = 150) => { let t; return () => { clearTimeout(t); t = setTimeout(fn, ms); }; };
+const fmt = n => Number(n).toLocaleString('en');
+const page = document.body.dataset.page;
 
 function rng(seed) {
   let s = seed >>> 0;
@@ -18,16 +16,22 @@ function rng(seed) {
   };
 }
 
-/* ===================== one sky for the whole page =====================
-   A fixed canvas behind everything, painted like a long-exposure astrophoto.
-   A single band of the galaxy winds down the page: faint blue reflection
-   nebulae near the top, red emission clouds and dark dust lanes in the middle,
-   and the warm, star-packed galactic core at the very bottom. The sky is alive
-   but slow: bright stars scintillate, thin gas drifts along the band, the nearer
-   stars creep sideways, and now and then a meteor crosses. */
-const layer = (w, h) => { const c = document.createElement('canvas'); c.width = Math.max(1, w | 0); c.height = Math.max(1, h | 0); return c; };
+/* ===================== palette of the week =====================
+   data.js carries three tones built from one hue; each page picks its own
+   (<html data-tone>). The last palette is remembered so the next visit paints
+   in the right colours before data.js arrives. */
+const CACHE = 'yp-theme';
+function applyTheme(theme) {
+  if (!theme?.tones) return;
+  const tone = theme.tones[document.documentElement.dataset.tone] || theme.tones.paper;
+  for (const [k, v] of Object.entries(tone)) document.documentElement.style.setProperty('--' + k, v);
+  try { localStorage.setItem(CACHE, JSON.stringify({ seed: theme.seed, week: theme.week, tones: theme.tones })); } catch { }
+}
+const cachedTheme = (() => { try { return JSON.parse(localStorage.getItem(CACHE)); } catch { return null; } })();
 
-// value noise + fractal sums
+/* ===================== About: geometric artwork =====================
+   Streamlines of a smooth field cross a dot lattice, measured by one orbit and
+   one ruled line — structure, logic and measurement, drawn from the week's seed. */
 function hash2(x, y, s) {
   let h = Math.imul(x, 374761393) + Math.imul(y, 668265263) + Math.imul(s, 982451653);
   h = Math.imul(h ^ (h >>> 13), 1274126177);
@@ -41,447 +45,371 @@ function vnoise(x, y, s) {
 }
 function fbm(x, y, oct, s) {
   let sum = 0, amp = .5, norm = 0;
-  for (let i = 0; i < oct; i++) { sum += amp * vnoise(x, y, s + i * 17); norm += amp; x = x * 2.03 + 11.3; y = y * 2.03 + 7.1; amp *= .5; }
+  for (let i = 0; i < oct; i++) { sum += amp * vnoise(x, y, s + i * 17); norm += amp; x *= 2.03; y *= 2.03; amp *= .5; }
   return sum / norm;
 }
-// the same, but wrapping every P cells so a tile repeats seamlessly
-function pnoise(x, y, P, s) {
-  const ix = Math.floor(x), iy = Math.floor(y), fx = x - ix, fy = y - iy, w = i => ((i % P) + P) % P;
-  const u = fx * fx * (3 - 2 * fx), v = fy * fy * (3 - 2 * fy);
-  const a = hash2(w(ix), w(iy), s), b = hash2(w(ix + 1), w(iy), s), c = hash2(w(ix), w(iy + 1), s), d = hash2(w(ix + 1), w(iy + 1), s);
-  return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
-}
-function pfbm(x, y, oct, P, s) {
-  let sum = 0, amp = .5, norm = 0, f = 1;
-  for (let i = 0; i < oct; i++) { sum += amp * pnoise(x * f, y * f, P * f, s + i * 17); norm += amp; f *= 2; amp *= .5; }
-  return sum / norm;
-}
-const smooth = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
-const mix = (a, b, t) => a + (b - a) * t;
 
-const cosmos = (function () {
-  const cv = $('cosmos'), g = cv.getContext('2d');
-  const F = .25;                               // the sky scrolls at a quarter of the page speed
-  let W = 0, H = 0, D = 1, vw = 0, vh = 0, docH = 0, bgH = 0, cols = 0, rows = 0, T = 1;
-  let tex = null, texCtx = null, img = null, mask = null, dust = null, job = 0, chunks = new Map(), near = null, dirty = true;
-  let bandTex = null, bandCtx = null, bandImg = null, gas = null, gasCv = null, gasCtx = null, sprites = null;
-  let px = 0, py = 0, tpx = 0, tpy = 0, meteors = [], nextMeteor = 0, lastT = 0;
-  const live = !RM;                              // reduced motion keeps the sky still
+let drawnSeed = null;
+function drawArt(seed) {
+  const host = $('art');
+  if (!host || seed == null || seed === drawnSeed) return;
+  drawnSeed = seed;
+  const W = 600, H = 750, r = rng(seed), s = seed % 997;
+  const base = r() * Math.PI * 2, swirl = 1.4 + r() * 1.6, scale = 220 + r() * 160;
+  const out = [];
+  const anim = (i, kind = 'draw') => RM ? '' : ` class="${kind}" style="animation-delay:${Math.min(1800, i * 9)}ms"`;
 
-  // the galaxy band: where its centre lies and how wide it is at page depth v (0 top → 1 bottom)
-  const bandAt = v => {
-    let cx = .5 + .27 * Math.sin(v * 5.6 + 1.1) + .09 * Math.sin(v * 14 + .4);
-    cx = mix(cx, .5, smooth(.72, 1, v));
-    return { cx: cx * vw, w: vw * (.2 + .28 * v * v) + 90 };
-  };
+  // lattice
+  for (let y = 30; y < H; y += 30) for (let x = 30; x < W; x += 30)
+    out.push(`<circle cx="${x}" cy="${y}" r="1.1" fill="var(--faint)" opacity=".38"/>`);
 
-  function plan() {
-    if (!innerWidth || !innerHeight) return false;   // not laid out yet; the next resize builds it
-    const nd = document.documentElement.scrollHeight;
-    if (innerWidth === vw && Math.abs(nd - docH) < 40 && innerHeight === vh && tex) return false;
-    D = Math.min(devicePixelRatio || 1, 2);
-    vw = innerWidth; vh = innerHeight; docH = nd;
-    W = cv.width = Math.round(vw * D); H = cv.height = Math.round(vh * D);
-    bgH = vh + Math.max(0, docH - vh) * F;
-    cols = vw < 700 ? 160 : 360; T = vw / cols; rows = Math.ceil(bgH / T);
-    tex = layer(cols, rows); texCtx = tex.getContext('2d');
-    img = texCtx.createImageData(cols, rows);
-    mask = new Float32Array(cols * rows); dust = new Float32Array(cols * rows);
-    bandTex = layer(cols, rows); bandCtx = bandTex.getContext('2d'); bandImg = bandCtx.createImageData(cols, rows);
-    gasCv = layer(cols, Math.ceil(vh / T) + 3); gasCtx = gasCv.getContext('2d');
-    sprites = makeSprites();
-    chunks.clear(); near = makeNear();
-    return true;
+  // streamlines
+  const field = (x, y) => base + (fbm(x / scale, y / scale, 3, s) - .5) * Math.PI * 2 * swirl;
+  for (let i = 0; i < 190; i++) {
+    let x = r() * W, y = r() * H;
+    const pts = [[x, y]];
+    for (let k = 0; k < 90; k++) {
+      const a = field(x, y);
+      x += Math.cos(a) * 5; y += Math.sin(a) * 5;
+      if (x < -20 || x > W + 20 || y < -20 || y > H + 20) break;
+      pts.push([x, y]);
+    }
+    if (pts.length < 12) continue;
+    const d = 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L');
+    const accent = r() < .07;
+    out.push(`<path d="${d}" pathLength="1" fill="none" stroke="var(${accent ? '--accent' : '--line'})" stroke-width="${accent ? 1.6 : (.6 + r() * .7).toFixed(2)}" stroke-linecap="round" opacity="${accent ? .95 : (.22 + r() * .45).toFixed(2)}"${anim(i)}/>`);
   }
 
-  // paint the nebula texture a few rows at a time, top first, so the page never stalls
-  function paint() {
-    const my = ++job, data = img.data;
-    let y0 = 0;
-    const step = () => {
-      if (my !== job) return;
-      const y1 = Math.min(rows, y0 + 48);
-      for (let ty = y0; ty < y1; ty++) {
-        const y = ty * T, v = y / bgH, band = bandAt(v);
-        const lift = .65 + .35 * smooth(0, 1, v);                      // the band grows richer as we go down
-        for (let tx = 0; tx < cols; tx++) {
-          const x = tx * T, nx = x / 380, ny = y / 380;
-          const d = (x - band.cx) / band.w, m = Math.exp(-d * d);
-          // domain-warped clouds give filaments instead of blobs
-          const qx = fbm(nx + 1.7, ny + 9.2, 3, 3), qy = fbm(nx + 8.3, ny + 2.8, 3, 5);
-          const n = fbm(nx + 1.9 * qx, ny + 1.9 * qy, 5, 7);
-          const hue = fbm(nx * .5 + 5.2, ny * .5 + 1.3, 3, 9);
-          const rr = 1 - Math.abs(2 * fbm(nx * 2.2 + 3.1, ny * 2.2 + 4.7, 4, 11) - 1);   // ridges → dust lanes
-          const du = smooth(.62, .93, rr) * (.35 + .65 * m) * smooth(.3, .7, n);
-          const gas = (Math.pow(smooth(.38, .9, n), 1.5) * m * lift + smooth(.6, .95, n) * .16) * (1 - du * .85);
-          const haze = m * (.015 + .05 * v) * (.5 + .8 * n) * (1 - du * .9);   // unresolved star light
-          const core = Math.exp(-(((x - vw * .5) / (vw * .45)) ** 2) - (((v - 1.03) / .1) ** 2)) * (1 - du * .85);
-          // colour: blue reflection near the top, red emission lower down, oxygen-teal where the gas is densest
-          const red = smooth(.3, .7, hue) * smooth(.15, .65, v);
-          let r = mix(55, 215, red), gg = mix(90, 45, red), b = mix(225, 95, red);
-          const oiii = smooth(.72, .95, n) * (1 - red) * .7;
-          r = mix(r, 40, oiii); gg = mix(gg, 180, oiii); b = mix(b, 195, oiii);
-          let R = 2 + r * gas * .6 + 235 * haze + 255 * core * .5;
-          let G = 3 + gg * gas * .6 + 225 * haze + 186 * core * .5;
-          let B = 9 + b * gas * .6 + 210 * haze + 118 * core * .5;
-          // keep the sky dark enough for text: cap perceived brightness
-          const L = .3 * R + .59 * G + .11 * B, cap = 50 + 40 * core;
-          if (L > cap) { const k = cap / L; R *= k; G *= k; B *= k; }
-          const i = ty * cols + tx, k = i * 4;
-          data[k] = Math.min(255, R); data[k + 1] = Math.min(255, G); data[k + 2] = Math.min(255, B); data[k + 3] = 255;
-          mask[i] = m * lift; dust[i] = du;
-          bandImg.data[k + 3] = 255 * Math.min(1, m * lift) * (1 - du * .8);   // where drifting gas may show
+  // one orbit with a body on it, and one measured line through the centre
+  const cx = W * (.42 + r() * .16), cy = H * (.38 + r() * .2), R = W * (.24 + r() * .1), t = r() * Math.PI * 2;
+  out.push(`<circle cx="${cx}" cy="${cy}" r="${R}" pathLength="1" fill="none" stroke="var(--ink)" stroke-width="1.1"${anim(40)}/>`);
+  out.push(`<circle cx="${cx + Math.cos(t) * R}" cy="${cy + Math.sin(t) * R}" r="${9 + r() * 6}" fill="var(--accent)"${anim(150, 'pop')}/>`);
+  const ang = base + Math.PI / 2, L = R * 1.9, ux = Math.cos(ang), uy = Math.sin(ang);
+  out.push(`<line x1="${cx - ux * L}" y1="${cy - uy * L}" x2="${cx + ux * L}" y2="${cy + uy * L}" pathLength="1" stroke="var(--ink)" stroke-width=".9"${anim(60)}/>`);
+  for (let k = -10; k <= 10; k++) {
+    const px = cx + ux * k * L / 10, py = cy + uy * k * L / 10, tl = k % 5 ? 5 : 11;
+    out.push(`<line x1="${px - uy * tl}" y1="${py + ux * tl}" x2="${px + uy * tl}" y2="${py - ux * tl}" stroke="var(--ink)" stroke-width=".9"${anim(70 + k + 10, 'pop')}/>`);
+  }
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${out.join('')}</svg>`;
+}
+
+/* ===================== card covers =====================
+   A card shows its project's own image when one is given; otherwise a small
+   geometric drawing seeded by the project's name, so no two covers repeat. The
+   six families share the About artwork's vocabulary and the week's palette. */
+function hashStr(str) {
+  let h = 2166136261;
+  for (const ch of String(str)) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+const TAU = Math.PI * 2;
+const f1 = n => n.toFixed(1);
+// `family` (0–5) picks the drawing style explicitly; by default the name decides it
+function cover(key, family) {
+  const seed = hashStr(key), r = rng(seed), W = 400, H = 220, out = [];
+  const stroke = (c, w, o) => `fill="none" stroke="var(--${c})" stroke-width="${f1(w)}" opacity="${o.toFixed(2)}" stroke-linecap="round"`;
+  const pick = () => r() < .09 ? 'accent' : 'line';
+  switch (family ?? seed % 6) {
+    case 0: {   // streamlines of a smooth field
+      const base = r() * TAU, sc = 80 + r() * 90, swirl = 1 + r() * 1.8, s = seed % 997;
+      for (let i = 0; i < 54; i++) {
+        let x = r() * W, y = r() * H; const pts = [[x, y]];
+        for (let k = 0; k < 46; k++) {
+          const a = base + (fbm(x / sc, y / sc, 3, s) - .5) * TAU * swirl;
+          x += Math.cos(a) * 4; y += Math.sin(a) * 4;
+          if (x < -10 || x > W + 10 || y < -10 || y > H + 10) break;
+          pts.push([x, y]);
+        }
+        if (pts.length < 8) continue;
+        const c = pick();
+        out.push(`<path d="M${pts.map(p => f1(p[0]) + ' ' + f1(p[1])).join('L')}" ${stroke(c, c === 'accent' ? 1.6 : .7 + r() * .6, c === 'accent' ? .9 : .25 + r() * .45)}/>`);
+      }
+      break;
+    }
+    case 1: {   // nested orbits, one body, one measured chord
+      const cx = W * (.3 + r() * .4), cy = H * (.35 + r() * .3), n = 4 + (r() * 4 | 0);
+      for (let i = 1; i <= n; i++) {
+        const R = 16 + i * (14 + r() * 10), dx = (r() - .5) * 18, dy = (r() - .5) * 12;
+        out.push(`<circle cx="${f1(cx + dx)}" cy="${f1(cy + dy)}" r="${f1(R)}" ${stroke(i === n ? 'ink' : 'line', i === n ? 1 : .8, .35 + r() * .4)}/>`);
+        if (r() < .5) { const t = r() * TAU; out.push(`<circle cx="${f1(cx + dx + Math.cos(t) * R)}" cy="${f1(cy + dy + Math.sin(t) * R)}" r="2.2" fill="var(--line)"/>`); }
+      }
+      const t = r() * TAU, R = 30 + r() * 40;
+      out.push(`<circle cx="${f1(cx + Math.cos(t) * R)}" cy="${f1(cy + Math.sin(t) * R)}" r="${f1(5 + r() * 4)}" fill="var(--accent)"/>`);
+      const a = r() * Math.PI, L = 150;
+      out.push(`<line x1="${f1(cx - Math.cos(a) * L)}" y1="${f1(cy - Math.sin(a) * L)}" x2="${f1(cx + Math.cos(a) * L)}" y2="${f1(cy + Math.sin(a) * L)}" ${stroke('ink', .8, .7)}/>`);
+      break;
+    }
+    case 2: {   // a lattice whose neighbours are sometimes wired together
+      const step = 26 + (r() * 10 | 0), nodes = [];
+      for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step)
+        nodes.push([x + (r() - .5) * step * .35, y + (r() - .5) * step * .35]);
+      const cols = Math.ceil((W - step / 2) / step), p = .3 + r() * .35;
+      nodes.forEach(([x, y], i) => {
+        const right = nodes[i + 1], down = nodes[i + cols];
+        if (right && (i + 1) % cols && r() < p) out.push(`<line x1="${f1(x)}" y1="${f1(y)}" x2="${f1(right[0])}" y2="${f1(right[1])}" ${stroke(pick(), .9, .55)}/>`);
+        if (down && r() < p) out.push(`<line x1="${f1(x)}" y1="${f1(y)}" x2="${f1(down[0])}" y2="${f1(down[1])}" ${stroke(pick(), .9, .55)}/>`);
+      });
+      nodes.forEach(([x, y]) => { const big = r() < .06; out.push(`<circle cx="${f1(x)}" cy="${f1(y)}" r="${big ? 4.5 : 1.6}" fill="var(--${big ? 'accent' : 'ink'})" opacity="${big ? 1 : .55}"/>`); });
+      break;
+    }
+    case 3: {   // contour lines over a quiet terrain
+      const n = 14 + (r() * 8 | 0), s = seed % 991, amp = 30 + r() * 50, sc = 90 + r() * 80;
+      for (let i = 0; i < n; i++) {
+        const y0 = (i + .5) * H / n, pts = [];
+        for (let x = -8; x <= W + 8; x += 8) pts.push([x, y0 + (fbm(x / sc, i * .12, 3, s) - .5) * amp]);
+        out.push(`<path d="M${pts.map(p => f1(p[0]) + ' ' + f1(p[1])).join('L')}" ${stroke(r() < .08 ? 'accent' : 'line', .9, .3 + r() * .5)}/>`);
+      }
+      break;
+    }
+    case 4: {   // Truchet tiles of quarter arcs
+      const c = 22 + (r() * 12 | 0), h = c / 2;
+      for (let y = 0; y < H; y += c) for (let x = 0; x < W; x += c) {
+        const d = r() < .5
+          ? `M${x + h} ${y}A${h} ${h} 0 0 1 ${x} ${y + h}M${x + c} ${y + h}A${h} ${h} 0 0 0 ${x + h} ${y + c}`
+          : `M${x + h} ${y}A${h} ${h} 0 0 0 ${x + c} ${y + h}M${x} ${y + h}A${h} ${h} 0 0 1 ${x + h} ${y + c}`;
+        const col = pick();
+        out.push(`<path d="${d}" ${stroke(col, col === 'accent' ? 1.6 : 1, col === 'accent' ? .9 : .35 + r() * .35)}/>`);
+      }
+      break;
+    }
+    default: {  // rays from an off-frame origin, crossed by rings
+      const ox = r() < .5 ? -40 : W + 40, oy = H * r(), n = 30 + (r() * 16 | 0);
+      const dir = ox < 0 ? 0 : Math.PI, spread = .7 + r() * .5;
+      for (let i = 0; i < n; i++) {
+        const a = dir + (i / (n - 1) - .5) * spread * Math.PI, L = 180 + r() * 300, col = pick();
+        out.push(`<line x1="${ox}" y1="${f1(oy)}" x2="${f1(ox + Math.cos(a) * L)}" y2="${f1(oy + Math.sin(a) * L)}" ${stroke(col, col === 'accent' ? 1.5 : .7, col === 'accent' ? .9 : .25 + r() * .4)}/>`);
+      }
+      for (let k = 1; k <= 3; k++) out.push(`<circle cx="${ox}" cy="${f1(oy)}" r="${f1(90 + k * (60 + r() * 30))}" ${stroke('ink', .8, .45)}/>`);
+    }
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${out.join('')}</svg>`;
+}
+
+/* ===================== interest motifs =====================
+   Each interest gets a small line drawing of what it is about, in the same thin
+   strokes and weekly palette as the generated covers; the seed only varies details. */
+const MOTIFS = (() => {
+  const W = 400, H = 300;
+  const S = (d, c = 'line', w = 1, o = .8, extra = '') => `<path d="${d}" fill="none" stroke="var(--${c})" stroke-width="${w}" opacity="${o}" stroke-linecap="round" stroke-linejoin="round"${extra}/>`;
+  const C = (x, y, r, c = 'line', w = 1, o = .8, fill = 'none') => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(r)}" fill="${fill}" stroke="${fill === 'none' ? `var(--${c})` : 'none'}" stroke-width="${w}" opacity="${o}"/>`;
+  const dots = (step = 20, o = .3) => { let s = ''; for (let y = step / 2; y < H; y += step) for (let x = step / 2; x < W; x += step) s += `<circle cx="${x}" cy="${y}" r=".9" fill="var(--faint)" opacity="${o}"/>`; return s; };
+  const wave = (x0, x1, y, amp, len, ph) => { let d = ''; for (let x = x0; x <= x1; x += 4) d += (d ? 'L' : 'M') + f1(x) + ' ' + f1(y + Math.sin(x / len * TAU + ph) * amp); return d; };
+
+  return {
+    // an open book: curved pages, lines of text, a ribbon marker
+    reading(r) {
+      const o = [dots(20, .22)], cx = 200, top = 72, bot = 236, sag = 16 + r() * 6;
+      for (const side of [-1, 1]) {
+        const ex = cx + side * 150;
+        for (let k = 3; k >= 0; k--) o.push(S(`M${cx} ${bot + k * 3}Q${cx + side * 75} ${bot - sag + k * 3} ${ex - side * k * 2} ${bot - 2 + k * 3}`, 'line', .8, .35));
+        o.push(S(`M${cx} ${top}Q${cx + side * 75} ${top - sag} ${ex} ${top - 4}L${ex} ${bot - 2}Q${cx + side * 75} ${bot - sag} ${cx} ${bot}Z`, 'ink', 1.1, .85));
+        for (let i = 0; i < 9; i++) {
+          const y = top + 22 + i * 15, len = i === 8 ? .45 : .8 + r() * .18;
+          const xa = cx + side * 14, xb = cx + side * (14 + 118 * len);
+          o.push(S(`M${xa} ${y}Q${(xa + xb) / 2} ${y - sag * .55} ${f1(xb)} ${y - 2}`, 'line', 1, .55));
         }
       }
-      texCtx.putImageData(img, 0, 0, 0, y0, cols, y1 - y0);
-      bandCtx.putImageData(bandImg, 0, 0, 0, y0, cols, y1 - y0);
-      y0 = y1; dirty = true;
-      if (y0 < rows) setTimeout(step, 0);
-    };
-    step();
-  }
+      o.push(S(`M${cx} ${top}L${cx} ${bot}`, 'ink', 1, .7));
+      o.push(`<path d="M${cx + 30} ${top - 12}L${cx + 30} ${top + 46}L${cx + 37} ${top + 38}L${cx + 44} ${top + 46}L${cx + 44} ${top - 14}Z" fill="var(--accent)" opacity=".9"/>`);
+      return o.join('');
+    },
 
-  const sample = (arr, x, y) => {
-    const tx = Math.min(cols - 1, Math.max(0, x / T | 0)), ty = Math.min(rows - 1, Math.max(0, y / T | 0));
-    return arr ? arr[ty * cols + tx] : 0;
+    // a staff with a melody, and the sound it makes
+    music(r) {
+      const o = [], y0 = 112, gap = 16;
+      for (let i = 0; i < 5; i++) o.push(S(`M24 ${y0 + i * gap}L376 ${y0 + i * gap}`, 'ink', .9, .45));
+      for (let k = 0; k < 3; k++) o.push(S(wave(24, 376, y0 + 2 * gap, 26 - k * 7, 70 + k * 18, r() * TAU), k ? 'line' : 'accent', k ? .8 : 1.3, k ? .45 : .8));
+      const xs = [74, 122, 170, 218, 266, 314];
+      xs.forEach((x, i) => {
+        const y = y0 + (Math.round(r() * 8) * gap / 2), acc = i === 3;
+        o.push(`<ellipse cx="${x}" cy="${f1(y)}" rx="8.5" ry="6" transform="rotate(-22 ${x} ${f1(y)})" fill="var(--${acc ? 'accent' : 'ink'})" opacity=".9"/>`);
+        o.push(S(`M${x + 7.6} ${f1(y - 2)}L${x + 7.6} ${f1(y - 46)}`, 'ink', 1.2, .85));
+        xs.__y = xs.__y || []; xs.__y[i] = y - 46;
+      });
+      o.push(`<path d="M${xs[0] + 7.6} ${f1(xs.__y[0])}L${xs[1] + 7.6} ${f1(xs.__y[1])}L${xs[1] + 7.6} ${f1(xs.__y[1] + 6)}L${xs[0] + 7.6} ${f1(xs.__y[0] + 6)}Z" fill="var(--ink)" opacity=".85"/>`);
+      return o.join('');
+    },
+
+    // a controller over a pixel field, with a few falling blocks
+    games(r) {
+      const o = [];
+      for (let y = 10; y < H; y += 20) for (let x = 10; x < W; x += 20) o.push(`<rect x="${x - 7}" y="${y - 7}" width="14" height="14" fill="none" stroke="var(--rule)" stroke-width=".8"/>`);
+      const shapes = [[[0, 0], [1, 0], [2, 0], [1, 1]], [[0, 0], [0, 1], [1, 1], [2, 1]], [[0, 0], [1, 0], [0, 1], [1, 1]], [[0, 0], [1, 0], [1, 1], [2, 1]]];
+      for (let k = 0; k < 4; k++) {
+        const sh = shapes[(r() * shapes.length) | 0], gx = 1 + ((r() * 17) | 0), gy = (r() * 2) | 0, acc = k === 0;
+        for (const [dx, dy] of sh) o.push(`<rect x="${(gx + dx) * 20 + 3}" y="${(gy + dy) * 20 + 3}" width="14" height="14" fill="var(--${acc ? 'accent' : 'line'})" opacity="${acc ? .9 : .45}"/>`);
+      }
+      o.push(`<path d="M120 118H280C326 118 342 150 350 196C356 232 330 250 306 232L278 210H122L94 232C70 250 44 232 50 196C58 150 74 118 120 118Z" fill="var(--raised)" stroke="var(--ink)" stroke-width="1.4"/>`);
+      o.push(`<path d="M120 152h12v-12h12v12h12v12h-12v12h-12v-12h-12z" fill="var(--ink)" opacity=".85"/>`);
+      [[280, 146], [298, 164], [280, 182], [262, 164]].forEach(([x, y], i) => o.push(C(x, y, 8, 'ink', 1.2, .9, i === 0 ? 'var(--accent)' : 'none')));
+      o.push(`<rect x="182" y="160" width="16" height="6" rx="3" fill="var(--line)" opacity=".7"/><rect x="204" y="160" width="16" height="6" rx="3" fill="var(--line)" opacity=".7"/>`);
+      return o.join('');
+    },
+
+    // a stadium track, a runner and the trail behind
+    running(r) {
+      const o = [dots(24, .2)], cx = 200, cy = 150, L = 150;
+      for (let k = 0; k < 5; k++) {
+        const R = 38 + k * 15;
+        o.push(S(`M${cx - L / 2} ${cy - R}H${cx + L / 2}A${R} ${R} 0 0 1 ${cx + L / 2} ${cy + R}H${cx - L / 2}A${R} ${R} 0 0 1 ${cx - L / 2} ${cy - R}Z`, k === 4 || k === 0 ? 'ink' : 'line', k === 4 || k === 0 ? 1.1 : .8, .7));
+      }
+      o.push(S(`M${cx + 20} ${cy + 38}L${cx + 20} ${cy + 98}`, 'ink', 1.4, .8));
+      const R = 38 + 2.5 * 15, a = -.6 - r() * .8, rx = cx + L / 2 + Math.cos(a) * R, ry = cy + Math.sin(a) * R;
+      o.push(S(`M${cx - 30} ${cy - R}H${cx + L / 2}A${R} ${R} 0 0 1 ${f1(rx)} ${f1(ry)}`, 'accent', 2, .85, ' stroke-dasharray="2 7"'));
+      o.push(C(rx, ry, 7, 'accent', 1, 1, 'var(--accent)'));
+      return o.join('');
+    },
+
+    // lane ropes, water, and the wake of a swimmer
+    swimming(r) {
+      const o = [], lanes = [48, 116, 184, 252];
+      lanes.forEach(y => { for (let x = 8; x < W; x += 12) o.push(C(x, y, 2.6, 'line', 1, .8, `var(--${(x / 12 | 0) % 4 === 0 ? 'accent' : 'line'})`)); });
+      for (let i = 0; i < 3; i++) for (let k = 0; k < 2; k++) o.push(S(wave(0, W, lanes[i] + 22 + k * 22, 4, 46 + k * 9, r() * TAU), 'line', .8, .45));
+      const sx = 120 + r() * 160, sy = lanes[1] + 34;
+      for (let k = 1; k <= 4; k++) o.push(S(`M${f1(sx - k * 22)} ${f1(sy - k * 10)}Q${f1(sx - k * 6)} ${sy} ${f1(sx - k * 22)} ${f1(sy + k * 10)}`, 'ink', 1, .75 - k * .13));
+      o.push(C(sx, sy, 6.5, 'accent', 1, 1, 'var(--accent)'));
+      o.push(S(`M${f1(sx - 4)} ${f1(sy - 3)}L${f1(sx + 18)} ${f1(sy - 16)}M${f1(sx - 4)} ${f1(sy + 3)}L${f1(sx + 18)} ${f1(sy + 16)}`, 'ink', 1.2, .8));
+      return o.join('');
+    },
+
+    // a street map and a dotted walk through it
+    citywalks(r) {
+      const o = [], xs = [], ys = [];
+      for (let x = 20 + r() * 20; x < W; x += 44 + r() * 30) xs.push(x);
+      for (let y = 18 + r() * 16; y < H; y += 40 + r() * 26) ys.push(y);
+      if (xs.length > 2) o.push(`<rect x="${f1(xs[1] + 5)}" y="${f1(ys[0] + 5)}" width="${f1(xs[2] - xs[1] - 10)}" height="${f1(ys[1] - ys[0] - 10)}" fill="var(--line)" opacity=".12"/>`);
+      xs.forEach((x, i) => o.push(S(`M${f1(x)} 0L${f1(x + (r() - .5) * 14)} ${H}`, i % 3 ? 'line' : 'ink', i % 3 ? .8 : 1.3, .6)));
+      ys.forEach((y, i) => o.push(S(`M0 ${f1(y)}L${W} ${f1(y + (r() - .5) * 12)}`, i % 2 ? 'line' : 'ink', i % 2 ? .8 : 1.3, .6)));
+      o.push(S(`M-10 ${f1(H * (.55 + r() * .3))}C${W * .3} ${f1(H * r())} ${W * .6} ${H} ${W + 10} ${f1(H * (.1 + r() * .3))}`, 'line', 10, .12));   // a river
+      let ix = 0, iy = ys.length - 1, x = xs[0], y = ys[iy], d = `M${f1(x)} ${f1(y)}`;
+      while (ix < xs.length - 1 || iy > 0) {
+        if (iy > 0 && (ix >= xs.length - 1 || r() < .45)) iy--; else ix++;
+        x = xs[ix]; y = ys[iy]; d += `L${f1(x)} ${f1(y)}`;
+      }
+      o.push(S(d, 'accent', 3, .95, ' stroke-dasharray="0.1 8"'));
+      o.push(C(xs[0], ys[ys.length - 1], 6, 'accent', 1.6, 1));
+      o.push(`<path d="M${f1(x)} ${f1(y + 2)}c-9-11-9-23 0-23s9 12 0 23z" fill="var(--accent)" transform="translate(0 -6)"/>`);
+      return o.join('');
+    },
+
+    // a steaming bowl and a pair of chopsticks
+    goodfood(r) {
+      const o = [dots(20, .2)], cx = 200, rim = 172, rx = 104;
+      for (let k = 0; k < 3; k++) {
+        const x0 = cx - 40 + k * 40, ph = r() * TAU;
+        let d = ''; for (let y = rim - 18; y > 54; y -= 4) d += (d ? 'L' : 'M') + f1(x0 + Math.sin((rim - y) / 22 + ph) * 9) + ' ' + y;
+        o.push(S(d, k === 1 ? 'accent' : 'line', k === 1 ? 1.5 : 1, k === 1 ? .85 : .55));
+      }
+      o.push(S(`M${cx - rx} ${rim}A${rx} ${rx * .72} 0 0 0 ${cx + rx} ${rim}`, 'ink', 1.4, .9));
+      o.push(`<ellipse cx="${cx}" cy="${rim}" rx="${rx}" ry="15" fill="none" stroke="var(--ink)" stroke-width="1.2" opacity=".85"/>`);
+      for (let i = 0; i < 26; i++) { const a = r() * TAU, rr = Math.sqrt(r()); o.push(`<ellipse cx="${f1(cx + Math.cos(a) * rr * (rx - 16))}" cy="${f1(rim + Math.sin(a) * rr * 9)}" rx="3" ry="1.6" fill="var(--line)" opacity=".55"/>`); }
+      o.push(`<ellipse cx="${cx + 28}" cy="${rim - 2}" rx="13" ry="6" fill="var(--accent)" opacity=".9"/>`);
+      o.push(S(`M${cx - 36} ${rim + rx * .72 - 2}L${cx + 36} ${rim + rx * .72 - 2}`, 'ink', 1.2, .8));
+      o.push(S(`M${cx + 40} ${rim - 6}L${cx + 150} ${rim - 120}M${cx + 54} ${rim - 2}L${cx + 168} ${rim - 108}`, 'ink', 2.2, .85));
+      return o.join('');
+    },
   };
-
-  // a star with a realistic colour and, for the brightest few, a soft halo and faint spikes
-  const COLS = ['170,195,255', '235,240,255', '255,240,215', '255,205,165'];
-  function star(s, x, y, a, r, out) {
-    const t = r(), ci = t < .12 ? 0 : t < .5 ? 1 : t < .82 ? 2 : 3, col = COLS[ci];
-    // the brighter stars are drawn every frame instead, so they can scintillate
-    if (out && a > .55) { out.push({ x, y, a, ci, f: .0012 + r() * .0035, p: r() * 6.3, q: r() * 6.3 }); return; }
-    const size = (.55 + a * .9) * D;
-    s.fillStyle = `rgba(${col},${.25 + a * .75})`;
-    s.fillRect(x * D - size / 2, y * D - size / 2, size, size);
-    if (a > .96) {
-      const R = (3 + a * 6) * D, gl = s.createRadialGradient(x * D, y * D, 0, x * D, y * D, R);
-      gl.addColorStop(0, `rgba(${col},.55)`); gl.addColorStop(.25, `rgba(${col},.12)`); gl.addColorStop(1, `rgba(${col},0)`);
-      s.fillStyle = gl; s.fillRect(x * D - R, y * D - R, R * 2, R * 2);
-      if (a > .997) {
-        s.strokeStyle = `rgba(${col},.14)`; s.lineWidth = .6 * D;
-        s.beginPath(); s.moveTo(x * D - R * 2.2, y * D); s.lineTo(x * D + R * 2.2, y * D);
-        s.moveTo(x * D, y * D - R * 2.2); s.lineTo(x * D, y * D + R * 2.2); s.stroke();
-      }
-    }
-  }
-
-  // stars belonging to the sky itself, generated per 512px slice and cached; thicker inside the band, hidden by dust
-  const CH = 512;
-  function chunk(ci) {
-    if (chunks.has(ci)) return chunks.get(ci);
-    const c = layer(W, CH * D), s = c.getContext('2d'), r = rng(9001 + ci * 131), out = [];
-    const area = vw * CH, y0 = ci * CH;
-    for (let i = 0, n = area / 1500; i < n; i++) star(s, r() * vw, r() * CH, r() ** 4, r, out);     // everywhere
-    for (let i = 0, n = area / 110; i < n; i++) {                                                   // the band
-      const x = r() * vw, y = r() * CH, m = sample(mask, x, y0 + y), du = sample(dust, x, y0 + y);
-      if (r() > m * .85 * (1 - du)) continue;
-      star(s, x, y, r() ** 7, r, out);
-    }
-    if (chunks.size > 14) chunks.delete(chunks.keys().next().value);
-    const ch = { c, out };
-    chunks.set(ci, ch);
-    return ch;
-  }
-
-  // a sparse layer of nearer stars that drifts a little faster, for depth
-  function makeNear() {
-    const S = Math.round(720 * D), c = layer(S, S), s = c.getContext('2d'), r = rng(4242);
-    const save = D; for (let i = 0; i < 70; i++) star(s, r() * 720, r() * 720, .3 + r() ** 3 * .7, r);
-    D = save; return c;
-  }
-
-  // one soft star image per colour, scaled per star
-  function makeSprites() {
-    return COLS.map(col => {
-      const c = layer(32, 32), s = c.getContext('2d'), gl = s.createRadialGradient(16, 16, 0, 16, 16, 16);
-      gl.addColorStop(0, `rgba(${col},1)`); gl.addColorStop(.12, `rgba(${col},.85)`);
-      gl.addColorStop(.3, `rgba(${col},.12)`); gl.addColorStop(1, `rgba(${col},0)`);
-      s.fillStyle = gl; s.fillRect(0, 0, 32, 32);
-      return c;
-    });
-  }
-
-  // a seamless tile of thin, filamentary gas; two copies drift across the band in opposite directions
-  function makeGas() {
-    const N = 256, P = 4, c = layer(N, N), s = c.getContext('2d'), im = s.createImageData(N, N);
-    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
-      const u = x / N * P, v = y / N * P;
-      const qx = pfbm(u, v, 3, P, 21), qy = pfbm(u + 2.3, v + 1.7, 3, P, 23);
-      const n = pfbm(u + 1.6 * qx, v + 1.6 * qy, 4, P, 25), h = pfbm(u + .7, v + 3.1, 2, P, 27);
-      const al = Math.pow(smooth(.42, .85, n), 1.6), red = smooth(.35, .65, h), k = (y * N + x) * 4;
-      im.data[k] = mix(110, 255, red); im.data[k + 1] = mix(150, 105, red); im.data[k + 2] = mix(255, 150, red); im.data[k + 3] = 255 * al;
-    }
-    s.putImageData(im, 0, 0);
-    return c;
-  }
-
-  function drawGas(t, off, sy0, gh) {
-    const x = gasCtx, sky = -off / T, pat = x.createPattern(gas, 'repeat');
-    x.globalCompositeOperation = 'source-over'; x.clearRect(0, 0, gasCv.width, gasCv.height);
-    const sheet = (sc, dx, dy) => {
-      x.save(); x.translate(dx, dy); x.scale(sc, sc); x.fillStyle = pat;
-      x.fillRect(-dx / sc, -dy / sc, gasCv.width / sc, gasCv.height / sc); x.restore();
-    };
-    sheet(1, t * .003 + px * 1.5, sky + t * .0008 + py * 1.5);
-    x.globalCompositeOperation = 'lighter';
-    sheet(1.7, -t * .002 + px * 2.5 + 97, sky - t * .0006 + py * 2.5 + 41);
-    x.globalCompositeOperation = 'destination-in';             // keep it inside the galaxy band, out of the dust
-    x.drawImage(bandTex, 0, sy0, cols, gh, 0, 0, cols, gh);
-    g.globalCompositeOperation = 'lighter'; g.globalAlpha = .2;
-    g.drawImage(gasCv, 0, 0, cols, gh, 0, 0, W, gh * T * D);
-    g.globalCompositeOperation = 'source-over'; g.globalAlpha = 1;
-  }
-
-  function meteor(t, dt) {
-    if (t > nextMeteor) {
-      if (nextMeteor) {
-        const dir = Math.random() < .5 ? -1 : 1, ang = (.25 + Math.random() * .4) * dir;
-        meteors.push({ x: vw * (.15 + Math.random() * .7), y: vh * Math.random() * .55, vx: Math.cos(ang) * dir * .9, vy: Math.abs(Math.sin(ang)) * .9 + .15,
-          len: 110 + Math.random() * 160, life: 0, dur: 550 + Math.random() * 500 });
-      }
-      nextMeteor = t + 6000 + Math.random() * 9000;
-    }
-    g.globalCompositeOperation = 'lighter'; g.lineCap = 'round';
-    meteors = meteors.filter(m => {
-      m.life += dt; m.x += m.vx * dt; m.y += m.vy * dt;
-      const k = m.life / m.dur; if (k >= 1) return false;
-      const fade = Math.sin(Math.PI * k), sp = Math.hypot(m.vx, m.vy), tx = m.x - m.vx / sp * m.len, ty = m.y - m.vy / sp * m.len;
-      const gl = g.createLinearGradient(m.x * D, m.y * D, tx * D, ty * D);
-      gl.addColorStop(0, `rgba(255,250,240,${.85 * fade})`); gl.addColorStop(.15, `rgba(190,215,255,${.35 * fade})`); gl.addColorStop(1, 'rgba(120,160,255,0)');
-      g.strokeStyle = gl; g.lineWidth = 1.3 * D;
-      g.beginPath(); g.moveTo(m.x * D, m.y * D); g.lineTo(tx * D, ty * D); g.stroke();
-      return true;
-    });
-    g.globalCompositeOperation = 'source-over';
-  }
-
-  function draw(t, dt) {
-    if (!tex) return;
-    const off = scrollY * F;
-    g.fillStyle = '#020309'; g.fillRect(0, 0, W, H);
-    g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
-    // only the slice of the texture that is on screen
-    const sy0 = Math.max(0, off / T), sh = Math.min(rows - sy0, vh / T + 2);
-    if (sh > 0) {
-      g.drawImage(tex, 0, sy0, cols, sh, 0, 0, W, sh * T * D);
-      if (gas) drawGas(t, off, sy0, Math.min(gasCv.height, Math.ceil(sh)));
-    }
-    // the sky's own stars, with the brighter ones scintillating; a touch of pointer parallax for depth
-    const sx = px * 4, syp = py * 4;
-    for (let ci = Math.floor(off / CH), last = Math.floor((off + vh) / CH); ci <= last; ci++) {
-      const ch = chunk(ci), top = ci * CH - off;
-      g.drawImage(ch.c, Math.round(sx * D), Math.round((top + syp) * D));
-      for (const st of ch.out) {
-        const y = top + st.y + syp; if (y < -20 || y > vh + 20) continue;
-        const tw = live ? 1 + .32 * Math.sin(t * st.f + st.p) * Math.sin(t * st.f * 2.7 + st.q) : 1;
-        const R = (1.6 + st.a ** 3 * 9) * D * (.9 + .1 * tw);
-        g.globalAlpha = Math.min(1, (.3 + st.a * .7) * tw);
-        g.drawImage(sprites[st.ci], (st.x + sx) * D - R, y * D - R, R * 2, R * 2);
-      }
-    }
-    g.globalAlpha = 1;
-    // nearer stars: faster scroll, a slow sideways drift and more parallax
-    const S = near.width, oy = -((scrollY * .32 * D) % S) + py * 14 * D, ox = (((t * .004 + px * 14) * D) % S + S) % S - S;
-    g.globalAlpha = .8;
-    for (let y = oy - (oy > 0 ? S : 0); y < H; y += S) for (let x = ox; x < W; x += S) g.drawImage(near, x, y);
-    g.globalAlpha = 1;
-    if (live) meteor(t, dt);
-  }
-
-  function loop(t) {
-    requestAnimationFrame(loop);
-    if (!live) { if (dirty) { dirty = false; draw(0, 0); } return; }
-    const dt = Math.min(64, t - lastT);
-    if (vw < 700 && dt < 30) return;                         // ~30 fps is plenty on phones
-    lastT = t;
-    px += (tpx - px) * .04; py += (tpy - py) * .04;
-    draw(t, dt);
-  }
-  addEventListener('scroll', () => { dirty = true; }, { passive: true });
-  if (live && matchMedia('(pointer: fine)').matches)
-    addEventListener('pointermove', e => { tpx = e.clientX / innerWidth * 2 - 1; tpy = e.clientY / innerHeight * 2 - 1; }, { passive: true });
-  const rebuild = debounce(() => { if (plan()) paint(); dirty = true; }, 120);
-  addEventListener('resize', rebuild);
-  if ('ResizeObserver' in window) new ResizeObserver(rebuild).observe(document.body);
-  if (plan()) paint();
-  setTimeout(() => { gas = makeGas(); dirty = true; }, 300);
-  requestAnimationFrame(loop);
-  return { refresh: rebuild };
 })();
+function motif(title) {
+  const draw = MOTIFS[String(title).toLowerCase().replace(/[^a-z]/g, '')];
+  return draw ? `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${draw(rng(hashStr('motif:' + title)))}</svg>` : null;
+}
 
-/* ===================== hero: sunrise over a night-side planet ===================== */
-(function scene() {
-  const cv = $('scene'), g = cv.getContext('2d');
-  let W = 0, H = 0, D = 1, planet = null, sun = null, visible = true, raf = 0;
+// one card for code and sharing alike: cover, meta line, linked title, text, optional extras.
+// A logo is shown whole on dotted paper; imageFit "cover" fills the frame instead (for
+// posters and screenshots), cropped around imagePosition.
+function card({ key, image, imageFit, imagePosition, imageZoom, href, title, lang, meta, text, extra = '' }) {
+  const fill = imageFit === 'cover';
+  const css = [fill && imagePosition ? `object-position:${imagePosition}` : '', imageZoom ? `--zoom:${+imageZoom || 1}` : ''].filter(Boolean).join(';');
+  const pos = css ? ` style="${esc(css)}"` : '';
+  const top = image
+    ? `<div class="cover ${fill ? 'photo' : 'logo'}" data-key="${esc(key)}"><img src="${esc(image)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"${pos} /></div>`
+    : `<div class="cover">${cover(key)}</div>`;
+  return `<article class="card">
+      ${top}
+      <div class="card-b">
+        <div class="meta">${meta}</div>
+        <h3><a class="stretch" href="${esc(href)}" target="_blank" rel="noopener"${lang ? ` lang="${esc(lang)}"` : ''}>${esc(title)}</a></h3>
+        <p>${esc(text)}</p>
+        ${extra}
+      </div>
+    </article>`;
+}
+// a cover image that fails to load gives way to the generated pattern
+function wireCovers(root) {
+  root.querySelectorAll('.cover.logo img, .cover.photo img').forEach(img => img.addEventListener('error', () => {
+    const box = img.parentElement; box.classList.remove('logo', 'photo'); box.innerHTML = cover(box.dataset.key);
+  }, { once: true }));
+}
 
-  function build() {
-    if (!cv.clientWidth || !cv.clientHeight) return;   // not laid out yet; the next resize builds it
-    D = Math.min(devicePixelRatio || 1, 2);
-    W = cv.width = Math.round(cv.clientWidth * D);
-    H = cv.height = Math.round(cv.clientHeight * D);
-    const r = rng(20250901), narrow = cv.clientWidth < 700;
-
-    // planet: a huge circle whose limb crosses the lower part of the frame, tilted slightly
-    const R = Math.max(W, H) * (narrow ? 2.4 : 1.9);
-    const horizonY = H * (narrow ? .74 : .7);
-    const tilt = narrow ? .05 : .08;
-    const cx = W * .55 + Math.sin(tilt) * R, cy = horizonY + Math.cos(tilt) * R;
-    const sunA = -Math.acos(Math.max(-1, Math.min(1, (W * (narrow ? .7 : .78) - cx) / R)));   // sun sits on the limb, right of centre
-    const sx = cx + Math.cos(sunA) * R, sy = cy + Math.sin(sunA) * R;
-
-    // planet body, city lights, atmosphere
-    planet = layer(W, H);
-    const p = planet.getContext('2d');
-    p.save();
-    p.beginPath(); p.arc(cx, cy, R, 0, Math.PI * 2); p.clip();
-    const body = p.createLinearGradient(0, horizonY - 20 * D, 0, H);
-    body.addColorStop(0, '#0d1a2c'); body.addColorStop(.08, '#060c16'); body.addColorStop(1, '#010203');
-    p.fillStyle = body; p.fillRect(0, 0, W, H);
-    // day-side scatter near the sun
-    const day = p.createRadialGradient(sx, sy, 0, sx, sy, W * .55);
-    day.addColorStop(0, 'rgba(90,150,220,.55)'); day.addColorStop(.25, 'rgba(40,80,140,.22)'); day.addColorStop(1, 'rgba(10,20,40,0)');
-    p.fillStyle = day; p.fillRect(0, 0, W, H);
-    // city lights: clustered, compressed toward the horizon
-    const gauss = () => (r() + r() + r() - 1.5) / 1.5;
-    for (let k = 0; k < 60; k++) {
-      const ox = r() * W, depth = r() ** 1.4;
-      const clusterN = 4 + (r() ** 2 * 50 | 0), spread = (14 + r() * 40) * D * (.3 + depth);
-      for (let j = 0; j < clusterN; j++) {
-        const x = ox + gauss() * spread;
-        const limbY = cy - Math.sqrt(Math.max(0, R * R - (x - cx) ** 2));
-        const y = limbY + 6 * D + depth * (H - limbY) * .9 + gauss() * spread * .35 * (.2 + depth);
-        const fade = Math.min(1, Math.hypot(x - sx, y - sy) / (W * .35));    // daylight washes them out
-        p.fillStyle = `rgba(255,${170 + (r() * 50 | 0)},${90 + (r() * 40 | 0)},${(.1 + r() ** 2 * .6) * fade})`;
-        const sz = (.4 + r() * .5 + depth * .9) * D;
-        p.fillRect(x, y, sz, sz * (.45 + depth * .55));
-      }
-    }
-    p.restore();
-
-    // atmosphere: a thin bright rim and a soft haze above it, strongest toward the sun
-    const atm = layer(W, H), a = atm.getContext('2d');
-    const rim = a.createRadialGradient(cx, cy, R - 3 * D, cx, cy, R + 90 * D);
-    rim.addColorStop(0, 'rgba(160,215,255,0)');
-    rim.addColorStop(.03, 'rgba(170,220,255,.95)');
-    rim.addColorStop(.07, 'rgba(80,150,255,.55)');
-    rim.addColorStop(.25, 'rgba(40,90,210,.16)');
-    rim.addColorStop(1, 'rgba(20,40,120,0)');
-    a.fillStyle = rim;
-    a.beginPath(); a.arc(cx, cy, R + 90 * D, 0, Math.PI * 2); a.arc(cx, cy, R - 3 * D, 0, Math.PI * 2, true); a.fill('evenodd');
-    a.globalCompositeOperation = 'destination-in';
-    const mask = a.createRadialGradient(sx, sy, 0, sx, sy, W * .95);
-    mask.addColorStop(0, 'rgba(0,0,0,1)'); mask.addColorStop(.5, 'rgba(0,0,0,.55)'); mask.addColorStop(1, 'rgba(0,0,0,.18)');
-    a.fillStyle = mask; a.fillRect(0, 0, W, H);
-    p.drawImage(atm, 0, 0);
-
-    // the sun, just cresting the limb
-    sun = layer(W, H);
-    const u = sun.getContext('2d');
-    u.globalCompositeOperation = 'lighter';
-    const glow = u.createRadialGradient(sx, sy, 0, sx, sy, W * .32);
-    glow.addColorStop(0, 'rgba(255,250,240,1)'); glow.addColorStop(.02, 'rgba(255,236,200,.95)');
-    glow.addColorStop(.08, 'rgba(255,190,120,.35)'); glow.addColorStop(.3, 'rgba(120,150,255,.08)'); glow.addColorStop(1, 'rgba(0,0,0,0)');
-    u.fillStyle = glow; u.fillRect(0, 0, W, H);
-    // anamorphic streak along the horizon
-    u.save(); u.translate(sx, sy); u.rotate(tilt); u.scale(1, .018);
-    const streak = u.createRadialGradient(0, 0, 0, 0, 0, W * .6);
-    streak.addColorStop(0, 'rgba(255,245,230,.9)'); streak.addColorStop(.3, 'rgba(180,210,255,.25)'); streak.addColorStop(1, 'rgba(0,0,0,0)');
-    u.fillStyle = streak; u.beginPath(); u.arc(0, 0, W * .6, 0, Math.PI * 2); u.fill();
-    u.restore();
-
-    draw(performance.now());
-  }
-
-  function draw(t) {
-    if (!planet) return;
-    const sy = Math.min(scrollY, H / D) * D;
-    g.clearRect(0, 0, W, H);
-    g.drawImage(planet, 0, sy * .22);
-    g.globalAlpha = .88 + .12 * Math.sin(t / 2600);
-    g.drawImage(sun, 0, sy * .22);
-    g.globalAlpha = 1;
-  }
-
-  function loop(t) {
-    raf = 0;
-    if (!visible) return;
-    draw(t);
-    if (!RM) raf = requestAnimationFrame(loop);
-  }
-  const kick = () => { if (!raf && visible) raf = requestAnimationFrame(loop); };
-
-  build();
-  addEventListener('resize', debounce(() => { build(); kick(); }));
-  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; kick(); }).observe(cv);
-  if (RM) addEventListener('scroll', kick, { passive: true });
-  kick();
-})();
-
-/* ===================== nav ===================== */
+/* ===================== email: stored shifted by 5 code points ===================== */
 {
-  const nav = $('nav'), links = $('navLinks'), burger = $('burger'), secs = [...document.querySelectorAll('main section[id]')];
-  const drawer = matchMedia('(max-width: 1100px)');
-  // a closed drawer is only moved off-screen, so take its links out of the tab order too
-  const setOpen = open => {
-    links.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open);
-    links.inert = drawer.matches && !open;
-  };
-  drawer.addEventListener('change', () => setOpen(false));
-  setOpen(false);
-  burger.addEventListener('click', () => setOpen(!links.classList.contains('open')));
-  links.addEventListener('click', e => e.target.tagName === 'A' && setOpen(false));
-  addEventListener('keydown', e => e.key === 'Escape' && setOpen(false));
-  $('hint').addEventListener('click', () => $('mission').scrollIntoView());
-  let lastY = scrollY;
+  const btn = $('mailBtn'), txt = $('mailText');
+  if (btn) {
+    const real = [...'qfwyufslElrfnq3htr'].map(ch => String.fromCharCode(ch.charCodeAt(0) - 5)).join('');
+    let shown = false;
+    btn.addEventListener('click', () => {
+      if (shown) { location.href = 'mailto:' + real; return; }
+      shown = true;
+      btn.classList.add('shown');
+      let i = 0;
+      const iv = setInterval(() => {
+        txt.textContent = real.slice(0, i) + [...real.slice(i)].map(() => '0123456789abcdef'[Math.random() * 16 | 0]).join('');
+        if (++i > real.length) { clearInterval(iv); txt.textContent = real; }
+      }, RM ? 0 : 30);
+    });
+  }
+}
+
+/* ===================== floating top bar =====================
+   Hidden while reading downward; a few pixels of upward scroll bring it back. */
+{
+  const bar = $('bar');
+  let last = scrollY;
   const onScroll = () => {
     const y = scrollY;
-    nav.classList.toggle('solid', y > 40);
-    // hide while reading downward, return on a real upward scroll or near the top;
-    // small jitters in between keep the current state
-    if (y < innerHeight * .6 || y < lastY - 4 || links.classList.contains('open')) nav.classList.remove('away');
-    else if (y > lastY + 4) nav.classList.add('away');
-    if (Math.abs(y - lastY) > 4) lastY = y;
-    const cur = secs.filter(s => s.getBoundingClientRect().top < innerHeight * .4).pop()?.id;
-    links.querySelectorAll('a').forEach(a => a.classList.toggle('on', a.hash === '#' + cur));
+    bar.classList.toggle('lifted', y > 4);
+    if (y < bar.offsetHeight) bar.classList.remove('away');
+    else if (y > last + 6) bar.classList.add('away');
+    else if (y < last - 6) bar.classList.remove('away');
+    if (Math.abs(y - last) > 6) last = y;
   };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+  // the About hero sizes itself to the screen below the bar, whose height differs on phones
+  const measure = () => document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px');
+  measure();
+  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(bar);
 }
 
-// The address is stored shifted by 5 code points to keep it away from scrapers.
-{
-  const btn = $('mailBtn'), txt = $('mailText');
-  const real = [...'qfwyufslElrfnq3htr'].map(ch => String.fromCharCode(ch.charCodeAt(0) - 5)).join('');
-  let shown = false;
-  btn.addEventListener('click', () => {
-    if (shown) { location.href = 'mailto:' + real; return; }
-    shown = true;
-    btn.classList.add('shown');
-    let i = 0;
-    const iv = setInterval(() => {
-      txt.textContent = real.slice(0, i) + [...real.slice(i)].map(() => '0123456789ABCDEF'[Math.random() * 16 | 0]).join('');
-      if (++i > real.length) { clearInterval(iv); txt.textContent = real; }
-    }, RM ? 0 : 35);
-  });
+/* ===================== shared bits ===================== */
+function setText(key, value) {
+  if (value == null || value === '') return;
+  document.querySelectorAll(`[data-live="${key}"]`).forEach(el => { el.textContent = typeof value === 'number' ? fmt(value) : value; });
 }
 
-/* ===================== reveal on scroll ===================== */
-const revealIO = onView(el => { el.classList.add('in'); revealIO.unobserve(el); }, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
-function reveal(root = document) {
-  root.querySelectorAll('.rv:not(.in)').forEach((el, i) => { el.style.transitionDelay = i % 4 * 80 + 'ms'; revealIO.observe(el); });
+const isPreprint = p => /^arxiv/i.test(p.conf || '');
+
+/* ===================== page renderers ===================== */
+// off the clock: one tile per interest, each with its own generated cover
+function renderInterests(D) {
+  const list = D.interests || [];
+  if (!list.length) return;
+  // families are dealt in turn here, so neighbouring tiles never share a style
+  // an interest with a url (a reading log, a playlist, a photo stream) links out
+  $('interestList').innerHTML = list.map((it, i) => `
+    <li class="tile${it.url ? ' linked' : ''}">
+      <div class="cover">${motif(it.title) || cover('interest:' + it.title, i % 6)}</div>
+      <h3>${it.url ? `<a class="stretch" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a>` : esc(it.title)}</h3>
+    </li>`).join('');
 }
 
-/* ===================== data-driven sections ===================== */
-function renderPapers(list) {
-  const isPre = p => /^arxiv/i.test(p.conf || '');
-  const papers = list.map((p, i) => ({ p, i }))
-    .sort((a, b) => (parseInt(b.p.year) || 0) - (parseInt(a.p.year) || 0) || isPre(a.p) - isPre(b.p) || a.i - b.i)
+function renderResearch(D) {
+  const list = (D.papers || []).map((p, i) => ({ p, i }))
+    .sort((a, b) => (parseInt(b.p.year) || 0) - (parseInt(a.p.year) || 0) || isPreprint(a.p) - isPreprint(b.p) || a.i - b.i)
     .map(x => x.p);
   const groups = [];
-  for (const p of papers) {
+  for (const p of list) {
     if (groups.at(-1)?.year === p.year) groups.at(-1).items.push(p);
     else groups.push({ year: p.year, items: [p] });
   }
@@ -490,125 +418,114 @@ function renderPapers(list) {
     const a = tmp.querySelector('a'), label = tmp.textContent.replace(/^\[|\]$/g, '');
     return t.class === 'tag-link' && a
       ? `<a href="${esc(a.getAttribute('href'))}" target="_blank" rel="noopener">${esc(label)}</a>`
-      : `<span class="p-info">${esc(label)}</span>`;
+      : `<span class="info">${esc(label)}</span>`;
   };
-  const links = p => (p.tags || []).filter(t => t.class === 'tag-link');
-  const infos = p => (p.tags || []).filter(t => t.class !== 'tag-link');
-  // a white square marks first / co-first / corresponding authorship
-  const mine = p => /^<span class="author-me">|author-me">Youwei Pang<\/span>[*#]/.test(p.authorsHtml || '');
   $('paperList').innerHTML = groups.map(g => `
-    <div class="pyear">
-      <div class="pyear-n">${esc(g.year)}</div>
+    <section class="year" aria-label="${esc(g.year)}">
+      <div class="year-n">${esc(g.year)}</div>
       <div>${g.items.map(p => `
-        <article class="paper rv${mine(p) ? ' first' : ''}" id="${esc(p.id)}">
-          <div class="p-venue"><span>${esc(p.conf)}</span>${p.award ? `<span class="p-award">${esc(p.award)}</span>` : ''}</div>
-          <div class="p-title">${esc(p.title)}</div>
-          <div class="p-auth">${p.authorsHtml || ''}</div>
-          <div class="p-tags">${[...links(p), ...infos(p)].map(tag).join('')}</div>
-        </article>`).join('')}
-      </div>
-    </div>`).join('');
+        <article class="paper" id="${esc(p.id)}">
+          <div class="meta">${esc(p.conf)}${p.award ? `<span class="dot"></span><span class="acc">${esc(p.award)}</span>` : ''}</div>
+          <h3>${esc(p.title)}</h3>
+          <p class="p-auth">${p.authorsHtml || ''}</p>
+          <div class="p-links">${[...(p.tags || []).filter(t => t.class === 'tag-link'), ...(p.tags || []).filter(t => t.class !== 'tag-link')].map(tag).join('')}</div>
+        </article>`).join('')}</div>
+    </section>`).join('');
 }
 
-function renderRepos(list) {
-  const LIMIT = 9;
-  const projs = [...list].sort((a, b) => (b.stars || 0) - (a.stars || 0));
-  const max = Math.log10((projs[0]?.stars || 1) + 1);
-  const card = p => `<a class="repo rv" href="${esc(p.url)}" target="_blank" rel="noopener">
-      <div class="repo-head"><span class="repo-name">${esc(p.name)}</span><span class="repo-star" title="stars">${(p.stars || 0).toLocaleString('en')}</span></div>
-      <div class="repo-desc">${esc(String(p.desc || '').replace(/:[a-z_]+:/g, '').trim())}</div>
-      <div class="repo-foot"><span>${esc(p.language || '')}</span><span class="repo-bar"><i style="width:${Math.max(3, Math.log10((p.stars || 0) + 1) / max * 100).toFixed(1)}%"></i></span></div>
-    </a>`;
-  const repos = $('repos'), more = $('moreRepos');
-  repos.innerHTML = projs.slice(0, LIMIT).map(card).join('');
-  if (projs.length <= LIMIT) return;
-  more.hidden = false;
-  more.querySelector('i').textContent = projs.length - LIMIT;
-  more.addEventListener('click', () => {
-    repos.insertAdjacentHTML('beforeend', projs.slice(LIMIT).map(card).join(''));
-    more.hidden = true;
-    reveal(repos);
-  }, { once: true });
-}
-
-function renderLog(news, resources) {
-  const li = n => `<li><time>${esc(n.date)}</time><span>${n.content}</span></li>`;
-  $('news').innerHTML = news.map(li).join('');
-  $('resources').innerHTML = resources.map(li).join('');
-  document.querySelectorAll('#news a, #resources a').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
-}
-
-// numbers count up the first time they scroll into view
-const counterIO = onView(el => {
-  counterIO.unobserve(el);
-  const target = +el.dataset.target, t0 = performance.now();
-  if (RM) { el.textContent = target.toLocaleString('en'); return; }
-  (function tick() {
-    const k = Math.min(1, (performance.now() - t0) / 1400);
-    el.textContent = Math.round(target * (1 - (1 - k) ** 3)).toLocaleString('en');
-    if (k < 1) requestAnimationFrame(tick);
-  })();
-}, { threshold: .4 });
-
-function setLive(key, value) {
-  if (value == null) return;
-  document.querySelectorAll(`[data-live="${key}"]`).forEach(el => {
-    if (typeof value !== 'number') { el.textContent = value; return; }
-    el.dataset.target = value;
-    counterIO.observe(el);
+// everything I have made and shared, in sections. An item may point at a GitHub repo;
+// its stars, language and description then come from the weekly project data.
+// Repos that no item mentions still show up, under "Other".
+function renderSharing(D) {
+  const projects = new Map((D.projects || []).map(p => [String(p.repo).toLowerCase(), p]));
+  const used = new Set();
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return ''; } };
+  const clean = t => String(t || '').replace(/\s*:[a-z_+-]+:/g, '').trim();
+  const items = (D.sharing || []).map(it => {
+    const p = it.repo ? projects.get(it.repo.toLowerCase()) : null;
+    if (p) used.add(it.repo.toLowerCase());
+    return { ...it, p };
   });
+  for (const [key, p] of projects) if (!used.has(key)) items.push({ section: 'other', repo: p.repo, p });
+
+  const sections = [...(D.sections || []), { id: 'other', title: 'Other' }];
+  const stars = it => it.p?.stars ?? -1;
+  $('sections').innerHTML = sections.map(sec => {
+    const list = items.filter(it => it.section === sec.id)
+      .toSorted((a, b) => stars(b) - stars(a) || String(b.date || '').localeCompare(String(a.date || '')));
+    if (!list.length) return '';
+    return `<section class="block share-group" aria-labelledby="sec-${esc(sec.id)}">
+      <h2 class="label" id="sec-${esc(sec.id)}">${esc(sec.title)}</h2>
+      <div class="cards">${list.map(it => {
+        const p = it.p, url = it.url || p?.url;
+        const meta = p
+          ? `${esc(p.language || 'Markdown')}<span class="dot"></span>★ ${fmt(p.stars || 0)}${p.forks ? `<span class="dot"></span>${fmt(p.forks)} forks` : ''}`
+          : `${esc(it.date || '')}<span class="dot"></span>${esc(it.note || host(url))}`;   // note: e.g. a file size instead of the host
+        const source = it.source || (p && it.url && p.url !== it.url ? p.url : '');
+        return card({
+          key: it.repo || it.title,
+          image: it.image || p?.image,
+          imageFit: it.imageFit || p?.imageFit,
+          imagePosition: it.imagePosition || p?.imagePosition,
+          imageZoom: it.imageZoom || p?.imageZoom,
+          href: url,
+          title: it.title || p?.name,
+          lang: it.lang,
+          meta: (it.tag ? `<span class="acc">${esc(it.tag)}</span><span class="dot"></span>` : '') + meta,
+          text: clean(it.desc || p?.desc),
+          extra: source ? `<div class="p-links"><a href="${esc(source)}" target="_blank" rel="noopener">Source</a></div>` : '',
+        });
+      }).join('')}</div>
+    </section>`;
+  }).join('');
+  wireCovers($('sections'));
+  setText('githubStars', D.live?.github?.stars);
+  setText('githubFollowers', D.live?.github?.followers);
 }
 
-/* ---------- photos: a horizontal film strip ---------- */
-function renderPhotos(photos) {
-  const list = photos.length ? photos.slice(0, 12) : Array.from({ length: 5 }, () => ({ url: 'https://yooweey.tuchong.com/' }));
-  const strip = $('shots');
-  strip.innerHTML = list.map(p => `<a class="shot" href="${esc(p.url)}" target="_blank" rel="noopener">
-      <div class="shot-frame">${p.image ? `<img alt="${esc(p.title)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" src="${esc(p.image)}" />` : ''}</div>
-      <div class="shot-cap">${esc(p.title || '图虫')}</div>
-      <div class="shot-meta">${esc(p.date || '')}${p.count ? ' · ' + p.count : ''}</div>
-    </a>`).join('');
-  strip.querySelectorAll('img').forEach(img => {
-    const ok = () => img.naturalWidth ? img.classList.add('ok') : img.remove();
-    if (img.complete) ok(); else { img.addEventListener('load', ok, { once: true }); img.addEventListener('error', () => img.remove(), { once: true }); }
+function renderPhotos(D) {
+  const photos = D.live?.photos || [];
+  if (!photos.length) return;
+  // a justified wall per year: each frame grows in proportion to its aspect ratio
+  const shot = p => {
+    const ar = (p.width && p.height) ? p.width / p.height : 1.4;
+    return `<figure class="shot" style="flex:${ar.toFixed(3)} 1 ${Math.round(ar * 240)}px;aspect-ratio:${ar.toFixed(3)};margin:0">
+      <a href="${esc(p.url)}" target="_blank" rel="noopener" style="display:block;height:100%">
+        <img src="${esc(p.image)}" alt="${esc(p.title || 'Photograph')}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+        <figcaption lang="zh">${esc(p.title)}<span class="meta">${esc(p.date)}${p.count ? ` · ${p.count} photos` : ''}</span></figcaption>
+      </a>
+    </figure>`;
+  };
+  const years = [];
+  for (const p of photos.toSorted((a, b) => String(b.date).localeCompare(String(a.date)))) {
+    const y = String(p.date).slice(0, 4) || 'Undated';
+    if (years.at(-1)?.y === y) years.at(-1).items.push(p); else years.push({ y, items: [p] });
+  }
+  $('wall').innerHTML = years.map(g => `
+    <section class="photo-year" aria-labelledby="y-${esc(g.y)}">
+      <h2 class="label" id="y-${esc(g.y)}">${esc(g.y)}<span class="dot"></span>${g.items.length} ${g.items.length > 1 ? 'posts' : 'post'}</h2>
+      <div class="wall">${g.items.map(shot).join('')}</div>
+    </section>`).join('');
+  $('wall').querySelectorAll('img').forEach(img => {
+    const ok = () => img.classList.add('ok');
+    img.complete ? ok() : img.addEventListener('load', ok, { once: true });
   });
-}
-{
-  const strip = $('shots');
-  const step = dir => strip.scrollBy({ left: dir * (strip.querySelector('.shot')?.offsetWidth + 16 || 300), behavior: RM ? 'auto' : 'smooth' });
-  $('shotPrev').addEventListener('click', () => step(-1));
-  $('shotNext').addEventListener('click', () => step(1));
+  setText('photoCount', photos.length);
 }
 
-/* ---------- GitHub contribution calendar (live) ---------- */
-fetch('https://github-contributions-api.jogruber.de/v4/lartpang?y=last')
-  .then(r => r.ok ? r.json() : Promise.reject(r.status))
-  .then(({ contributions: days = [] }) => {
-    if (!days.length) throw new Error('empty');
-    const pad = new Date(days[0].date + 'T00:00:00').getDay();   // align the first column to its weekday
-    $('heat').innerHTML = '<i style="visibility:hidden"></i>'.repeat(pad)
-      + days.map(d => `<i data-l="${d.level}" title="${d.date}: ${d.count}"></i>`).join('');
-  })
-  .catch(() => { $('gh').hidden = true; });
-
-/* ---------- boot ---------- */
 function render(D) {
-  const live = D.live || {};
-  renderPapers(D.papers || []);
-  renderRepos(D.projects || []);
-  renderLog(D.news || [], D.resources || []);
-  renderPhotos(live.photos || []);
-  setLive('yuqueDocs', live.yuque?.docs);
-  setLive('yuqueFollowers', live.yuque?.followers);
-  setLive('csdnVisitors', live.csdn?.visitors);
-  setLive('csdnFollowers', live.csdn?.followers);
-  reveal();
-  cosmos.refresh();
+  applyTheme(D.theme);
+  if (page === 'about') drawArt(D.theme?.seed);
+  ({ research: renderResearch, sharing: renderSharing, interests: renderInterests, photos: renderPhotos })[page]?.(D);
+  setText('updated', D.live?.updatedAt);
+  setText('week', D.theme?.week);
 }
 
-reveal();
+if (page === 'about' && cachedTheme?.seed != null) drawArt(cachedTheme.seed);
+
 // data.js is cache-busted so weekly data updates show up immediately
 const dataScript = document.createElement('script');
 dataScript.src = './data.js?v=' + Date.now();
 dataScript.onload = () => render(typeof SITE_DATA !== 'undefined' ? SITE_DATA : {});
+dataScript.onerror = () => { if (page === 'about') drawArt(20261127); };
 document.body.appendChild(dataScript);

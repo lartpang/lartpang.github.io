@@ -1,10 +1,12 @@
 // Refreshes the auto-generated parts of data.js:
 //   - "projects": GitHub metadata for each listed repository
 //   - "live":     GitHub totals, latest Tuchong photos, Yuque stats
+//   - "theme":    the palette of the week (and the seed of the About artwork)
 // Every source is fetched independently; a failure keeps the previous value.
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { makeTheme } from "./theme.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "../..");
@@ -13,7 +15,9 @@ const dataPath = path.join(rootDir, "data.js");
 const GITHUB_USER = "lartpang";
 const TUCHONG_SITE = "11269264";
 const YUQUE_USER = "lart";
-const PHOTO_POSTS = 12;
+const PHOTO_PAGE = 20;      // posts per request; every page is collected
+const PHOTO_MAX_PAGES = 50;
+const PHOTO_SINCE = "2025";  // older posts stay on Tuchong; the site links there
 const BROWSER_UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36";
 
@@ -121,6 +125,10 @@ function compactProject(project) {
     topics: Array.isArray(project.topics) ? project.topics : [],
     updatedAt: project.updatedAt || "",
     pushedAt: project.pushedAt || "",
+    // a hand-picked cover image, kept across updates; cards without one get a generated pattern
+    ...(project.image ? { image: project.image } : {}),
+    ...(project.imageFit ? { imageFit: project.imageFit } : {}),
+    ...(project.imagePosition ? { imagePosition: project.imagePosition } : {}),
   };
 }
 
@@ -141,6 +149,9 @@ function mergeProject(existing, repo, api) {
     topics: Array.isArray(api.topics) ? api.topics.slice(0, 5) : (existing.topics || []),
     updatedAt: api.updated_at || existing.updatedAt || "",
     pushedAt: api.pushed_at || existing.pushedAt || "",
+    image: existing.image,
+    imageFit: existing.imageFit,
+    imagePosition: existing.imagePosition,
   });
 }
 
@@ -176,25 +187,34 @@ async function fetchGithub() {
 }
 
 async function fetchPhotos() {
-  const json = await getJson(
-    `https://tuchong.com/rest/2/sites/${TUCHONG_SITE}/posts?count=${PHOTO_POSTS}&page=1`,
-    { "User-Agent": BROWSER_UA },
-  );
-  const posts = (json.post_list || []).filter(p => p.images && p.images.length);
-  if (!posts.length) throw new Error("no posts");
-  return posts.map(p => {
-    const img = p.images[0];
-    return {
-      title: String(p.title || "").replace(/\s+/g, " ").trim(),
-      url: p.url,
-      date: String(p.published_at || "").slice(0, 10),
-      count: p.image_count || p.images.length,
-      favorites: p.favorites || 0,
-      image: img.source?.ft640 || img.source?.m || img.source?.l,
-      width: img.width,
-      height: img.height,
-    };
-  });
+  const posts = [];
+  for (let page = 1; page <= PHOTO_MAX_PAGES; page++) {
+    const json = await getJson(
+      `https://tuchong.com/rest/2/sites/${TUCHONG_SITE}/posts?count=${PHOTO_PAGE}&page=${page}`,
+      { "User-Agent": BROWSER_UA },
+    );
+    const list = json.post_list || [];
+    posts.push(...list);
+    if (!json.more || !list.length) break;
+  }
+  const withImages = posts.filter(p => p.images && p.images.length && String(p.published_at || "") >= PHOTO_SINCE);
+  if (!withImages.length) throw new Error("no posts");
+  const seen = new Set();
+  return withImages
+    .filter(p => !seen.has(p.url) && seen.add(p.url))
+    .map(p => {
+      const img = p.images[0];
+      return {
+        title: String(p.title || "").replace(/\s+/g, " ").trim(),
+        url: p.url,
+        date: String(p.published_at || "").slice(0, 10),
+        count: p.image_count || p.images.length,
+        favorites: p.favorites || 0,
+        image: img.source?.ft640 || img.source?.m || img.source?.l,
+        width: img.width,
+        height: img.height,
+      };
+    });
 }
 
 async function fetchYuque() {
@@ -210,6 +230,13 @@ async function fetchYuque() {
 
 async function main() {
   let source = await readFile(dataPath, "utf8");
+
+  // `--theme-only` refreshes just the palette, without touching the network
+  if (process.argv.includes("--theme-only")) {
+    await writeFile(dataPath, setKey(source, "theme", makeTheme()), "utf8");
+    console.log("updated theme");
+    return;
+  }
   const siteData = loadSiteData(source);
   const prev = siteData.live || {};
 
@@ -228,6 +255,7 @@ async function main() {
 
   source = setKey(source, "projects", projects);
   source = setKey(source, "live", live);
+  source = setKey(source, "theme", makeTheme());
   await writeFile(dataPath, source, "utf8");
   console.log(`wrote ${path.relative(rootDir, dataPath)}`);
 }

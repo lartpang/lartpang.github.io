@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-tone="paper">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Papers by Youwei Pang, grouped by year." />
+  <meta name="author" content="Youwei Pang" />
+  <meta name="color-scheme" content="light" />
+  <title>Research · Youwei Pang</title>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preload" href="assets/fonts/VesperaDisplay-Regular.subset.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- paint with last week's palette straight away; main.js refreshes it from data.js -->
+  <script>(() => { const d = document.documentElement; try { const t = JSON.parse(localStorage.getItem('yp-theme')); const v = t && t.tones && (t.tones[d.dataset.tone] || t.tones.paper); if (v) for (const k in v) d.style.setProperty('--' + k, v[k]); } catch (e) { } })();</script>
+  <script src="assets/main.js" defer></script>
+</head>
+
+<body data-page="research">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="bar" id="bar">
+    <div class="shell top">
+      <a class="brand" href="./">Youwei Pang</a>
+      <nav class="tabs" aria-label="Pages"><a href="./">About</a><a href="research.html" aria-current="page">Research</a><a href="sharing.html">Sharing</a><a href="interests.html">Interests</a><a href="photos.html">Photos</a></nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell" tabindex="-1">
+    <h1 class="page-h">Research</h1>
+    <p class="page-meta ui"><a href="https://scholar.google.com/citations?user=jdo9_goAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a></p>
+    <div id="paperList"></div>
+
+  </main>
+
+  <footer class="shell foot">
+    <span>Youwei Pang © 2026</span>
+    <span><span class="nw">Data updated <span data-live="updated">2026-11-23</span></span><span class="dot"></span><span class="nw">Palette <span data-live="week">2026-W48</span><span class="swatch" aria-hidden="true"></span></span></span>
+  </footer>
+</body>
+
+</html>
